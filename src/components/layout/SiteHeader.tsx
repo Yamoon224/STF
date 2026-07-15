@@ -26,7 +26,7 @@ export function SiteHeader() {
   const { t } = useLanguage();
 
   return (
-    <header className="sticky top-0 z-40 border-b border-slate-100 bg-white/95 backdrop-blur dark:border-border-default dark:bg-surface/95">
+    <header className="border-b border-slate-100 bg-white/95 backdrop-blur dark:border-border-default dark:bg-surface/95">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2">
         <Logo />
 
@@ -36,7 +36,7 @@ export function SiteHeader() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-md font-medium whitespace-nowrap transition-colors hover:text-stf-orange ${
+                className={`text-sm font-medium whitespace-nowrap transition-colors hover:text-stf-orange ${
                   pathname === link.href ? "text-stf-orange" : "text-stf-navy dark:text-white"
                 }`}
               >

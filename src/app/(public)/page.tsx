@@ -288,7 +288,7 @@ export default function HomePage() {
             <Button href="/inscription" variant="secondary">
               Rejoindre en tant que mentée
             </Button>
-            <Button href="/inscription?role=mentore" className="bg-white text-stf-orange hover:bg-white/90">
+            <Button href="/inscription?role=mentore" variant="white">
               Devenir mentore
             </Button>
           </div>

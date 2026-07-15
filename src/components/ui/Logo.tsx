@@ -10,7 +10,7 @@ export function Logo({
 }) {
   return (
     <Link href="/" className={`flex items-center gap-2 ${className}`}>
-      <span className="relative h-10 w-10 shrink-0 overflow-hidden rounded-sm ring-1 ring-black/5">
+      <span className="relative h-10 w-10 shrink-0 overflow-hidden rounded-sm">
         <Image src="/brand/logo.jpg" alt="STF" fill sizes="40px" className="object-cover" priority />
       </span>
       {/* {variant === "full" ? (

@@ -7,8 +7,8 @@ export default function MentoreDashboardPage() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-2xl font-bold text-stf-navy">Tableau de bord</h1>
-        <p className="mt-1 text-sm text-slate-500">
+        <h1 className="text-2xl font-bold text-stf-navy dark:text-white">Tableau de bord</h1>
+        <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
           {mentorProfile.expertise} · {mentorProfile.assigned}/{mentorProfile.capacity} mentées affectées
         </p>
       </div>
@@ -20,9 +20,9 @@ export default function MentoreDashboardPage() {
         <StatCard label="Alertes" value="1" hint="Mentée sans session planifiée" />
       </div>
 
-      <div className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm">
+      <div className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm dark:border-border-default dark:bg-surface">
         <div className="flex items-center justify-between">
-          <h2 className="font-semibold text-stf-navy">Mentées affectées</h2>
+          <h2 className="font-semibold text-stf-navy dark:text-white">Mentées affectées</h2>
           <Link href="/mentore/mentees" className="text-sm font-semibold text-stf-blue">
             Voir tout
           </Link>
@@ -30,7 +30,7 @@ export default function MentoreDashboardPage() {
         <div className="mt-4 overflow-x-auto">
           <table className="w-full min-w-[520px] text-left text-sm">
             <thead>
-              <tr className="text-xs uppercase tracking-wide text-slate-400">
+              <tr className="text-xs uppercase tracking-wide text-slate-400 dark:text-slate-500">
                 <th className="pb-3">Mentée</th>
                 <th className="pb-3">Niveau</th>
                 <th className="pb-3">Programme</th>
@@ -38,13 +38,13 @@ export default function MentoreDashboardPage() {
                 <th className="pb-3">Alerte</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100">
+            <tbody className="divide-y divide-slate-100 dark:divide-border-subtle">
               {mentorMentees.map((m) => (
                 <tr key={m.name}>
-                  <td className="py-3 font-medium text-stf-navy">{m.name}</td>
-                  <td className="py-3 text-slate-500">{m.level}</td>
-                  <td className="py-3 text-slate-500">{m.program}</td>
-                  <td className="py-3 text-slate-500">{m.nextSession}</td>
+                  <td className="py-3 font-medium text-stf-navy dark:text-white">{m.name}</td>
+                  <td className="py-3 text-slate-500 dark:text-slate-400">{m.level}</td>
+                  <td className="py-3 text-slate-500 dark:text-slate-400">{m.program}</td>
+                  <td className="py-3 text-slate-500 dark:text-slate-400">{m.nextSession}</td>
                   <td className="py-3">
                     {m.alert ? <Badge tone="orange">À planifier</Badge> : <Badge tone="green">À jour</Badge>}
                   </td>
@@ -55,19 +55,22 @@ export default function MentoreDashboardPage() {
         </div>
       </div>
 
-      <div className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm">
+      <div className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm dark:border-border-default dark:bg-surface">
         <div className="flex items-center justify-between">
-          <h2 className="font-semibold text-stf-navy">Sessions à venir</h2>
+          <h2 className="font-semibold text-stf-navy dark:text-white">Sessions à venir</h2>
           <Link href="/mentore/sessions" className="text-sm font-semibold text-stf-blue">
             Voir tout
           </Link>
         </div>
         <div className="mt-4 space-y-3">
           {mentorSessions.map((s) => (
-            <div key={s.mentee} className="flex items-center justify-between rounded-xl border border-slate-100 p-4 text-sm">
+            <div
+              key={s.mentee}
+              className="flex items-center justify-between rounded-xl border border-slate-100 p-4 text-sm dark:border-border-subtle"
+            >
               <div>
-                <p className="font-medium text-stf-navy">{s.mentee}</p>
-                <p className="text-xs text-slate-400">{s.date} · {s.time}</p>
+                <p className="font-medium text-stf-navy dark:text-white">{s.mentee}</p>
+                <p className="text-xs text-slate-400 dark:text-slate-500">{s.date} · {s.time}</p>
               </div>
               <Badge tone={s.status === "Confirmée" ? "green" : "orange"}>{s.status}</Badge>
             </div>

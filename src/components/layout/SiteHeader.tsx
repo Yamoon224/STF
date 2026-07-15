@@ -30,13 +30,13 @@ export function SiteHeader() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         <Logo />
 
-        <div className="hidden items-center gap-6 xl:flex">
-          <nav className="flex items-center gap-6">
+        <div className="hidden items-center gap-4 xl:flex">
+          <nav className="flex items-center gap-4">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-sm font-medium whitespace-nowrap transition-colors hover:text-stf-orange ${
+                className={`text-xs font-medium whitespace-nowrap transition-colors hover:text-stf-orange ${
                   pathname === link.href ? "text-stf-orange" : "text-stf-navy dark:text-white"
                 }`}
               >
@@ -45,12 +45,12 @@ export function SiteHeader() {
             ))}
             <Link
               href="/connexion"
-              className="text-sm font-semibold whitespace-nowrap text-stf-navy hover:text-stf-orange dark:text-white"
+              className="text-xs font-semibold whitespace-nowrap text-stf-navy hover:text-stf-orange dark:text-white"
             >
               {t("header.connexion")}
             </Link>
           </nav>
-          <Button href="/inscription" className="px-4 py-2">
+          <Button href="/inscription" className="px-3 py-1.5 text-xs">
             {t("header.rejoindre")}
           </Button>
           <LanguageToggle />

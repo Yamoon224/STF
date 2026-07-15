@@ -41,7 +41,7 @@ const columns = [
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-slate-100 bg-stf-navy text-slate-200">
+    <footer className="border-t border-slate-100 bg-stf-navy text-slate-200 dark:border-border-default">
       <Container className="grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-5">
         <div className="lg:col-span-1">
           <span className="relative flex h-11 w-11 overflow-hidden rounded-full ring-1 ring-white/20">

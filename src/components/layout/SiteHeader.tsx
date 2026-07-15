@@ -24,11 +24,11 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-slate-100 bg-white/95 backdrop-blur dark:border-border-default dark:bg-surface/95">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         <Logo />
 
-        <div className="hidden items-center justify-end gap-8 lg:flex">
-          <nav className="flex items-center gap-8">
+        <div className="hidden items-center gap-6 xl:flex">
+          <nav className="flex items-center gap-6">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -40,22 +40,20 @@ export function SiteHeader() {
                 {link.label}
               </Link>
             ))}
-          </nav>
-          <div className="flex items-center gap-8">
             <Link
               href="/connexion"
               className="text-sm font-semibold whitespace-nowrap text-stf-navy hover:text-stf-orange dark:text-white"
             >
               Connexion
             </Link>
-            <Button href="/inscription" className="px-5 py-2.5">
-              Rejoindre STF
-            </Button>
-            <ThemeToggle />
-          </div>
+          </nav>
+          <Button href="/inscription" className="px-5 py-2.5">
+            Rejoindre STF
+          </Button>
+          <ThemeToggle />
         </div>
 
-        <div className="flex items-center gap-2 lg:hidden">
+        <div className="flex items-center gap-2 xl:hidden">
           <ThemeToggle />
           <button
             type="button"
@@ -69,7 +67,7 @@ export function SiteHeader() {
       </div>
 
       {open ? (
-        <div className="border-t border-slate-100 px-4 pb-6 pt-2 dark:border-border-default lg:hidden">
+        <div className="border-t border-slate-100 px-4 pb-6 pt-2 dark:border-border-default xl:hidden">
           <nav className="flex flex-col gap-1">
             {navLinks.map((link) => (
               <Link

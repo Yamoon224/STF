@@ -47,7 +47,7 @@ export function SiteHeader() {
               Connexion
             </Link>
           </nav>
-          <Button href="/inscription" className="px-5 py-2.5">
+          <Button href="/inscription" className="px-4 py-2">
             Rejoindre STF
           </Button>
           <ThemeToggle />

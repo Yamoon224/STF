@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
@@ -7,6 +9,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Pillars } from "@/components/ui/Pillars";
 import { HeroIllustration } from "@/components/ui/HeroIllustration";
 import { PatternBackground } from "@/components/ui/PatternBackground";
+import { useLanguage } from "@/lib/i18n/LanguageProvider";
 import {
   impactStats,
   programs,
@@ -22,6 +25,9 @@ const colorMap = {
 } as const;
 
 export default function HomePage() {
+  const { t } = useLanguage();
+  const steps = [t("home.stepInscription"), t("home.stepValidation"), t("home.stepMatching"), t("home.stepSuivi")];
+
   return (
     <>
       {/* Hero */}
@@ -30,19 +36,17 @@ export default function HomePage() {
         <HeroIllustration className="pointer-events-none absolute -right-24 -top-16 h-[520px] w-[520px] text-stf-navy opacity-70 sm:-right-16 sm:-top-10 lg:-right-8" />
         <Container className="relative grid gap-10 py-16 sm:py-20 lg:grid-cols-2 lg:items-center lg:py-28">
           <div>
-            <Badge tone="orange">Audace · Union · Intégrité · Résultat</Badge>
+            <Badge tone="orange">{t("home.heroBadge")}</Badge>
             <h1 className="mt-5 text-4xl font-bold leading-tight text-stf-navy dark:text-white sm:text-5xl">
-              Ouvrir les portes des STIM aux filles et jeunes femmes
+              {t("home.heroTitle")}
             </h1>
             <p className="mt-5 max-w-xl text-lg text-slate-600 dark:text-slate-300">
-              STF accompagne les bénéficiaires à travers le mentorat, des
-              expériences virtuelles et des programmes concrets — pensés pour
-              un usage réel sur le terrain, mobile et accessible.
+              {t("home.heroDescription")}
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
-              <Button href="/mentorat">Rejoindre le mentorat</Button>
+              <Button href="/mentorat">{t("home.ctaMentorat")}</Button>
               <Button href="/programmes" variant="outline">
-                Découvrir les programmes
+                {t("home.ctaProgrammes")}
               </Button>
             </div>
           </div>
@@ -65,11 +69,10 @@ export default function HomePage() {
         <PatternBackground tone="onDark" />
         <Container className="relative">
           <p className="text-center text-sm font-semibold uppercase tracking-wide text-stf-orange">
-            Nos engagements
+            {t("home.engagementsEyebrow")}
           </p>
           <h2 className="mt-2 text-center text-2xl font-bold text-white sm:text-3xl">
-            Quand la Femme, la Science, la Technologie, l&apos;Ingénierie et
-            les Mathématiques font une
+            {t("home.engagementsTitle")}
           </h2>
           <div className="mx-auto mt-8 max-w-4xl overflow-hidden rounded-2xl shadow-lg ring-1 ring-white/10">
             <Image
@@ -92,15 +95,15 @@ export default function HomePage() {
         <Container>
           <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
             <SectionHeading
-              eyebrow="Programmes phares"
-              title="Des parcours adaptés à chaque niveau"
-              description="Primaire, collège, lycée, université et débutantes : chaque bénéficiaire progresse à son rythme."
+              eyebrow={t("home.programmesEyebrow")}
+              title={t("home.programmesTitle")}
+              description={t("home.programmesDescription")}
             />
             <Link
               href="/programmes"
               className="text-sm font-semibold text-stf-blue hover:text-stf-orange"
             >
-              Voir tous les programmes →
+              {t("home.voirTousProgrammes")}
             </Link>
           </div>
 
@@ -130,25 +133,22 @@ export default function HomePage() {
         <PatternBackground tone="onDark" />
         <Container className="relative grid gap-10 lg:grid-cols-2 lg:items-center">
           <div>
-            <Badge tone="orange">Mentorat STF</Badge>
+            <Badge tone="orange">{t("home.mentoratBadge")}</Badge>
             <h2 className="mt-4 text-3xl font-bold sm:text-4xl">
-              Un binôme, un parcours, un objectif
+              {t("home.mentoratTitle")}
             </h2>
             <p className="mt-4 text-slate-300">
-              Inscription, validation des mentores, matching par critères
-              objectifs, sessions suivies et messagerie sécurisée : tout le
-              dispositif est pensé pour protéger et faire progresser chaque
-              mentée.
+              {t("home.mentoratDescription")}
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
-              <Button href="/mentorat">Découvrir le dispositif</Button>
+              <Button href="/mentorat">{t("home.decouvrirDispositif")}</Button>
               <Button href="/inscription" variant="outline" className="border-white text-white hover:bg-white/10">
-                S'inscrire
+                {t("home.sinscrire")}
               </Button>
             </div>
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
-            {["Inscription", "Validation", "Matching", "Suivi & bilan"].map(
+            {steps.map(
               (step, i) => (
                 <div
                   key={step}
@@ -179,20 +179,18 @@ export default function HomePage() {
           </div>
           <div>
             <p className="text-sm font-semibold uppercase tracking-wide text-stf-orange">
-              Mot de la présidente
+              {t("home.presidenteEyebrow")}
             </p>
             <blockquote className="mt-3 text-lg font-medium text-stf-navy dark:text-white sm:text-xl">
-              “C&apos;est avec fierté et gratitude que je vous accueille.
-              Ensemble, écrivons l&apos;histoire. Inspirons les générations
-              futures à croire en elles, à poursuivre leurs rêves avec audace.”
+              {t("home.presidenteQuote")}
             </blockquote>
-            <p className="mt-4 font-bold text-stf-navy dark:text-white">Christelle Ogo</p>
-            <p className="text-sm text-slate-500 dark:text-slate-400">Présidente et Fondatrice</p>
+            <p className="mt-4 font-bold text-stf-navy dark:text-white">{t("home.presidenteName")}</p>
+            <p className="text-sm text-slate-500 dark:text-slate-400">{t("home.presidenteRole")}</p>
             <Link
               href="/a-propos"
               className="mt-4 inline-block text-sm font-semibold text-stf-blue hover:text-stf-orange"
             >
-              Lire le message complet →
+              {t("home.presidenteLire")}
             </Link>
           </div>
         </Container>
@@ -202,8 +200,8 @@ export default function HomePage() {
       <section className="py-20">
         <Container>
           <SectionHeading
-            eyebrow="Témoignages"
-            title="Elles racontent leur expérience"
+            eyebrow={t("home.temoignagesEyebrow")}
+            title={t("home.temoignagesTitle")}
             center
           />
           <div className="mt-10 grid gap-6 md:grid-cols-3">
@@ -231,12 +229,12 @@ export default function HomePage() {
       <section className="bg-slate-50 py-20 dark:bg-surface-muted">
         <Container>
           <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
-            <SectionHeading eyebrow="Actualités" title="Dernières nouvelles de STF" />
+            <SectionHeading eyebrow={t("home.actualitesEyebrow")} title={t("home.actualitesTitle")} />
             <Link
               href="/blog"
               className="text-sm font-semibold text-stf-blue hover:text-stf-orange"
             >
-              Voir toutes les actualités →
+              {t("home.voirToutesActualites")}
             </Link>
           </div>
           <div className="mt-10 grid gap-6 md:grid-cols-3">
@@ -261,7 +259,7 @@ export default function HomePage() {
       <section className="py-16">
         <Container>
           <p className="text-center text-sm font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">
-            Ils soutiennent STF
+            {t("home.partenairesTitle")}
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
             {partners.map((partner) => (
@@ -279,17 +277,16 @@ export default function HomePage() {
       {/* CTA finale */}
       <section className="py-16">
         <Container className="rounded-3xl bg-stf-orange px-8 py-14 text-center text-white">
-          <h2 className="text-3xl font-bold">Devenez actrice du changement</h2>
+          <h2 className="text-3xl font-bold">{t("home.ctaFinaleTitle")}</h2>
           <p className="mx-auto mt-3 max-w-xl text-white/90">
-            Que vous soyez une future mentée, une professionnelle prête à
-            devenir mentore, ou un partenaire engagé — STF vous accueille.
+            {t("home.ctaFinaleDescription")}
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Button href="/inscription" variant="secondary">
-              Rejoindre en tant que mentée
+              {t("home.ctaFinaleMentee")}
             </Button>
             <Button href="/inscription?role=mentore" variant="white">
-              Devenir mentore
+              {t("home.ctaFinaleMentore")}
             </Button>
           </div>
         </Container>

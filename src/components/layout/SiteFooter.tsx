@@ -1,45 +1,50 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { SocialIcons } from "@/components/ui/SocialIcons";
+import { useLanguage } from "@/lib/i18n/LanguageProvider";
 
 const columns = [
   {
-    title: "Organisation",
+    titleKey: "organisation",
     links: [
-      { href: "/a-propos", label: "À propos" },
-      { href: "/impact", label: "Impact" },
-      { href: "/partenaires", label: "Partenaires" },
-      { href: "/blog", label: "Actualités" },
+      { href: "/a-propos", labelKey: "header.nav.aPropos" },
+      { href: "/impact", labelKey: "header.nav.impact" },
+      { href: "/partenaires", labelKey: "header.nav.partenaires" },
+      { href: "/blog", labelKey: "header.nav.blog" },
     ],
   },
   {
-    title: "Programmes",
+    titleKey: "programmes",
     links: [
-      { href: "/programmes", label: "Tous les programmes" },
-      { href: "/mentorat", label: "Mentorat" },
-      { href: "/experiences-virtuelles", label: "Expériences virtuelles" },
+      { href: "/programmes", labelKey: "footer.tousLesProgrammes" },
+      { href: "/mentorat", labelKey: "header.nav.mentorat" },
+      { href: "/experiences-virtuelles", labelKey: "header.nav.experiencesVirtuelles" },
     ],
   },
   {
-    title: "Accès",
+    titleKey: "acces",
     links: [
-      { href: "/connexion", label: "Connexion" },
-      { href: "/inscription", label: "Devenir mentée" },
-      { href: "/inscription?role=mentore", label: "Devenir mentore" },
+      { href: "/connexion", labelKey: "header.connexion" },
+      { href: "/inscription", labelKey: "footer.devenirMentee" },
+      { href: "/inscription?role=mentore", labelKey: "footer.devenirMentore" },
     ],
   },
   {
-    title: "Politiques",
+    titleKey: "politiques",
     links: [
-      { href: "/politiques", label: "Protection des filles" },
-      { href: "/politiques", label: "Confidentialité" },
-      { href: "/politiques", label: "Code de conduite" },
+      { href: "/politiques", labelKey: "footer.protectionFilles" },
+      { href: "/politiques", labelKey: "footer.confidentialite" },
+      { href: "/politiques", labelKey: "footer.codeConduite" },
     ],
   },
 ];
 
 export function SiteFooter() {
+  const { t } = useLanguage();
+
   return (
     <footer className="border-t border-slate-100 bg-stf-navy text-slate-200 dark:border-border-default">
       <Container className="grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-5">
@@ -47,10 +52,7 @@ export function SiteFooter() {
           <span className="relative flex h-11 w-11 overflow-hidden rounded-full ring-1 ring-white/20">
             <Image src="/brand/logo.jpg" alt="STF" fill sizes="44px" className="object-cover" />
           </span>
-          <p className="mt-4 text-sm text-slate-300">
-            Sciences &amp; Technologies au Féminin — Audace, Union,
-            Intégrité, Résultat.
-          </p>
+          <p className="mt-4 text-sm text-slate-300">{t("footer.tagline")}</p>
           <a
             href="https://sciencesaufeminin.org"
             target="_blank"
@@ -63,18 +65,18 @@ export function SiteFooter() {
         </div>
 
         {columns.map((col) => (
-          <div key={col.title}>
+          <div key={col.titleKey}>
             <h3 className="text-sm font-semibold uppercase tracking-wide text-stf-orange">
-              {col.title}
+              {t(`footer.${col.titleKey}`)}
             </h3>
             <ul className="mt-4 space-y-2">
-              {col.links.map((link) => (
-                <li key={link.label}>
+              {col.links.map((link, i) => (
+                <li key={`${link.href}-${i}`}>
                   <Link
                     href={link.href}
                     className="text-sm text-slate-300 hover:text-white"
                   >
-                    {link.label}
+                    {t(link.labelKey)}
                   </Link>
                 </li>
               ))}
@@ -84,8 +86,8 @@ export function SiteFooter() {
       </Container>
       <div className="border-t border-white/10 py-6">
         <Container className="flex flex-col items-center justify-between gap-2 text-xs text-slate-400 sm:flex-row">
-          <p>© {new Date().getFullYear()} Sciences &amp; Technologies au Féminin (STF).</p>
-          <p>Site conçu pour un usage mobile prioritaire et faible consommation de données.</p>
+          <p>{t("footer.copyright", { year: new Date().getFullYear() })}</p>
+          <p>{t("footer.mobileNote")}</p>
         </Container>
       </div>
     </footer>

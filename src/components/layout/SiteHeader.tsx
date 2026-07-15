@@ -6,21 +6,24 @@ import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { Logo } from "@/components/ui/Logo";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
+import { LanguageToggle } from "@/components/ui/LanguageToggle";
+import { useLanguage } from "@/lib/i18n/LanguageProvider";
 
 const navLinks = [
-  { href: "/a-propos", label: "À propos" },
-  { href: "/programmes", label: "Programmes" },
-  { href: "/mentorat", label: "Mentorat" },
-  { href: "/experiences-virtuelles", label: "Expériences virtuelles" },
-  { href: "/impact", label: "Impact" },
-  { href: "/blog", label: "Actualités" },
-  { href: "/partenaires", label: "Partenaires" },
-  { href: "/contact", label: "Contact" },
+  { href: "/a-propos", key: "aPropos" },
+  { href: "/programmes", key: "programmes" },
+  { href: "/mentorat", key: "mentorat" },
+  { href: "/experiences-virtuelles", key: "experiencesVirtuelles" },
+  { href: "/impact", key: "impact" },
+  { href: "/blog", key: "blog" },
+  { href: "/partenaires", key: "partenaires" },
+  { href: "/contact", key: "contact" },
 ];
 
 export function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const { t } = useLanguage();
 
   return (
     <header className="sticky top-0 z-40 border-b border-slate-100 bg-white/95 backdrop-blur dark:border-border-default dark:bg-surface/95">
@@ -37,29 +40,31 @@ export function SiteHeader() {
                   pathname === link.href ? "text-stf-orange" : "text-stf-navy dark:text-white"
                 }`}
               >
-                {link.label}
+                {t(`header.nav.${link.key}`)}
               </Link>
             ))}
             <Link
               href="/connexion"
               className="text-sm font-semibold whitespace-nowrap text-stf-navy hover:text-stf-orange dark:text-white"
             >
-              Connexion
+              {t("header.connexion")}
             </Link>
           </nav>
           <Button href="/inscription" className="px-4 py-2">
-            Rejoindre STF
+            {t("header.rejoindre")}
           </Button>
+          <LanguageToggle />
           <ThemeToggle />
         </div>
 
         <div className="flex items-center gap-2 xl:hidden">
+          <LanguageToggle />
           <ThemeToggle />
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
             className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 dark:border-border-default"
-            aria-label="Ouvrir le menu"
+            aria-label={t("header.ouvrirMenu")}
           >
             <span className="text-xl">{open ? "✕" : "☰"}</span>
           </button>
@@ -80,7 +85,7 @@ export function SiteHeader() {
                     : "text-stf-navy hover:bg-slate-50 dark:text-white dark:hover:bg-white/5"
                 }`}
               >
-                {link.label}
+                {t(`header.nav.${link.key}`)}
               </Link>
             ))}
           </nav>
@@ -90,10 +95,10 @@ export function SiteHeader() {
               onClick={() => setOpen(false)}
               className="rounded-full border border-stf-blue px-4 py-2.5 text-center text-sm font-semibold text-stf-blue dark:hover:bg-stf-blue/15"
             >
-              Connexion
+              {t("header.connexion")}
             </Link>
             <Button href="/inscription" className="w-full">
-              Rejoindre STF
+              {t("header.rejoindre")}
             </Button>
           </div>
         </div>

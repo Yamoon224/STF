@@ -36,7 +36,7 @@ export function SiteHeader() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-xs font-medium whitespace-nowrap transition-colors hover:text-stf-orange ${
+                className={`text-sm font-medium whitespace-nowrap transition-colors hover:text-stf-orange ${
                   pathname === link.href ? "text-stf-orange" : "text-stf-navy dark:text-white"
                 }`}
               >

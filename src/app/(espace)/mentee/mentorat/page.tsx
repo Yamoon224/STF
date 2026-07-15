@@ -11,18 +11,18 @@ export default function MenteeMentoratPage() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-2xl font-bold text-stf-navy">Mon mentorat</h1>
-        <p className="mt-1 text-sm text-slate-500">Cycle en cours · {menteeProfile.program}</p>
+        <h1 className="text-2xl font-bold text-stf-navy dark:text-white">Mon mentorat</h1>
+        <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">Cycle en cours · {menteeProfile.program}</p>
       </div>
 
-      <div className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm">
+      <div className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm dark:border-border-default dark:bg-surface">
         <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
           <div className="flex items-center gap-4">
             <span className="flex h-14 w-14 items-center justify-center rounded-full bg-stf-blue-light text-lg font-bold text-stf-blue">
               FK
             </span>
             <div>
-              <p className="font-semibold text-stf-navy">{menteeProfile.mentor}</p>
+              <p className="font-semibold text-stf-navy dark:text-white">{menteeProfile.mentor}</p>
               <Badge tone="green">Binôme actif</Badge>
             </div>
           </div>
@@ -36,19 +36,19 @@ export default function MenteeMentoratPage() {
       </div>
 
       <div className="grid gap-6 lg:grid-cols-2">
-        <div className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm">
-          <h2 className="font-semibold text-stf-navy">Objectifs du cycle</h2>
+        <div className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm dark:border-border-default dark:bg-surface">
+          <h2 className="font-semibold text-stf-navy dark:text-white">Objectifs du cycle</h2>
           <ul className="mt-4 space-y-3">
             {objectives.map((o) => (
               <li key={o.title} className="flex items-center gap-3 text-sm">
                 <span
                   className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-xs ${
-                    o.done ? "bg-stf-green text-white" : "border border-slate-300 text-transparent"
+                    o.done ? "bg-stf-green text-white" : "border border-slate-300 text-transparent dark:border-slate-600"
                   }`}
                 >
                   ✓
                 </span>
-                <span className={o.done ? "text-slate-400 line-through" : "text-stf-navy"}>
+                <span className={o.done ? "text-slate-400 line-through dark:text-slate-500" : "text-stf-navy dark:text-white"}>
                   {o.title}
                 </span>
               </li>
@@ -56,14 +56,17 @@ export default function MenteeMentoratPage() {
           </ul>
         </div>
 
-        <div className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm">
-          <h2 className="font-semibold text-stf-navy">Historique des sessions</h2>
+        <div className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm dark:border-border-default dark:bg-surface">
+          <h2 className="font-semibold text-stf-navy dark:text-white">Historique des sessions</h2>
           <ul className="mt-4 space-y-3">
             {menteeSessions.map((s) => (
-              <li key={s.topic} className="flex items-center justify-between rounded-xl border border-slate-100 p-3 text-sm">
+              <li
+                key={s.topic}
+                className="flex items-center justify-between rounded-xl border border-slate-100 p-3 text-sm dark:border-border-subtle"
+              >
                 <div>
-                  <p className="font-medium text-stf-navy">{s.topic}</p>
-                  <p className="text-xs text-slate-400">{s.date} · {s.time}</p>
+                  <p className="font-medium text-stf-navy dark:text-white">{s.topic}</p>
+                  <p className="text-xs text-slate-400 dark:text-slate-500">{s.date} · {s.time}</p>
                 </div>
                 <Badge tone={s.status === "Confirmée" ? "green" : s.status === "Réalisée" ? "neutral" : "orange"}>
                   {s.status}
@@ -74,7 +77,7 @@ export default function MenteeMentoratPage() {
         </div>
       </div>
 
-      <div className="rounded-2xl border border-dashed border-slate-200 p-6 text-sm text-slate-500">
+      <div className="rounded-2xl border border-dashed border-slate-200 p-6 text-sm text-slate-500 dark:border-border-default dark:text-slate-400">
         Un bilan semi-automatique sera généré à la fin de ce cycle de mentorat, à partir des sessions réalisées et des objectifs atteints.
       </div>
     </div>

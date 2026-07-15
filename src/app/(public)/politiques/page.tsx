@@ -40,9 +40,12 @@ export default function PolitiquesPage() {
       <section className="py-20">
         <Container className="grid gap-6 md:grid-cols-2">
           {policies.map((policy) => (
-            <div key={policy.title} className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm">
-              <h2 className="text-lg font-bold text-stf-navy">{policy.title}</h2>
-              <p className="mt-3 text-sm text-slate-600">{policy.text}</p>
+            <div
+              key={policy.title}
+              className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm dark:border-border-default dark:bg-surface"
+            >
+              <h2 className="text-lg font-bold text-stf-navy dark:text-white">{policy.title}</h2>
+              <p className="mt-3 text-sm text-slate-600 dark:text-slate-300">{policy.text}</p>
             </div>
           ))}
         </Container>

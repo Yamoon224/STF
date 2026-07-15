@@ -5,9 +5,9 @@ import { Badge } from "@/components/ui/Badge";
 import { programs } from "@/lib/mock-data";
 
 const colorMap = {
-  blue: "border-stf-blue/20 bg-stf-blue-light",
-  orange: "border-stf-orange/20 bg-stf-orange-light",
-  green: "border-stf-green/20 bg-stf-green-light",
+  blue: "border-stf-blue/20 bg-stf-blue-light dark:border-stf-blue/20 dark:bg-stf-blue/10",
+  orange: "border-stf-orange/20 bg-stf-orange-light dark:border-stf-orange/20 dark:bg-stf-orange/10",
+  green: "border-stf-green/20 bg-stf-green-light dark:border-stf-green/20 dark:bg-stf-green/10",
 } as const;
 
 export default function ProgrammesPage() {
@@ -27,20 +27,20 @@ export default function ProgrammesPage() {
               className={`rounded-2xl border p-8 ${colorMap[program.color as keyof typeof colorMap]}`}
             >
               <Badge tone="neutral">{program.audience}</Badge>
-              <h2 className="mt-4 text-xl font-bold text-stf-navy">
+              <h2 className="mt-4 text-xl font-bold text-stf-navy dark:text-white">
                 {program.title}
               </h2>
-              <p className="mt-3 text-sm text-slate-600">
+              <p className="mt-3 text-sm text-slate-600 dark:text-slate-300">
                 {program.description}
               </p>
               <dl className="mt-6 grid grid-cols-2 gap-4 text-sm">
                 <div>
-                  <dt className="font-semibold text-slate-500">Objectif</dt>
-                  <dd className="text-stf-navy">Développer la confiance et les compétences STIM</dd>
+                  <dt className="font-semibold text-slate-500 dark:text-slate-400">Objectif</dt>
+                  <dd className="text-stf-navy dark:text-white">Développer la confiance et les compétences STIM</dd>
                 </div>
                 <div>
-                  <dt className="font-semibold text-slate-500">Modalité</dt>
-                  <dd className="text-stf-navy">Présentiel et distanciel</dd>
+                  <dt className="font-semibold text-slate-500 dark:text-slate-400">Modalité</dt>
+                  <dd className="text-stf-navy dark:text-white">Présentiel et distanciel</dd>
                 </div>
               </dl>
               <Button href="/contact" variant="outline" className="mt-6">

@@ -18,21 +18,24 @@ export default function PartenairesPage() {
           <SectionHeading eyebrow="Nos partenaires" title="Un réseau engagé" />
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {partners.map((partner) => (
-              <div key={partner} className="flex items-center justify-center rounded-2xl border border-slate-100 bg-white p-8 text-center shadow-sm">
-                <span className="font-semibold text-slate-500">{partner}</span>
+              <div
+                key={partner}
+                className="flex items-center justify-center rounded-2xl border border-slate-100 bg-white p-8 text-center shadow-sm dark:border-border-default dark:bg-surface"
+              >
+                <span className="font-semibold text-slate-500 dark:text-slate-300">{partner}</span>
               </div>
             ))}
           </div>
         </Container>
       </section>
 
-      <section className="bg-stf-blue-light py-16">
+      <section className="bg-stf-blue-light py-16 dark:bg-stf-blue/10">
         <Container className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <h2 className="text-2xl font-bold text-stf-navy">
+            <h2 className="text-2xl font-bold text-stf-navy dark:text-white">
               Devenir partenaire de STF
             </h2>
-            <p className="mt-2 max-w-xl text-sm text-slate-600">
+            <p className="mt-2 max-w-xl text-sm text-slate-600 dark:text-slate-300">
               Financement de bourses, mise à disposition de mentores, accès à des rapports d'impact agrégés : plusieurs formes de partenariat sont possibles.
             </p>
           </div>

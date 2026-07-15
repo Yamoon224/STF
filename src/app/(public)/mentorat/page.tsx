@@ -33,11 +33,14 @@ export default function MentoratPage() {
             <SectionHeading eyebrow="Parcours mentée" title="Ce que vit une mentée" />
             <ol className="mt-6 space-y-4">
               {menteePath.map((step, i) => (
-                <li key={step} className="flex gap-4 rounded-xl border border-slate-100 bg-white p-4 shadow-sm">
+                <li
+                  key={step}
+                  className="flex gap-4 rounded-xl border border-slate-100 bg-white p-4 shadow-sm dark:border-border-default dark:bg-surface"
+                >
                   <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-stf-blue-light text-sm font-bold text-stf-blue">
                     {i + 1}
                   </span>
-                  <p className="text-sm text-slate-600">{step}</p>
+                  <p className="text-sm text-slate-600 dark:text-slate-300">{step}</p>
                 </li>
               ))}
             </ol>
@@ -50,11 +53,14 @@ export default function MentoratPage() {
             <SectionHeading eyebrow="Parcours mentore" title="Ce que vit une mentore" />
             <ol className="mt-6 space-y-4">
               {mentorePath.map((step, i) => (
-                <li key={step} className="flex gap-4 rounded-xl border border-slate-100 bg-white p-4 shadow-sm">
+                <li
+                  key={step}
+                  className="flex gap-4 rounded-xl border border-slate-100 bg-white p-4 shadow-sm dark:border-border-default dark:bg-surface"
+                >
                   <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-stf-orange-light text-sm font-bold text-stf-orange">
                     {i + 1}
                   </span>
-                  <p className="text-sm text-slate-600">{step}</p>
+                  <p className="text-sm text-slate-600 dark:text-slate-300">{step}</p>
                 </li>
               ))}
             </ol>
@@ -86,11 +92,11 @@ export default function MentoratPage() {
       <section className="py-20">
         <Container className="max-w-3xl">
           <SectionHeading eyebrow="Questions fréquentes" title="Tout comprendre sur le mentorat" />
-          <div className="mt-8 divide-y divide-slate-100 rounded-2xl border border-slate-100">
+          <div className="mt-8 divide-y divide-slate-100 rounded-2xl border border-slate-100 dark:divide-border-subtle dark:border-border-default">
             {faqMentorat.map((item) => (
               <div key={item.question} className="p-6">
-                <h3 className="font-semibold text-stf-navy">{item.question}</h3>
-                <p className="mt-2 text-sm text-slate-600">{item.answer}</p>
+                <h3 className="font-semibold text-stf-navy dark:text-white">{item.question}</h3>
+                <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">{item.answer}</p>
               </div>
             ))}
           </div>

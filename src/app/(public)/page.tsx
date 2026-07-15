@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Pillars } from "@/components/ui/Pillars";
+import { HeroIllustration } from "@/components/ui/HeroIllustration";
 import {
   impactStats,
   programs,
@@ -14,23 +15,24 @@ import {
 } from "@/lib/mock-data";
 
 const colorMap = {
-  blue: "border-stf-blue/20 bg-stf-blue-light",
-  orange: "border-stf-orange/20 bg-stf-orange-light",
-  green: "border-stf-green/20 bg-stf-green-light",
+  blue: "border-stf-blue/20 bg-stf-blue-light dark:border-stf-blue/20 dark:bg-stf-blue/10",
+  orange: "border-stf-orange/20 bg-stf-orange-light dark:border-stf-orange/20 dark:bg-stf-orange/10",
+  green: "border-stf-green/20 bg-stf-green-light dark:border-stf-green/20 dark:bg-stf-green/10",
 } as const;
 
 export default function HomePage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-stf-cream">
-        <Container className="grid gap-10 py-16 sm:py-20 lg:grid-cols-2 lg:items-center lg:py-28">
+      <section className="relative overflow-hidden bg-stf-cream dark:bg-surface-muted">
+        <HeroIllustration className="pointer-events-none absolute -right-24 -top-16 h-[520px] w-[520px] text-stf-navy opacity-70 sm:-right-16 sm:-top-10 lg:-right-8" />
+        <Container className="relative grid gap-10 py-16 sm:py-20 lg:grid-cols-2 lg:items-center lg:py-28">
           <div>
             <Badge tone="orange">Audace · Union · Intégrité · Résultat</Badge>
-            <h1 className="mt-5 text-4xl font-bold leading-tight text-stf-navy sm:text-5xl">
+            <h1 className="mt-5 text-4xl font-bold leading-tight text-stf-navy dark:text-white sm:text-5xl">
               Ouvrir les portes des STIM aux filles et jeunes femmes
             </h1>
-            <p className="mt-5 max-w-xl text-lg text-slate-600">
+            <p className="mt-5 max-w-xl text-lg text-slate-600 dark:text-slate-300">
               STF accompagne les bénéficiaires à travers le mentorat, des
               expériences virtuelles et des programmes concrets — pensés pour
               un usage réel sur le terrain, mobile et accessible.
@@ -46,10 +48,10 @@ export default function HomePage() {
             {impactStats.map((stat) => (
               <div
                 key={stat.label}
-                className="rounded-2xl border border-stf-blue/10 bg-white p-6 shadow-sm"
+                className="rounded-2xl border border-stf-blue/10 bg-white p-6 shadow-sm dark:border-border-default dark:bg-surface"
               >
                 <p className="text-3xl font-bold text-stf-blue">{stat.value}</p>
-                <p className="mt-1 text-sm text-slate-500">{stat.label}</p>
+                <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">{stat.label}</p>
               </div>
             ))}
           </div>
@@ -66,6 +68,16 @@ export default function HomePage() {
             Quand la Femme, la Science, la Technologie, l&apos;Ingénierie et
             les Mathématiques font une
           </h2>
+          <div className="mx-auto mt-8 max-w-4xl overflow-hidden rounded-2xl shadow-lg ring-1 ring-white/10">
+            <Image
+              src="/brand/banner.png"
+              alt="Bannière STF : Sciences & Technologies au Féminin — Éducation de qualité, réduction des inégalités, un emploi décent pour tous"
+              width={960}
+              height={336}
+              sizes="(min-width: 1024px) 896px, 100vw"
+              className="h-auto w-full"
+            />
+          </div>
           <div className="mt-10">
             <Pillars />
           </div>
@@ -95,13 +107,13 @@ export default function HomePage() {
                 key={program.slug}
                 className={`rounded-2xl border p-6 ${colorMap[program.color as keyof typeof colorMap]}`}
               >
-                <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+                <p className="text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">
                   {program.audience}
                 </p>
-                <h3 className="mt-2 text-lg font-bold text-stf-navy">
+                <h3 className="mt-2 text-lg font-bold text-stf-navy dark:text-white">
                   {program.title}
                 </h3>
-                <p className="mt-2 text-sm text-slate-600">
+                <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">
                   {program.description}
                 </p>
               </div>
@@ -151,8 +163,8 @@ export default function HomePage() {
 
       {/* Mot de la présidente */}
       <section className="py-20">
-        <Container className="grid gap-10 rounded-3xl bg-stf-cream p-8 sm:p-12 lg:grid-cols-[280px_1fr] lg:items-center">
-          <div className="relative mx-auto h-56 w-56 overflow-hidden rounded-full ring-4 ring-white shadow-lg lg:mx-0">
+        <Container className="grid gap-10 rounded-3xl bg-stf-cream p-8 dark:bg-surface-muted sm:p-12 lg:grid-cols-[280px_1fr] lg:items-center">
+          <div className="relative mx-auto h-56 w-56 overflow-hidden rounded-full ring-4 ring-white shadow-lg dark:ring-surface lg:mx-0">
             <Image
               src="/brand/presidente-fondatrice.png"
               alt="Christelle Ogo, Présidente et Fondatrice de STF"
@@ -165,13 +177,13 @@ export default function HomePage() {
             <p className="text-sm font-semibold uppercase tracking-wide text-stf-orange">
               Mot de la présidente
             </p>
-            <blockquote className="mt-3 text-lg font-medium text-stf-navy sm:text-xl">
+            <blockquote className="mt-3 text-lg font-medium text-stf-navy dark:text-white sm:text-xl">
               “C&apos;est avec fierté et gratitude que je vous accueille.
               Ensemble, écrivons l&apos;histoire. Inspirons les générations
               futures à croire en elles, à poursuivre leurs rêves avec audace.”
             </blockquote>
-            <p className="mt-4 font-bold text-stf-navy">Christelle Ogo</p>
-            <p className="text-sm text-slate-500">Présidente et Fondatrice</p>
+            <p className="mt-4 font-bold text-stf-navy dark:text-white">Christelle Ogo</p>
+            <p className="text-sm text-slate-500 dark:text-slate-400">Présidente et Fondatrice</p>
             <Link
               href="/a-propos"
               className="mt-4 inline-block text-sm font-semibold text-stf-blue hover:text-stf-orange"
@@ -194,16 +206,16 @@ export default function HomePage() {
             {testimonials.map((t) => (
               <figure
                 key={t.name}
-                className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm"
+                className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm dark:border-border-default dark:bg-surface"
               >
-                <blockquote className="text-sm text-slate-600">
+                <blockquote className="text-sm text-slate-600 dark:text-slate-300">
                   “{t.quote}”
                 </blockquote>
                 <figcaption className="mt-4">
-                  <p className="text-sm font-semibold text-stf-navy">
+                  <p className="text-sm font-semibold text-stf-navy dark:text-white">
                     {t.name}
                   </p>
-                  <p className="text-xs text-slate-500">{t.role}</p>
+                  <p className="text-xs text-slate-500 dark:text-slate-400">{t.role}</p>
                 </figcaption>
               </figure>
             ))}
@@ -212,7 +224,7 @@ export default function HomePage() {
       </section>
 
       {/* Actualités */}
-      <section className="bg-slate-50 py-20">
+      <section className="bg-slate-50 py-20 dark:bg-surface-muted">
         <Container>
           <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
             <SectionHeading eyebrow="Actualités" title="Dernières nouvelles de STF" />
@@ -228,13 +240,13 @@ export default function HomePage() {
               <Link
                 key={post.slug}
                 href="/blog"
-                className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md"
+                className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md dark:border-border-default dark:bg-surface"
               >
                 <Badge tone="neutral">{post.category}</Badge>
-                <h3 className="mt-3 text-base font-bold text-stf-navy">
+                <h3 className="mt-3 text-base font-bold text-stf-navy dark:text-white">
                   {post.title}
                 </h3>
-                <p className="mt-2 text-sm text-slate-600">{post.excerpt}</p>
+                <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">{post.excerpt}</p>
               </Link>
             ))}
           </div>
@@ -244,14 +256,14 @@ export default function HomePage() {
       {/* Partenaires */}
       <section className="py-16">
         <Container>
-          <p className="text-center text-sm font-semibold uppercase tracking-wide text-slate-500">
+          <p className="text-center text-sm font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">
             Ils soutiennent STF
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
             {partners.map((partner) => (
               <span
                 key={partner}
-                className="text-sm font-semibold text-slate-400"
+                className="text-sm font-semibold text-slate-400 dark:text-slate-500"
               >
                 {partner}
               </span>

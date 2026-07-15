@@ -39,7 +39,7 @@ export default function AProposPage() {
         <Container className="grid gap-12 lg:grid-cols-2">
           <div>
             <SectionHeading eyebrow="Notre histoire" title="Pourquoi STF existe" />
-            <p className="mt-4 text-slate-600">
+            <p className="mt-4 text-slate-600 dark:text-slate-300">
               Face au faible nombre de filles et de femmes dans les filières
               scientifiques, technologiques, d'ingénierie et mathématiques,
               STF a été créée pour offrir un accompagnement concret : des
@@ -49,7 +49,7 @@ export default function AProposPage() {
           </div>
           <div>
             <SectionHeading eyebrow="Notre mission" title="Ce que nous visons" />
-            <p className="mt-4 text-slate-600">
+            <p className="mt-4 text-slate-600 dark:text-slate-300">
               Accompagner chaque bénéficiaire depuis la découverte des STIM
               jusqu'à l'insertion professionnelle, en s'appuyant sur des
               données fiables et un dispositif de protection strict, en
@@ -59,14 +59,17 @@ export default function AProposPage() {
         </Container>
       </section>
 
-      <section className="bg-slate-50 py-20">
+      <section className="bg-slate-50 py-20 dark:bg-surface-muted">
         <Container>
           <SectionHeading eyebrow="Nos valeurs" title="Audace, Union, Intégrité, Résultat" center />
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {values.map((v) => (
-              <div key={v.title} className="rounded-2xl border border-slate-100 bg-white p-6 text-center shadow-sm">
+              <div
+                key={v.title}
+                className="rounded-2xl border border-slate-100 bg-white p-6 text-center shadow-sm dark:border-border-default dark:bg-surface"
+              >
                 <h3 className="text-lg font-bold text-stf-blue">{v.title}</h3>
-                <p className="mt-2 text-sm text-slate-600">{v.description}</p>
+                <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">{v.description}</p>
               </div>
             ))}
           </div>
@@ -76,7 +79,7 @@ export default function AProposPage() {
       <section className="py-20">
         <Container>
           <SectionHeading eyebrow="Gouvernance" title="Qui décide et qui contribue" />
-          <div className="mt-10 overflow-hidden rounded-2xl border border-slate-100">
+          <div className="mt-10 overflow-hidden rounded-2xl border border-slate-100 dark:border-border-default">
             <table className="w-full text-left text-sm">
               <thead className="bg-stf-navy text-white">
                 <tr>
@@ -84,11 +87,11 @@ export default function AProposPage() {
                   <th className="px-6 py-3 font-semibold">Mission</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100">
+              <tbody className="divide-y divide-slate-100 dark:divide-border-subtle">
                 {governance.map((g) => (
-                  <tr key={g.role} className="odd:bg-white even:bg-slate-50">
-                    <td className="px-6 py-4 font-semibold text-stf-navy">{g.role}</td>
-                    <td className="px-6 py-4 text-slate-600">{g.mission}</td>
+                  <tr key={g.role} className="odd:bg-white even:bg-slate-50 dark:odd:bg-surface dark:even:bg-surface-muted">
+                    <td className="px-6 py-4 font-semibold text-stf-navy dark:text-white">{g.role}</td>
+                    <td className="px-6 py-4 text-slate-600 dark:text-slate-300">{g.mission}</td>
                   </tr>
                 ))}
               </tbody>

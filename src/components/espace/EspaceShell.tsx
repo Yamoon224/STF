@@ -58,25 +58,25 @@ export function EspaceShell({
   );
 
   return (
-    <div className="flex min-h-screen bg-slate-50">
+    <div className="flex min-h-screen bg-slate-50 dark:bg-background">
       {/* Desktop sidebar */}
-      <aside className="sticky top-0 hidden h-screen w-64 shrink-0 flex-col border-r border-slate-100 bg-white lg:flex">
+      <aside className="sticky top-0 hidden h-screen w-64 shrink-0 flex-col border-r border-slate-100 bg-white dark:border-border-default dark:bg-surface lg:flex">
         <Link href="/" className="flex items-center gap-2 px-6 py-6">
           <span className="relative flex h-9 w-9 shrink-0 overflow-hidden rounded-full ring-1 ring-black/5">
             <Image src="/brand/logo.jpg" alt="STF" fill sizes="36px" className="object-cover" />
           </span>
-          <span className="text-sm font-semibold text-stf-navy">
+          <span className="text-sm font-semibold text-stf-navy dark:text-white">
             Espace {roleLabel}
           </span>
         </Link>
         <NavList />
-        <div className="m-3 mt-auto flex items-center gap-3 rounded-xl bg-slate-50 p-3">
-          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-stf-blue-light text-sm font-bold text-stf-blue">
+        <div className="m-3 mt-auto flex items-center gap-3 rounded-xl bg-slate-50 p-3 dark:bg-white/5">
+          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-stf-blue-light text-sm font-bold text-stf-blue">
             {initials}
           </span>
           <div className="min-w-0">
-            <p className="truncate text-sm font-semibold text-stf-navy">{userName}</p>
-            <p className="truncate text-xs text-slate-500">{userMeta}</p>
+            <p className="truncate text-sm font-semibold text-stf-navy dark:text-white">{userName}</p>
+            <p className="truncate text-xs text-slate-500 dark:text-slate-400">{userMeta}</p>
           </div>
         </div>
       </aside>
@@ -89,12 +89,12 @@ export function EspaceShell({
             className="absolute inset-0 bg-black/30"
             onClick={() => setOpen(false)}
           />
-          <aside className="absolute left-0 top-0 flex h-full w-72 flex-col bg-white pb-4 shadow-xl">
+          <aside className="absolute left-0 top-0 flex h-full w-72 flex-col bg-white pb-4 shadow-xl dark:bg-surface">
             <div className="flex items-center justify-between px-6 py-6">
-              <span className="text-sm font-semibold text-stf-navy">
+              <span className="text-sm font-semibold text-stf-navy dark:text-white">
                 Espace {roleLabel}
               </span>
-              <button onClick={() => setOpen(false)} aria-label="Fermer" className="text-xl">
+              <button onClick={() => setOpen(false)} aria-label="Fermer" className="text-xl text-slate-500 dark:text-slate-300">
                 ✕
               </button>
             </div>
@@ -103,27 +103,28 @@ export function EspaceShell({
         </div>
       ) : null}
 
-      <div className="flex min-h-screen flex-1 flex-col">
+      <div className="flex min-h-screen min-w-0 flex-1 flex-col">
         {/* Topbar */}
-        <header className="sticky top-0 z-30 flex items-center justify-between border-b border-slate-100 bg-white/95 px-4 py-4 backdrop-blur sm:px-6 lg:px-8">
+        <header className="sticky top-0 z-30 flex items-center justify-between gap-3 border-b border-slate-100 bg-white/95 px-4 py-4 backdrop-blur dark:border-border-default dark:bg-surface/95 sm:px-6 lg:px-8">
           <button
             onClick={() => setOpen(true)}
             aria-label="Ouvrir le menu"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 lg:hidden"
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-slate-200 dark:border-border-default lg:hidden"
           >
             ☰
           </button>
-          <p className="hidden text-sm font-semibold text-stf-navy lg:block">
+          <p className="hidden truncate text-sm font-semibold text-stf-navy dark:text-white lg:block">
             Bienvenue, {userName.split(" ")[0]}
           </p>
-          <div className="flex items-center gap-3">
+          <div className="flex shrink-0 items-center gap-3">
+            <ThemeToggle />
             <button
               aria-label="Notifications"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 text-slate-500"
+              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-slate-200 text-slate-500 dark:border-border-default dark:text-slate-300"
             >
               🔔
             </button>
-            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-stf-blue-light text-sm font-bold text-stf-blue lg:hidden">
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-stf-blue-light text-sm font-bold text-stf-blue lg:hidden">
               {initials}
             </span>
           </div>

@@ -12,18 +12,18 @@ function InscriptionForm() {
   const [role, setRole] = useState<Role>(initialRole);
 
   return (
-    <div className="w-full max-w-lg rounded-2xl border border-slate-100 bg-white p-8 shadow-sm">
-      <h1 className="text-2xl font-bold text-stf-navy">Créer un compte</h1>
-      <p className="mt-2 text-sm text-slate-500">
+    <div className="w-full max-w-lg rounded-2xl border border-slate-100 bg-white p-8 shadow-sm dark:border-border-default dark:bg-surface">
+      <h1 className="text-2xl font-bold text-stf-navy dark:text-white">Créer un compte</h1>
+      <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
         Choisissez votre profil pour adapter le formulaire d&apos;inscription.
       </p>
 
-      <div className="mt-6 grid grid-cols-2 gap-2 rounded-full bg-slate-100 p-1">
+      <div className="mt-6 grid grid-cols-2 gap-2 rounded-full bg-slate-100 p-1 dark:bg-white/10">
         <button
           type="button"
           onClick={() => setRole("mentee")}
           className={`rounded-full py-2.5 text-sm font-semibold transition-colors ${
-            role === "mentee" ? "bg-stf-orange text-white" : "text-slate-500"
+            role === "mentee" ? "bg-stf-orange text-white" : "text-slate-500 dark:text-slate-400"
           }`}
         >
           Je suis mentée
@@ -32,7 +32,7 @@ function InscriptionForm() {
           type="button"
           onClick={() => setRole("mentore")}
           className={`rounded-full py-2.5 text-sm font-semibold transition-colors ${
-            role === "mentore" ? "bg-stf-blue text-white" : "text-slate-500"
+            role === "mentore" ? "bg-stf-blue text-white" : "text-slate-500 dark:text-slate-400"
           }`}
         >
           Je suis mentore
@@ -42,37 +42,37 @@ function InscriptionForm() {
       <form className="mt-8 space-y-5">
         <div className="grid gap-5 sm:grid-cols-2">
           <div>
-            <label className="text-sm font-semibold text-stf-navy">Prénom</label>
+            <label className="text-sm font-semibold text-stf-navy dark:text-white">Prénom</label>
             <input
               type="text"
               required
-              className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-stf-blue"
+              className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-stf-blue dark:border-border-default dark:bg-white/5 dark:text-white"
             />
           </div>
           <div>
-            <label className="text-sm font-semibold text-stf-navy">Nom</label>
+            <label className="text-sm font-semibold text-stf-navy dark:text-white">Nom</label>
             <input
               type="text"
               required
-              className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-stf-blue"
+              className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-stf-blue dark:border-border-default dark:bg-white/5 dark:text-white"
             />
           </div>
         </div>
 
         <div>
-          <label className="text-sm font-semibold text-stf-navy">Email</label>
+          <label className="text-sm font-semibold text-stf-navy dark:text-white">Email</label>
           <input
             type="email"
             required
-            className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-stf-blue"
+            className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-stf-blue dark:border-border-default dark:bg-white/5 dark:text-white"
           />
         </div>
 
         {role === "mentee" ? (
           <div className="grid gap-5 sm:grid-cols-2">
             <div>
-              <label className="text-sm font-semibold text-stf-navy">Niveau</label>
-              <select className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-stf-blue">
+              <label className="text-sm font-semibold text-stf-navy dark:text-white">Niveau</label>
+              <select className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-stf-blue dark:border-border-default dark:bg-white/5 dark:text-white">
                 <option>Primaire</option>
                 <option>Collège</option>
                 <option>Lycée</option>
@@ -81,8 +81,8 @@ function InscriptionForm() {
               </select>
             </div>
             <div>
-              <label className="text-sm font-semibold text-stf-navy">Centre d&apos;intérêt</label>
-              <select className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-stf-blue">
+              <label className="text-sm font-semibold text-stf-navy dark:text-white">Centre d&apos;intérêt</label>
+              <select className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-stf-blue dark:border-border-default dark:bg-white/5 dark:text-white">
                 <option>Sciences</option>
                 <option>Technologies</option>
                 <option>Ingénierie</option>
@@ -93,26 +93,26 @@ function InscriptionForm() {
         ) : (
           <div className="grid gap-5 sm:grid-cols-2">
             <div>
-              <label className="text-sm font-semibold text-stf-navy">Domaine d&apos;expertise</label>
+              <label className="text-sm font-semibold text-stf-navy dark:text-white">Domaine d&apos;expertise</label>
               <input
                 type="text"
                 placeholder="Ex. Génie logiciel"
-                className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-stf-blue"
+                className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-stf-blue dark:border-border-default dark:bg-white/5 dark:text-white dark:placeholder:text-slate-500"
               />
             </div>
             <div>
-              <label className="text-sm font-semibold text-stf-navy">Capacité maximale</label>
+              <label className="text-sm font-semibold text-stf-navy dark:text-white">Capacité maximale</label>
               <input
                 type="number"
                 min={1}
                 defaultValue={2}
-                className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-stf-blue"
+                className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-stf-blue dark:border-border-default dark:bg-white/5 dark:text-white"
               />
             </div>
           </div>
         )}
 
-        <label className="flex items-start gap-3 text-xs text-slate-500">
+        <label className="flex items-start gap-3 text-xs text-slate-500 dark:text-slate-400">
           <input type="checkbox" required className="mt-0.5 rounded border-slate-300" />
           J&apos;accepte le code de conduite et la politique de protection des bénéficiaires de STF.
         </label>
@@ -125,13 +125,13 @@ function InscriptionForm() {
         </button>
 
         {role === "mentore" ? (
-          <p className="text-center text-xs text-slate-400">
+          <p className="text-center text-xs text-slate-400 dark:text-slate-500">
             Votre compte sera examiné et validé par l&apos;équipe STF avant tout échange avec une mentée.
           </p>
         ) : null}
       </form>
 
-      <p className="mt-6 text-center text-sm text-slate-500">
+      <p className="mt-6 text-center text-sm text-slate-500 dark:text-slate-400">
         Déjà inscrite ?{" "}
         <Link href="/connexion" className="font-semibold text-stf-blue">
           Se connecter

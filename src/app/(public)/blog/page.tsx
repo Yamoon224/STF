@@ -15,10 +15,13 @@ export default function BlogPage() {
       <section className="py-20">
         <Container className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {blogPosts.map((post) => (
-            <article key={post.slug} className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm">
+            <article
+              key={post.slug}
+              className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm dark:border-border-default dark:bg-surface"
+            >
               <div className="flex items-center justify-between">
                 <Badge tone="neutral">{post.category}</Badge>
-                <time className="text-xs text-slate-400">
+                <time className="text-xs text-slate-400 dark:text-slate-500">
                   {new Date(post.date).toLocaleDateString("fr-FR", {
                     day: "2-digit",
                     month: "long",
@@ -26,8 +29,8 @@ export default function BlogPage() {
                   })}
                 </time>
               </div>
-              <h2 className="mt-4 text-lg font-bold text-stf-navy">{post.title}</h2>
-              <p className="mt-2 text-sm text-slate-600">{post.excerpt}</p>
+              <h2 className="mt-4 text-lg font-bold text-stf-navy dark:text-white">{post.title}</h2>
+              <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">{post.excerpt}</p>
               <span className="mt-4 inline-block text-sm font-semibold text-stf-blue">
                 Lire l'article →
               </span>

@@ -1,4 +1,5 @@
 import { Container } from "@/components/ui/Container";
+import { PatternBackground } from "@/components/ui/PatternBackground";
 
 export function PageHero({
   eyebrow,
@@ -10,8 +11,9 @@ export function PageHero({
   description: string;
 }) {
   return (
-    <section className="border-b border-slate-100 bg-stf-cream dark:border-border-default dark:bg-surface-muted">
-      <Container className="py-16">
+    <section className="relative overflow-hidden border-b border-slate-100 bg-stf-cream dark:border-border-default dark:bg-surface-muted">
+      <PatternBackground />
+      <Container className="relative py-16">
         <p className="text-sm font-semibold uppercase tracking-wide text-stf-orange">
           {eyebrow}
         </p>

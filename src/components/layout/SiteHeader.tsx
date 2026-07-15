@@ -27,31 +27,32 @@ export function SiteHeader() {
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         <Logo />
 
-        <nav className="hidden items-center gap-6 lg:flex">
-          {navLinks.map((link) => (
+        <div className="hidden items-center justify-end gap-8 lg:flex">
+          <nav className="flex items-center gap-8">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`text-sm font-medium whitespace-nowrap transition-colors hover:text-stf-orange ${
+                  pathname === link.href ? "text-stf-orange" : "text-stf-navy dark:text-white"
+                }`}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+          <div className="flex items-center gap-8">
             <Link
-              key={link.href}
-              href={link.href}
-              className={`text-sm font-medium transition-colors hover:text-stf-orange ${
-                pathname === link.href ? "text-stf-orange" : "text-stf-navy dark:text-white"
-              }`}
+              href="/connexion"
+              className="text-sm font-semibold whitespace-nowrap text-stf-navy hover:text-stf-orange dark:text-white"
             >
-              {link.label}
+              Connexion
             </Link>
-          ))}
-        </nav>
-
-        <div className="hidden items-center gap-3 lg:flex">
-          <Link
-            href="/connexion"
-            className="text-sm font-semibold text-stf-navy hover:text-stf-orange dark:text-white"
-          >
-            Connexion
-          </Link>
-          <Button href="/inscription" className="px-5 py-2.5">
-            Rejoindre STF
-          </Button>
-          <ThemeToggle />
+            <Button href="/inscription" className="px-5 py-2.5">
+              Rejoindre STF
+            </Button>
+            <ThemeToggle />
+          </div>
         </div>
 
         <div className="flex items-center gap-2 lg:hidden">

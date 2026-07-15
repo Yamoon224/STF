@@ -2,6 +2,7 @@ import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/ui/PageHero";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
+import { PatternBackground } from "@/components/ui/PatternBackground";
 import { faqMentorat } from "@/lib/mock-data";
 
 const menteePath = [
@@ -71,9 +72,10 @@ export default function MentoratPage() {
         </Container>
       </section>
 
-      <section className="bg-stf-navy py-20 text-white">
-        <Container>
-          <SectionHeading eyebrow="Protection" title="La sécurité des mentées avant tout" />
+      <section className="relative overflow-hidden bg-stf-navy py-20 text-white">
+        <PatternBackground tone="onDark" />
+        <Container className="relative">
+          <SectionHeading eyebrow="Protection" title="La sécurité des mentées avant tout" invert />
           <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {[
               "Profil privé par défaut, en particulier pour les mineures",

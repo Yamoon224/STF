@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/Badge";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Pillars } from "@/components/ui/Pillars";
 import { HeroIllustration } from "@/components/ui/HeroIllustration";
+import { PatternBackground } from "@/components/ui/PatternBackground";
 import {
   impactStats,
   programs,
@@ -25,6 +26,7 @@ export default function HomePage() {
     <>
       {/* Hero */}
       <section className="relative overflow-hidden bg-stf-cream dark:bg-surface-muted">
+        <PatternBackground />
         <HeroIllustration className="pointer-events-none absolute -right-24 -top-16 h-[520px] w-[520px] text-stf-navy opacity-70 sm:-right-16 sm:-top-10 lg:-right-8" />
         <Container className="relative grid gap-10 py-16 sm:py-20 lg:grid-cols-2 lg:items-center lg:py-28">
           <div>
@@ -59,8 +61,9 @@ export default function HomePage() {
       </section>
 
       {/* Nos engagements */}
-      <section className="bg-gradient-to-br from-stf-navy via-stf-blue to-stf-navy py-16">
-        <Container>
+      <section className="relative overflow-hidden bg-gradient-to-br from-stf-navy via-stf-blue to-stf-navy py-16">
+        <PatternBackground tone="onDark" />
+        <Container className="relative">
           <p className="text-center text-sm font-semibold uppercase tracking-wide text-stf-orange">
             Nos engagements
           </p>
@@ -123,8 +126,9 @@ export default function HomePage() {
       </section>
 
       {/* Mentorat CTA */}
-      <section className="bg-stf-navy py-20 text-white">
-        <Container className="grid gap-10 lg:grid-cols-2 lg:items-center">
+      <section className="relative overflow-hidden bg-stf-navy py-20 text-white">
+        <PatternBackground tone="onDark" />
+        <Container className="relative grid gap-10 lg:grid-cols-2 lg:items-center">
           <div>
             <Badge tone="orange">Mentorat STF</Badge>
             <h2 className="mt-4 text-3xl font-bold sm:text-4xl">

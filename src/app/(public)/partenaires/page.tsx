@@ -1,0 +1,44 @@
+import { Container } from "@/components/ui/Container";
+import { PageHero } from "@/components/ui/PageHero";
+import { SectionHeading } from "@/components/ui/SectionHeading";
+import { Button } from "@/components/ui/Button";
+import { partners } from "@/lib/mock-data";
+
+export default function PartenairesPage() {
+  return (
+    <>
+      <PageHero
+        eyebrow="Partenaires"
+        title="Ils rendent nos programmes possibles"
+        description="Institutions, fondations et entreprises partenaires soutiennent STF financièrement, techniquement ou en mettant à disposition des mentores."
+      />
+
+      <section className="py-20">
+        <Container>
+          <SectionHeading eyebrow="Nos partenaires" title="Un réseau engagé" />
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {partners.map((partner) => (
+              <div key={partner} className="flex items-center justify-center rounded-2xl border border-slate-100 bg-white p-8 text-center shadow-sm">
+                <span className="font-semibold text-slate-500">{partner}</span>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      <section className="bg-stf-blue-light py-16">
+        <Container className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <h2 className="text-2xl font-bold text-stf-navy">
+              Devenir partenaire de STF
+            </h2>
+            <p className="mt-2 max-w-xl text-sm text-slate-600">
+              Financement de bourses, mise à disposition de mentores, accès à des rapports d'impact agrégés : plusieurs formes de partenariat sont possibles.
+            </p>
+          </div>
+          <Button href="/contact">Nous contacter</Button>
+        </Container>
+      </section>
+    </>
+  );
+}

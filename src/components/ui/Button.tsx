@@ -7,7 +7,7 @@ const variants: Record<Variant, string> = {
   primary: "bg-stf-orange text-white hover:bg-stf-orange/90",
   secondary: "bg-stf-blue text-white hover:bg-stf-blue/90",
   outline:
-    "border border-stf-blue text-stf-blue hover:bg-stf-blue-light",
+    "border border-stf-blue text-stf-blue hover:bg-stf-blue-light dark:hover:bg-stf-blue/15",
 };
 
 export function Button({

@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, type ReactNode } from "react";
+import { ThemeToggle } from "@/components/theme/ThemeToggle";
 
 export type EspaceNavItem = {
   href: string;
@@ -45,7 +46,7 @@ export function EspaceShell({
             className={`flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-colors ${
               active
                 ? "bg-stf-orange-light text-stf-orange"
-                : "text-slate-500 hover:bg-slate-100 hover:text-stf-navy"
+                : "text-slate-500 hover:bg-slate-100 hover:text-stf-navy dark:text-slate-400 dark:hover:bg-white/5 dark:hover:text-white"
             }`}
           >
             <span className="text-base">{item.icon}</span>

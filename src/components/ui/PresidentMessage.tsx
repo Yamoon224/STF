@@ -12,7 +12,7 @@ export function PresidentMessage({ compact = false }: { compact?: boolean }) {
       }, []);
 
   return (
-    <div className="overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-sm">
+    <div className="overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-sm dark:border-border-default dark:bg-surface">
       <div className="grid gap-0 lg:grid-cols-[320px_1fr]">
         <div className="relative h-64 w-full lg:h-full">
           <Image
@@ -25,13 +25,13 @@ export function PresidentMessage({ compact = false }: { compact?: boolean }) {
         </div>
         <div className="p-8 sm:p-10">
           <span className="text-5xl leading-none text-stf-orange">“</span>
-          <div className="-mt-4 space-y-4 text-sm text-slate-600 sm:text-base">
+          <div className="-mt-4 space-y-4 text-sm text-slate-600 dark:text-slate-300 sm:text-base">
             {paragraphs.map((p, i) => (
               <p key={i}>{p}</p>
             ))}
           </div>
           <div className="mt-6">
-            <p className="font-bold text-stf-navy">Christelle Ogo</p>
+            <p className="font-bold text-stf-navy dark:text-white">Christelle Ogo</p>
             <p className="text-sm text-stf-orange">Présidente et Fondatrice</p>
           </div>
         </div>

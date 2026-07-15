@@ -14,7 +14,7 @@ export function Logo({
         <Image src="/brand/logo.jpg" alt="STF" fill sizes="40px" className="object-cover" priority />
       </span>
       {variant === "full" ? (
-        <span className="hidden text-sm font-semibold leading-tight text-stf-navy sm:block">
+        <span className="hidden text-sm font-semibold leading-tight text-stf-navy dark:text-white sm:block">
           Sciences &amp; Technologies
           <br />
           au Féminin

@@ -1,7 +1,8 @@
 import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/ui/PageHero";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { impactStats, testimonials } from "@/lib/mock-data";
+import { apiFetch } from "@/lib/api";
+import type { ImpactStats, Testimonial } from "@/lib/types";
 
 const indicators = [
   { label: "Mentées inscrites", value: "2 400" },
@@ -14,7 +15,19 @@ const indicators = [
   { label: "Badges délivrés", value: "1 420" },
 ];
 
-export default function ImpactPage() {
+export default async function ImpactPage() {
+  const [stats, testimonials] = await Promise.all([
+    apiFetch<ImpactStats>("/stats/impact", { anonymous: true }),
+    apiFetch<Testimonial[]>("/testimonials", { anonymous: true }),
+  ]);
+
+  const impactStats = [
+    { label: "Bénéficiaires accompagnées", value: `${stats.beneficiaries}+` },
+    { label: "Mentores actives", value: String(stats.active_mentors) },
+    { label: "Binômes de mentorat", value: String(stats.pairings) },
+    { label: "Pays d'intervention", value: String(stats.countries) },
+  ];
+
   return (
     <>
       <PageHero
@@ -58,15 +71,15 @@ export default function ImpactPage() {
         <Container>
           <SectionHeading eyebrow="Témoignages" title="L'impact vu par les bénéficiaires" center />
           <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {testimonials.map((t) => (
+            {testimonials.map((item) => (
               <figure
-                key={t.name}
+                key={item.id}
                 className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm dark:border-border-default dark:bg-surface"
               >
-                <blockquote className="text-sm text-slate-600 dark:text-slate-300">“{t.quote}”</blockquote>
+                <blockquote className="text-sm text-slate-600 dark:text-slate-300">&ldquo;{item.quote}&rdquo;</blockquote>
                 <figcaption className="mt-4">
-                  <p className="text-sm font-semibold text-stf-navy dark:text-white">{t.name}</p>
-                  <p className="text-xs text-slate-500 dark:text-slate-400">{t.role}</p>
+                  <p className="text-sm font-semibold text-stf-navy dark:text-white">{item.name}</p>
+                  <p className="text-xs text-slate-500 dark:text-slate-400">{item.role}</p>
                 </figcaption>
               </figure>
             ))}

@@ -1,17 +1,20 @@
 "use client";
 
 import Link from "next/link";
-import { Suspense, useState } from "react";
+import { Suspense, useActionState, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useLanguage } from "@/lib/i18n/LanguageProvider";
+import { PasswordInput } from "@/components/ui/PasswordInput";
+import { registerAction, type AuthActionState } from "@/lib/actions/auth";
 
-type Role = "mentee" | "mentore";
+type Role = "mentee" | "mentor";
 
 function InscriptionForm() {
   const searchParams = useSearchParams();
-  const initialRole = searchParams.get("role") === "mentore" ? "mentore" : "mentee";
+  const initialRole = searchParams.get("role") === "mentore" ? "mentor" : "mentee";
   const [role, setRole] = useState<Role>(initialRole);
   const { t } = useLanguage();
+  const [state, formAction, pending] = useActionState<AuthActionState, FormData>(registerAction, null);
 
   return (
     <div className="w-full max-w-lg rounded-2xl border border-slate-100 bg-white p-8 shadow-sm dark:border-border-default dark:bg-surface">
@@ -32,21 +35,24 @@ function InscriptionForm() {
         </button>
         <button
           type="button"
-          onClick={() => setRole("mentore")}
+          onClick={() => setRole("mentor")}
           className={`rounded-full py-2.5 text-sm font-semibold transition-colors ${
-            role === "mentore" ? "bg-stf-blue text-white" : "text-slate-500 dark:text-slate-400"
+            role === "mentor" ? "bg-stf-blue text-white" : "text-slate-500 dark:text-slate-400"
           }`}
         >
           {t("inscription.roleMentore")}
         </button>
       </div>
 
-      <form className="mt-8 space-y-5">
+      <form action={formAction} className="mt-8 space-y-5">
+        <input type="hidden" name="role" value={role} />
+
         <div className="grid gap-5 sm:grid-cols-2">
           <div>
             <label className="text-sm font-semibold text-stf-navy dark:text-white">{t("inscription.firstName")}</label>
             <input
               type="text"
+              name="firstName"
               required
               className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-stf-blue dark:border-border-default dark:bg-white/5 dark:text-white"
             />
@@ -55,6 +61,7 @@ function InscriptionForm() {
             <label className="text-sm font-semibold text-stf-navy dark:text-white">{t("inscription.lastName")}</label>
             <input
               type="text"
+              name="lastName"
               required
               className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-stf-blue dark:border-border-default dark:bg-white/5 dark:text-white"
             />
@@ -65,16 +72,41 @@ function InscriptionForm() {
           <label className="text-sm font-semibold text-stf-navy dark:text-white">{t("inscription.email")}</label>
           <input
             type="email"
+            name="email"
             required
             className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-stf-blue dark:border-border-default dark:bg-white/5 dark:text-white"
           />
+        </div>
+
+        <div className="grid gap-5 sm:grid-cols-2">
+          <div>
+            <label className="text-sm font-semibold text-stf-navy dark:text-white">Mot de passe</label>
+            <PasswordInput
+              name="password"
+              required
+              minLength={8}
+              className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-stf-blue dark:border-border-default dark:bg-white/5 dark:text-white"
+            />
+          </div>
+          <div>
+            <label className="text-sm font-semibold text-stf-navy dark:text-white">Confirmer le mot de passe</label>
+            <PasswordInput
+              name="password_confirmation"
+              required
+              minLength={8}
+              className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-stf-blue dark:border-border-default dark:bg-white/5 dark:text-white"
+            />
+          </div>
         </div>
 
         {role === "mentee" ? (
           <div className="grid gap-5 sm:grid-cols-2">
             <div>
               <label className="text-sm font-semibold text-stf-navy dark:text-white">{t("inscription.level")}</label>
-              <select className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-stf-blue dark:border-border-default dark:bg-white/5 dark:text-white">
+              <select
+                name="level"
+                className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-stf-blue dark:border-border-default dark:bg-white/5 dark:text-white"
+              >
                 <option>{t("inscription.levelPrimaire")}</option>
                 <option>{t("inscription.levelCollege")}</option>
                 <option>{t("inscription.levelLycee")}</option>
@@ -98,6 +130,8 @@ function InscriptionForm() {
               <label className="text-sm font-semibold text-stf-navy dark:text-white">{t("inscription.expertise")}</label>
               <input
                 type="text"
+                name="expertise"
+                required
                 placeholder={t("inscription.expertisePlaceholder")}
                 className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-stf-blue dark:border-border-default dark:bg-white/5 dark:text-white dark:placeholder:text-slate-500"
               />
@@ -106,6 +140,7 @@ function InscriptionForm() {
               <label className="text-sm font-semibold text-stf-navy dark:text-white">{t("inscription.capacity")}</label>
               <input
                 type="number"
+                name="capacity"
                 min={1}
                 defaultValue={2}
                 className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-stf-blue dark:border-border-default dark:bg-white/5 dark:text-white"
@@ -119,14 +154,17 @@ function InscriptionForm() {
           {t("inscription.consent")}
         </label>
 
+        {state?.error ? <p className="text-sm text-red-600">{state.error}</p> : null}
+
         <button
           type="submit"
-          className="w-full rounded-full bg-stf-orange px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-stf-orange/90"
+          disabled={pending}
+          className="w-full rounded-full bg-stf-orange px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-stf-orange/90 disabled:opacity-60"
         >
-          {role === "mentee" ? t("inscription.submitMentee") : t("inscription.submitMentore")}
+          {pending ? "…" : role === "mentee" ? t("inscription.submitMentee") : t("inscription.submitMentore")}
         </button>
 
-        {role === "mentore" ? (
+        {role === "mentor" ? (
           <p className="text-center text-xs text-slate-400 dark:text-slate-500">
             {t("inscription.mentoreNotice")}
           </p>

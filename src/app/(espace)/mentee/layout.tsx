@@ -1,5 +1,6 @@
 import { EspaceShell, type EspaceNavItem } from "@/components/espace/EspaceShell";
-import { menteeProfile } from "@/lib/mock-espace-data";
+import { getSessionUser } from "@/lib/session";
+import { logoutAction } from "@/lib/actions/auth";
 
 const navItems: EspaceNavItem[] = [
   { href: "/mentee", label: "Tableau de bord", icon: "🏠" },
@@ -10,13 +11,16 @@ const navItems: EspaceNavItem[] = [
   { href: "/mentee/messagerie", label: "Messagerie", icon: "💬" },
 ];
 
-export default function MenteeLayout({ children }: { children: React.ReactNode }) {
+export default async function MenteeLayout({ children }: { children: React.ReactNode }) {
+  const user = await getSessionUser();
+
   return (
     <EspaceShell
       navItems={navItems}
       roleLabel="Mentée"
-      userName={menteeProfile.name}
-      userMeta={menteeProfile.level}
+      userName={user?.name ?? "Mentée"}
+      userMeta={user?.mentee_profile?.level ?? "Mentée STF"}
+      logoutAction={logoutAction}
     >
       {children}
     </EspaceShell>

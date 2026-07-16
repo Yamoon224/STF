@@ -1,9 +1,12 @@
 import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/ui/PageHero";
 import { Badge } from "@/components/ui/Badge";
-import { blogPosts } from "@/lib/mock-data";
+import { apiFetch } from "@/lib/api";
+import type { CmsPage } from "@/lib/types";
 
-export default function BlogPage() {
+export default async function BlogPage() {
+  const blogPosts = await apiFetch<CmsPage[]>("/cms/pages?type=article", { anonymous: true });
+
   return (
     <>
       <PageHero
@@ -21,18 +24,20 @@ export default function BlogPage() {
             >
               <div className="flex items-center justify-between">
                 <Badge tone="neutral">{post.category}</Badge>
-                <time className="text-xs text-slate-400 dark:text-slate-500">
-                  {new Date(post.date).toLocaleDateString("fr-FR", {
-                    day: "2-digit",
-                    month: "long",
-                    year: "numeric",
-                  })}
-                </time>
+                {post.published_at ? (
+                  <time className="text-xs text-slate-400 dark:text-slate-500">
+                    {new Date(post.published_at).toLocaleDateString("fr-FR", {
+                      day: "2-digit",
+                      month: "long",
+                      year: "numeric",
+                    })}
+                  </time>
+                ) : null}
               </div>
               <h2 className="mt-4 text-lg font-bold text-stf-navy dark:text-white">{post.title}</h2>
               <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">{post.excerpt}</p>
               <span className="mt-4 inline-block text-sm font-semibold text-stf-blue">
-                Lire l'article →
+                Lire l&apos;article →
               </span>
             </article>
           ))}

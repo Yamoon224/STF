@@ -3,7 +3,8 @@ import { PageHero } from "@/components/ui/PageHero";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
 import { PatternBackground } from "@/components/ui/PatternBackground";
-import { faqMentorat } from "@/lib/mock-data";
+import { apiFetch } from "@/lib/api";
+import type { Faq } from "@/lib/types";
 
 const menteePath = [
   "Créer un compte : niveau, intérêts, objectifs et langue.",
@@ -19,7 +20,9 @@ const mentorePath = [
   "Animer les sessions, rédiger des notes et proposer les prochaines étapes.",
 ];
 
-export default function MentoratPage() {
+export default async function MentoratPage() {
+  const faqMentorat = await apiFetch<Faq[]>("/faqs?category=mentorat", { anonymous: true });
+
   return (
     <>
       <PageHero

@@ -1,5 +1,6 @@
 import { EspaceShell, type EspaceNavItem } from "@/components/espace/EspaceShell";
-import { mentorProfile } from "@/lib/mock-espace-data";
+import { getSessionUser } from "@/lib/session";
+import { logoutAction } from "@/lib/actions/auth";
 
 const navItems: EspaceNavItem[] = [
   { href: "/mentore", label: "Tableau de bord", icon: "🏠" },
@@ -9,13 +10,16 @@ const navItems: EspaceNavItem[] = [
   { href: "/mentore/messagerie", label: "Messagerie", icon: "💬" },
 ];
 
-export default function MentoreLayout({ children }: { children: React.ReactNode }) {
+export default async function MentoreLayout({ children }: { children: React.ReactNode }) {
+  const user = await getSessionUser();
+
   return (
     <EspaceShell
       navItems={navItems}
       roleLabel="Mentore"
-      userName={mentorProfile.name}
-      userMeta={mentorProfile.expertise}
+      userName={user?.name ?? "Mentore"}
+      userMeta={user?.mentor_profile?.expertise ?? "Mentore STF"}
+      logoutAction={logoutAction}
     >
       {children}
     </EspaceShell>

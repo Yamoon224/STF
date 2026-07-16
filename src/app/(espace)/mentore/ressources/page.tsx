@@ -1,4 +1,8 @@
-import { mentorResources } from "@/lib/mock-espace-data";
+const mentorResources = [
+  { title: "Charte de la mentore STF", type: "PDF" },
+  { title: "Guide de conduite des sessions", type: "PDF" },
+  { title: "Modèle de note de session", type: "Document" },
+];
 
 export default function MentoreRessourcesPage() {
   return (
@@ -20,7 +24,11 @@ export default function MentoreRessourcesPage() {
               <p className="font-semibold text-stf-navy dark:text-white">{r.title}</p>
               <p className="text-xs text-slate-400 dark:text-slate-500">{r.type}</p>
             </div>
-            <button className="text-sm font-semibold text-stf-blue hover:text-stf-orange">
+            <button
+              disabled
+              title="Document à venir"
+              className="cursor-not-allowed text-sm font-semibold text-slate-300 dark:text-slate-600"
+            >
               Ouvrir
             </button>
           </div>

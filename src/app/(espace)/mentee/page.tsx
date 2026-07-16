@@ -2,30 +2,52 @@ import Link from "next/link";
 import { StatCard } from "@/components/ui/StatCard";
 import { ProgressBar } from "@/components/ui/ProgressBar";
 import { Badge } from "@/components/ui/Badge";
-import {
-  menteeProfile,
-  menteeSessions,
-  menteeModules,
-  menteeMessages,
-} from "@/lib/mock-espace-data";
+import { apiFetch } from "@/lib/api";
+import { getSessionUser } from "@/lib/session";
+import { formatDate, formatTime, sessionStatusLabel, sessionStatusTone } from "@/lib/format";
+import type { ConversationSummary, MentorshipPairing, MentorshipSession, ModuleWithProgress } from "@/lib/types";
 
-export default function MenteeDashboardPage() {
-  const nextSession = menteeSessions.find((s) => s.status !== "Réalisée");
+export default async function MenteeDashboardPage() {
+  const user = await getSessionUser();
+  const { data: pairings } = await apiFetch<{ data: MentorshipPairing[] }>("/pairings");
+  const pairing = pairings[0] as MentorshipPairing | undefined;
+
+  const [sessionsRes, modules, conversations] = await Promise.all([
+    pairing
+      ? apiFetch<{ data: MentorshipSession[] }>(`/sessions?pairing_id=${pairing.id}`)
+      : Promise.resolve({ data: [] as MentorshipSession[] }),
+    apiFetch<ModuleWithProgress[]>("/modules"),
+    apiFetch<ConversationSummary[]>("/conversations"),
+  ]);
+
+  const sessions = sessionsRes.data.sort(
+    (a, b) => new Date(a.scheduled_at).getTime() - new Date(b.scheduled_at).getTime()
+  );
+  const nextSession = sessions.find((s) => s.status !== "realisee" && s.status !== "annulee");
+  const modulesEnCours = modules.filter((m) => (m.my_progress ?? 0) > 0 && (m.my_progress ?? 0) < 100).length;
+  const sessionsRealisees = sessions.filter((s) => s.status === "realisee").length;
 
   return (
     <div className="space-y-8">
       <div>
         <h1 className="text-2xl font-bold text-stf-navy dark:text-white">Tableau de bord</h1>
         <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
-          Programme {menteeProfile.program} · Mentore {menteeProfile.mentor}
+          {pairing ? (
+            <>
+              Programme {pairing.program.name}
+              {pairing.mentor ? <> · Mentore {pairing.mentor.name}</> : " · En attente de matching"}
+            </>
+          ) : (
+            "Aucun binôme pour le moment."
+          )}
         </p>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <StatCard label="Modules en cours" value="3" />
-        <StatCard label="Badges obtenus" value="3" />
-        <StatCard label="Sessions réalisées" value="1" />
-        <StatCard label="Prochaine session" value={nextSession ? nextSession.date : "—"} />
+        <StatCard label="Modules en cours" value={String(modulesEnCours)} />
+        <StatCard label="Badges obtenus" value={String(user?.badges.length ?? 0)} />
+        <StatCard label="Sessions réalisées" value={String(sessionsRealisees)} />
+        <StatCard label="Prochaine session" value={nextSession ? formatDate(nextSession.scheduled_at) : "—"} />
       </div>
 
       <div className="grid gap-6 lg:grid-cols-3">
@@ -37,14 +59,14 @@ export default function MenteeDashboardPage() {
             </Link>
           </div>
           <div className="mt-5 space-y-5">
-            {menteeModules.map((m) => (
-              <div key={m.title}>
+            {modules.map((m) => (
+              <div key={m.id}>
                 <div className="flex items-center justify-between text-sm">
                   <span className="font-medium text-stf-navy dark:text-white">{m.title}</span>
-                  <span className="text-slate-400 dark:text-slate-500">{m.progress}%</span>
+                  <span className="text-slate-400 dark:text-slate-500">{m.my_progress ?? 0}%</span>
                 </div>
                 <div className="mt-2">
-                  <ProgressBar value={m.progress} />
+                  <ProgressBar value={m.my_progress ?? 0} />
                 </div>
               </div>
             ))}
@@ -59,15 +81,20 @@ export default function MenteeDashboardPage() {
             </Link>
           </div>
           <div className="mt-4 space-y-3">
-            {menteeMessages.map((m) => (
-              <div key={m.from} className="rounded-xl border border-slate-100 p-3 dark:border-border-subtle">
-                <div className="flex items-center justify-between">
-                  <p className="text-sm font-semibold text-stf-navy dark:text-white">{m.from}</p>
-                  {m.unread ? <Badge tone="orange">Nouveau</Badge> : null}
+            {conversations.map((c) => {
+              const last = c.messages[0];
+              const other = c.participants.find((p) => p.id !== user?.id);
+              const unread = last && last.sender_id !== user?.id;
+              return (
+                <div key={c.id} className="rounded-xl border border-slate-100 p-3 dark:border-border-subtle">
+                  <div className="flex items-center justify-between">
+                    <p className="text-sm font-semibold text-stf-navy dark:text-white">{other?.name ?? c.subject}</p>
+                    {unread ? <Badge tone="orange">Nouveau</Badge> : null}
+                  </div>
+                  <p className="mt-1 truncate text-xs text-slate-500 dark:text-slate-400">{last?.body ?? "—"}</p>
                 </div>
-                <p className="mt-1 truncate text-xs text-slate-500 dark:text-slate-400">{m.preview}</p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>
@@ -90,15 +117,13 @@ export default function MenteeDashboardPage() {
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 dark:divide-border-subtle">
-              {menteeSessions.map((s) => (
-                <tr key={s.date + s.topic}>
-                  <td className="py-3 font-medium text-stf-navy dark:text-white">{s.date}</td>
-                  <td className="py-3 text-slate-500 dark:text-slate-400">{s.time}</td>
-                  <td className="py-3 text-slate-500 dark:text-slate-400">{s.topic}</td>
+              {sessions.map((s) => (
+                <tr key={s.id}>
+                  <td className="py-3 font-medium text-stf-navy dark:text-white">{formatDate(s.scheduled_at)}</td>
+                  <td className="py-3 text-slate-500 dark:text-slate-400">{formatTime(s.scheduled_at)}</td>
+                  <td className="py-3 text-slate-500 dark:text-slate-400">{s.topic ?? "—"}</td>
                   <td className="py-3">
-                    <Badge tone={s.status === "Confirmée" ? "green" : s.status === "Réalisée" ? "neutral" : "orange"}>
-                      {s.status}
-                    </Badge>
+                    <Badge tone={sessionStatusTone(s.status)}>{sessionStatusLabel(s.status)}</Badge>
                   </td>
                 </tr>
               ))}

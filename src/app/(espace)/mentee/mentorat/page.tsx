@@ -1,5 +1,7 @@
 import { Badge } from "@/components/ui/Badge";
-import { menteeProfile, menteeSessions } from "@/lib/mock-espace-data";
+import { apiFetch } from "@/lib/api";
+import { formatDate, formatTime, initials, sessionStatusLabel, sessionStatusTone } from "@/lib/format";
+import type { MentorshipPairing, MentorshipSession } from "@/lib/types";
 
 const objectives = [
   { title: "Préparer un projet de fin de cycle en robotique", done: false },
@@ -7,23 +9,34 @@ const objectives = [
   { title: "Découvrir 3 métiers du numérique", done: true },
 ];
 
-export default function MenteeMentoratPage() {
+export default async function MenteeMentoratPage() {
+  const { data: pairings } = await apiFetch<{ data: MentorshipPairing[] }>("/pairings");
+  const pairing = pairings[0] as MentorshipPairing | undefined;
+
+  const sessions = pairing
+    ? (await apiFetch<{ data: MentorshipSession[] }>(`/sessions?pairing_id=${pairing.id}`)).data
+    : [];
+
   return (
     <div className="space-y-8">
       <div>
         <h1 className="text-2xl font-bold text-stf-navy dark:text-white">Mon mentorat</h1>
-        <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">Cycle en cours · {menteeProfile.program}</p>
+        <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+          Cycle en cours · {pairing?.program.name ?? "—"}
+        </p>
       </div>
 
       <div className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm dark:border-border-default dark:bg-surface">
         <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
           <div className="flex items-center gap-4">
             <span className="flex h-14 w-14 items-center justify-center rounded-full bg-stf-blue-light text-lg font-bold text-stf-blue">
-              FK
+              {pairing?.mentor ? initials(pairing.mentor.name) : "—"}
             </span>
             <div>
-              <p className="font-semibold text-stf-navy dark:text-white">{menteeProfile.mentor}</p>
-              <Badge tone="green">Binôme actif</Badge>
+              <p className="font-semibold text-stf-navy dark:text-white">{pairing?.mentor?.name ?? "En attente de matching"}</p>
+              <Badge tone={pairing?.status === "actif" ? "green" : "orange"}>
+                {pairing?.status === "actif" ? "Binôme actif" : "En attente"}
+              </Badge>
             </div>
           </div>
           <a
@@ -59,18 +72,18 @@ export default function MenteeMentoratPage() {
         <div className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm dark:border-border-default dark:bg-surface">
           <h2 className="font-semibold text-stf-navy dark:text-white">Historique des sessions</h2>
           <ul className="mt-4 space-y-3">
-            {menteeSessions.map((s) => (
+            {sessions.map((s) => (
               <li
-                key={s.topic}
+                key={s.id}
                 className="flex items-center justify-between rounded-xl border border-slate-100 p-3 text-sm dark:border-border-subtle"
               >
                 <div>
-                  <p className="font-medium text-stf-navy dark:text-white">{s.topic}</p>
-                  <p className="text-xs text-slate-400 dark:text-slate-500">{s.date} · {s.time}</p>
+                  <p className="font-medium text-stf-navy dark:text-white">{s.topic ?? "—"}</p>
+                  <p className="text-xs text-slate-400 dark:text-slate-500">
+                    {formatDate(s.scheduled_at)} · {formatTime(s.scheduled_at)}
+                  </p>
                 </div>
-                <Badge tone={s.status === "Confirmée" ? "green" : s.status === "Réalisée" ? "neutral" : "orange"}>
-                  {s.status}
-                </Badge>
+                <Badge tone={sessionStatusTone(s.status)}>{sessionStatusLabel(s.status)}</Badge>
               </li>
             ))}
           </ul>

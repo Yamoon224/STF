@@ -2,7 +2,8 @@ import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/ui/PageHero";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
-import { programs } from "@/lib/mock-data";
+import { apiFetch } from "@/lib/api";
+import type { Program } from "@/lib/types";
 
 const colorMap = {
   blue: "border-stf-blue/20 bg-stf-blue-light dark:border-stf-blue/20 dark:bg-stf-blue/10",
@@ -10,7 +11,9 @@ const colorMap = {
   green: "border-stf-green/20 bg-stf-green-light dark:border-stf-green/20 dark:bg-stf-green/10",
 } as const;
 
-export default function ProgrammesPage() {
+export default async function ProgrammesPage() {
+  const programs = await apiFetch<Program[]>("/programs", { anonymous: true });
+
   return (
     <>
       <PageHero
@@ -24,11 +27,11 @@ export default function ProgrammesPage() {
           {programs.map((program) => (
             <div
               key={program.slug}
-              className={`rounded-2xl border p-8 ${colorMap[program.color as keyof typeof colorMap]}`}
+              className={`rounded-2xl border p-8 ${colorMap[(program.color ?? "blue") as keyof typeof colorMap]}`}
             >
               <Badge tone="neutral">{program.audience}</Badge>
               <h2 className="mt-4 text-xl font-bold text-stf-navy dark:text-white">
-                {program.title}
+                {program.name}
               </h2>
               <p className="mt-3 text-sm text-slate-600 dark:text-slate-300">
                 {program.description}

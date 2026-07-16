@@ -1,7 +1,21 @@
 import { Badge } from "@/components/ui/Badge";
-import { mentorMentees } from "@/lib/mock-espace-data";
+import { apiFetch } from "@/lib/api";
+import { formatDate, initials } from "@/lib/format";
+import type { MentorshipPairing, MentorshipSession } from "@/lib/types";
 
-export default function MentoreMenteesPage() {
+export default async function MentoreMenteesPage() {
+  const [pairingsRes, sessionsRes] = await Promise.all([
+    apiFetch<{ data: MentorshipPairing[] }>("/pairings?status=actif"),
+    apiFetch<{ data: MentorshipSession[] }>("/sessions"),
+  ]);
+
+  const pairings = pairingsRes.data;
+  const upcomingByPairing = new Map<number, MentorshipSession>();
+  for (const s of sessionsRes.data) {
+    if (s.status === "realisee" || s.status === "annulee") continue;
+    if (!upcomingByPairing.has(s.pairing_id)) upcomingByPairing.set(s.pairing_id, s);
+  }
+
   return (
     <div className="space-y-8">
       <div>
@@ -12,30 +26,35 @@ export default function MentoreMenteesPage() {
       </div>
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {mentorMentees.map((m) => (
-          <div
-            key={m.name}
-            className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm dark:border-border-default dark:bg-surface"
-          >
-            <div className="flex items-center justify-between">
-              <span className="flex h-12 w-12 items-center justify-center rounded-full bg-stf-blue-light text-sm font-bold text-stf-blue">
-                {m.name.split(" ").map((n) => n[0]).join("")}
-              </span>
-              {m.alert ? <Badge tone="orange">À planifier</Badge> : <Badge tone="green">À jour</Badge>}
+        {pairings.map((p) => {
+          const next = upcomingByPairing.get(p.id);
+          return (
+            <div
+              key={p.id}
+              className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm dark:border-border-default dark:bg-surface"
+            >
+              <div className="flex items-center justify-between">
+                <span className="flex h-12 w-12 items-center justify-center rounded-full bg-stf-blue-light text-sm font-bold text-stf-blue">
+                  {initials(p.mentee.name)}
+                </span>
+                {next ? <Badge tone="green">À jour</Badge> : <Badge tone="orange">À planifier</Badge>}
+              </div>
+              <h2 className="mt-4 font-semibold text-stf-navy dark:text-white">{p.mentee.name}</h2>
+              <p className="text-sm text-slate-500 dark:text-slate-400">{p.program.name}</p>
+              <p className="mt-2 text-xs text-slate-400 dark:text-slate-500">
+                Prochaine session : {next ? formatDate(next.scheduled_at) : "—"}
+              </p>
+              <div className="mt-4 flex gap-2">
+                <a
+                  href="/mentore/messagerie"
+                  className="flex-1 rounded-full bg-stf-orange px-4 py-2 text-center text-xs font-semibold text-white hover:bg-stf-orange/90"
+                >
+                  Message
+                </a>
+              </div>
             </div>
-            <h2 className="mt-4 font-semibold text-stf-navy dark:text-white">{m.name}</h2>
-            <p className="text-sm text-slate-500 dark:text-slate-400">{m.level} · {m.program}</p>
-            <p className="mt-2 text-xs text-slate-400 dark:text-slate-500">Prochaine session : {m.nextSession}</p>
-            <div className="mt-4 flex gap-2">
-              <button className="flex-1 rounded-full border border-stf-blue px-4 py-2 text-xs font-semibold text-stf-blue hover:bg-stf-blue-light dark:hover:bg-stf-blue/15">
-                Voir le profil
-              </button>
-              <button className="flex-1 rounded-full bg-stf-orange px-4 py-2 text-xs font-semibold text-white hover:bg-stf-orange/90">
-                Message
-              </button>
-            </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );

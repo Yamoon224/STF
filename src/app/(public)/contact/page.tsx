@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useActionState, useState } from "react";
 import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/ui/PageHero";
+import { sendContactMessageAction, type ContactActionState } from "@/lib/actions/contact";
 
 const audiences = [
   { key: "generale", label: "Information générale" },
@@ -14,6 +15,7 @@ const audiences = [
 
 export default function ContactPage() {
   const [active, setActive] = useState(audiences[0].key);
+  const [state, formAction, pending] = useActionState<ContactActionState, FormData>(sendContactMessageAction, null);
 
   return (
     <>
@@ -49,12 +51,17 @@ export default function ContactPage() {
             </div>
           </div>
 
-          <form className="space-y-5 rounded-2xl border border-slate-100 bg-white p-6 shadow-sm dark:border-border-default dark:bg-surface sm:p-8">
+          <form
+            action={formAction}
+            className="space-y-5 rounded-2xl border border-slate-100 bg-white p-6 shadow-sm dark:border-border-default dark:bg-surface sm:p-8"
+          >
+            <input type="hidden" name="audience" value={active} />
             <div className="grid gap-5 sm:grid-cols-2">
               <div>
                 <label className="text-sm font-semibold text-stf-navy dark:text-white">Nom complet</label>
                 <input
                   type="text"
+                  name="name"
                   required
                   className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-stf-blue dark:border-border-default dark:bg-white/5 dark:text-white dark:placeholder:text-slate-500"
                   placeholder="Votre nom"
@@ -64,6 +71,7 @@ export default function ContactPage() {
                 <label className="text-sm font-semibold text-stf-navy dark:text-white">Email</label>
                 <input
                   type="email"
+                  name="email"
                   required
                   className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-stf-blue dark:border-border-default dark:bg-white/5 dark:text-white dark:placeholder:text-slate-500"
                   placeholder="vous@exemple.com"
@@ -74,6 +82,7 @@ export default function ContactPage() {
               <label className="text-sm font-semibold text-stf-navy dark:text-white">Sujet</label>
               <input
                 type="text"
+                name="subject"
                 required
                 className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-stf-blue dark:border-border-default dark:bg-white/5 dark:text-white dark:placeholder:text-slate-500"
                 placeholder={`Votre demande — ${audiences.find((a) => a.key === active)?.label}`}
@@ -82,17 +91,25 @@ export default function ContactPage() {
             <div>
               <label className="text-sm font-semibold text-stf-navy dark:text-white">Message</label>
               <textarea
+                name="message"
                 required
                 rows={5}
                 className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-stf-blue dark:border-border-default dark:bg-white/5 dark:text-white dark:placeholder:text-slate-500"
                 placeholder="Décrivez votre demande"
               />
             </div>
+
+            {state?.error ? <p className="text-sm text-red-600">{state.error}</p> : null}
+            {state?.success ? (
+              <p className="text-sm text-stf-green">Votre message a bien été envoyé, l&apos;équipe STF vous répondra rapidement.</p>
+            ) : null}
+
             <button
               type="submit"
-              className="w-full rounded-full bg-stf-orange px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-stf-orange/90 sm:w-auto"
+              disabled={pending}
+              className="w-full rounded-full bg-stf-orange px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-stf-orange/90 disabled:opacity-60 sm:w-auto"
             >
-              Envoyer le message
+              {pending ? "Envoi…" : "Envoyer le message"}
             </button>
           </form>
         </Container>

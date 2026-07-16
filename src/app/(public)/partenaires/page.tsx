@@ -2,9 +2,12 @@ import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/ui/PageHero";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
-import { partners } from "@/lib/mock-data";
+import { apiFetch } from "@/lib/api";
+import type { Partner } from "@/lib/types";
 
-export default function PartenairesPage() {
+export default async function PartenairesPage() {
+  const partners = await apiFetch<Partner[]>("/partners", { anonymous: true });
+
   return (
     <>
       <PageHero
@@ -19,10 +22,10 @@ export default function PartenairesPage() {
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {partners.map((partner) => (
               <div
-                key={partner}
+                key={partner.id}
                 className="flex items-center justify-center rounded-2xl border border-slate-100 bg-white p-8 text-center shadow-sm dark:border-border-default dark:bg-surface"
               >
-                <span className="font-semibold text-slate-500 dark:text-slate-300">{partner}</span>
+                <span className="font-semibold text-slate-500 dark:text-slate-300">{partner.name}</span>
               </div>
             ))}
           </div>

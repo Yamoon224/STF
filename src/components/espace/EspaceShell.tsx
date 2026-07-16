@@ -17,12 +17,14 @@ export function EspaceShell({
   roleLabel,
   userName,
   userMeta,
+  logoutAction,
   children,
 }: {
   navItems: EspaceNavItem[];
   roleLabel: string;
   userName: string;
   userMeta: string;
+  logoutAction?: () => Promise<void>;
   children: ReactNode;
 }) {
   const pathname = usePathname();
@@ -70,14 +72,26 @@ export function EspaceShell({
           </span>
         </Link>
         <NavList />
-        <div className="m-3 mt-auto flex items-center gap-3 rounded-xl bg-slate-50 p-3 dark:bg-white/5">
-          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-stf-blue-light text-sm font-bold text-stf-blue">
-            {initials}
-          </span>
-          <div className="min-w-0">
-            <p className="truncate text-sm font-semibold text-stf-navy dark:text-white">{userName}</p>
-            <p className="truncate text-xs text-slate-500 dark:text-slate-400">{userMeta}</p>
+        <div className="m-3 mt-auto space-y-2">
+          <div className="flex items-center gap-3 rounded-xl bg-slate-50 p-3 dark:bg-white/5">
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-stf-blue-light text-sm font-bold text-stf-blue">
+              {initials}
+            </span>
+            <div className="min-w-0">
+              <p className="truncate text-sm font-semibold text-stf-navy dark:text-white">{userName}</p>
+              <p className="truncate text-xs text-slate-500 dark:text-slate-400">{userMeta}</p>
+            </div>
           </div>
+          {logoutAction ? (
+            <form action={logoutAction}>
+              <button
+                type="submit"
+                className="w-full rounded-xl px-3 py-2 text-left text-sm font-medium text-slate-500 hover:bg-slate-100 hover:text-red-500 dark:text-slate-400 dark:hover:bg-white/5"
+              >
+                Se déconnecter
+              </button>
+            </form>
+          ) : null}
         </div>
       </aside>
 
@@ -119,8 +133,10 @@ export function EspaceShell({
           <div className="flex shrink-0 items-center gap-3">
             <ThemeToggle />
             <button
+              disabled
               aria-label="Notifications"
-              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-slate-200 text-slate-500 dark:border-border-default dark:text-slate-300"
+              title="Notifications à venir"
+              className="flex h-10 w-10 shrink-0 cursor-not-allowed items-center justify-center rounded-full border border-slate-200 text-slate-300 dark:border-border-default dark:text-slate-600"
             >
               🔔
             </button>

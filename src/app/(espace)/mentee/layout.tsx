@@ -6,6 +6,7 @@ const navItems: EspaceNavItem[] = [
   { href: "/mentee", label: "Tableau de bord", icon: "🏠" },
   { href: "/mentee/mentorat", label: "Mon mentorat", icon: "🤝" },
   { href: "/mentee/modules", label: "Modules", icon: "🎓" },
+  { href: "/mentee/renforcement", label: "Cours de renforcement", icon: "🔬" },
   { href: "/mentee/projets", label: "Projets", icon: "📁" },
   { href: "/mentee/badges", label: "Badges", icon: "🏅" },
   { href: "/mentee/messagerie", label: "Messagerie", icon: "💬" },

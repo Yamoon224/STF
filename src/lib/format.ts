@@ -25,6 +25,22 @@ export function sessionStatusTone(status: string): "green" | "neutral" | "orange
   return "orange";
 }
 
+const LIVE_SESSION_STATUS_LABELS: Record<string, string> = {
+  a_venir: "À venir",
+  en_cours: "En cours",
+  termine: "Terminée",
+};
+
+export function liveSessionStatusLabel(status: string): string {
+  return LIVE_SESSION_STATUS_LABELS[status] ?? status;
+}
+
+export function liveSessionStatusTone(status: string): "green" | "neutral" | "orange" {
+  if (status === "en_cours") return "green";
+  if (status === "termine") return "neutral";
+  return "orange";
+}
+
 const PROJECT_STATUS_LABELS: Record<string, string> = {
   brouillon: "Brouillon",
   soumis: "Soumis",

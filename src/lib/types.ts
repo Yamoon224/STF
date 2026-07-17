@@ -88,6 +88,52 @@ export type ModuleWithProgress = {
   my_progress?: number;
 };
 
+export type Level = {
+  id: number;
+  name: string;
+  slug: string;
+  order: number;
+};
+
+export type Subject = {
+  id: number;
+  name: string;
+  slug: string;
+};
+
+export type CourseWithProgress = {
+  id: number;
+  level_id: number;
+  subject_id: number;
+  title: string;
+  description: string | null;
+  order: number;
+  status: "brouillon" | "publie";
+  my_progress?: number;
+};
+
+export type Experiment = {
+  id: number;
+  subject_id: number;
+  level_id: number | null;
+  course_id: number | null;
+  title: string;
+  description: string | null;
+  instructions: string | null;
+  order: number;
+  status: "brouillon" | "publie";
+};
+
+export type LiveSession = {
+  id: number;
+  course_id: number;
+  title: string;
+  scheduled_at: string;
+  duration_minutes: number;
+  meeting_link: string | null;
+  status: "a_venir" | "en_cours" | "termine";
+};
+
 export type Project = {
   id: number;
   mentee_id: number;

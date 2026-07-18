@@ -20,14 +20,25 @@ export default async function PartenairesPage() {
         <Container>
           <SectionHeading eyebrow="Nos partenaires" title="Un réseau engagé" />
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {partners.map((partner) => (
-              <div
-                key={partner.id}
-                className="flex items-center justify-center rounded-2xl border border-slate-100 bg-white p-8 text-center shadow-sm dark:border-border-default dark:bg-surface"
-              >
-                <span className="font-semibold text-slate-500 dark:text-slate-300">{partner.name}</span>
-              </div>
-            ))}
+            {partners.map((partner) => {
+              const card = (
+                <div className="flex h-full flex-col items-center justify-center gap-3 rounded-2xl border border-slate-100 bg-white p-8 text-center shadow-sm dark:border-border-default dark:bg-surface">
+                  {partner.logo_url ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={partner.logo_url} alt={partner.name} className="h-16 max-w-[160px] object-contain" />
+                  ) : null}
+                  <span className="font-semibold text-slate-500 dark:text-slate-300">{partner.name}</span>
+                </div>
+              );
+
+              return partner.url ? (
+                <a key={partner.id} href={partner.url} target="_blank" rel="noreferrer" className="block">
+                  {card}
+                </a>
+              ) : (
+                <div key={partner.id}>{card}</div>
+              );
+            })}
           </div>
         </Container>
       </section>

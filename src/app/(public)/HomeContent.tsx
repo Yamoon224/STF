@@ -270,14 +270,22 @@ export function HomeContent({
             {t("home.partenairesTitle")}
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
-            {partners.map((partner) => (
-              <span
-                key={partner.id}
-                className="text-sm font-semibold text-slate-400 dark:text-slate-500"
-              >
-                {partner.name}
-              </span>
-            ))}
+            {partners.map((partner) =>
+              partner.logo_url ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  key={partner.id}
+                  src={partner.logo_url}
+                  alt={partner.name}
+                  title={partner.name}
+                  className="h-8 max-w-[120px] object-contain grayscale transition hover:grayscale-0"
+                />
+              ) : (
+                <span key={partner.id} className="text-sm font-semibold text-slate-400 dark:text-slate-500">
+                  {partner.name}
+                </span>
+              )
+            )}
           </div>
         </Container>
       </section>

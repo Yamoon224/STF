@@ -54,9 +54,10 @@ export default async function ExperiencesVirtuellesCataloguePage({
           ) : (
             <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {courses.map((course) => (
-                <div
+                <Link
                   key={course.id}
-                  className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm dark:border-border-default dark:bg-surface"
+                  href={`/experiences-virtuelles/${level.slug}/${subject.slug}/cours/${course.id}`}
+                  className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md dark:border-border-default dark:bg-surface"
                 >
                   <Badge tone="blue">{level.name}</Badge>
                   <h3 className="mt-3 text-lg font-bold text-stf-navy dark:text-white">{course.title}</h3>
@@ -66,7 +67,8 @@ export default async function ExperiencesVirtuellesCataloguePage({
                   <div className="mt-4 flex items-center gap-2 text-xs text-slate-400 dark:text-slate-500">
                     <span>Leçon</span>·<span>Activité</span>·<span>Quiz</span>·<span>Badge</span>
                   </div>
-                </div>
+                  <p className="mt-3 text-sm text-stf-blue">Voir le cours →</p>
+                </Link>
               ))}
             </div>
           )}
@@ -83,16 +85,18 @@ export default async function ExperiencesVirtuellesCataloguePage({
           ) : (
             <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {experiments.map((experiment) => (
-                <div
+                <Link
                   key={experiment.id}
-                  className="rounded-2xl border border-dashed border-slate-200 p-6 dark:border-border-default"
+                  href={`/experiences-virtuelles/${level.slug}/${subject.slug}/experiences/${experiment.id}`}
+                  className="rounded-2xl border border-dashed border-slate-200 p-6 transition-shadow hover:shadow-md dark:border-border-default"
                 >
                   <Badge tone="green">Expérience</Badge>
                   <h3 className="mt-3 font-semibold text-stf-navy dark:text-white">{experiment.title}</h3>
                   {experiment.description ? (
                     <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">{experiment.description}</p>
                   ) : null}
-                </div>
+                  <p className="mt-3 text-sm text-stf-blue">Voir l&apos;expérience →</p>
+                </Link>
               ))}
             </div>
           )}
@@ -109,9 +113,10 @@ export default async function ExperiencesVirtuellesCataloguePage({
           ) : (
             <div className="mt-8 space-y-4">
               {liveSessions.map((session) => (
-                <div
+                <Link
                   key={session.id}
-                  className="flex flex-col gap-2 rounded-2xl border border-slate-100 bg-white p-6 shadow-sm sm:flex-row sm:items-center sm:justify-between dark:border-border-default dark:bg-surface"
+                  href={`/experiences-virtuelles/${level.slug}/${subject.slug}/sessions/${session.id}`}
+                  className="flex flex-col gap-2 rounded-2xl border border-slate-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md sm:flex-row sm:items-center sm:justify-between dark:border-border-default dark:bg-surface"
                 >
                   <div>
                     <h3 className="font-semibold text-stf-navy dark:text-white">{session.title}</h3>
@@ -120,7 +125,7 @@ export default async function ExperiencesVirtuellesCataloguePage({
                     </p>
                   </div>
                   <Badge tone={liveSessionStatusTone(session.status)}>{liveSessionStatusLabel(session.status)}</Badge>
-                </div>
+                </Link>
               ))}
             </div>
           )}

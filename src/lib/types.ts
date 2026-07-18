@@ -134,6 +134,23 @@ export type LiveSession = {
   status: "a_venir" | "en_cours" | "termine";
 };
 
+export type CourseDetail = CourseWithProgress & {
+  level: Level;
+  subject: Subject;
+  experiments: Experiment[];
+  live_sessions: LiveSession[];
+};
+
+export type ExperimentDetail = Experiment & {
+  level: Level | null;
+  subject: Subject;
+  course: CourseWithProgress | null;
+};
+
+export type LiveSessionDetail = LiveSession & {
+  course: CourseWithProgress & { level: Level; subject: Subject };
+};
+
 export type Project = {
   id: number;
   mentee_id: number;

@@ -1,3 +1,4 @@
+import { redirect } from "next/navigation";
 import { EspaceShell, type EspaceNavItem } from "@/components/espace/EspaceShell";
 import { getSessionUser } from "@/lib/session";
 import { logoutAction } from "@/lib/actions/auth";
@@ -12,6 +13,10 @@ const navItems: EspaceNavItem[] = [
 
 export default async function MentoreLayout({ children }: { children: React.ReactNode }) {
   const user = await getSessionUser();
+
+  if (!user) {
+    redirect("/connexion?next=/mentore");
+  }
 
   return (
     <EspaceShell

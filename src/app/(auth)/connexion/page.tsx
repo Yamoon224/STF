@@ -1,13 +1,16 @@
 "use client";
 
-import { useActionState } from "react";
+import { Suspense, useActionState } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { PasswordInput } from "@/components/ui/PasswordInput";
 import { useLanguage } from "@/lib/i18n/LanguageProvider";
 import { loginAction, verifyMfaAction, type AuthActionState } from "@/lib/actions/auth";
 
-export default function ConnexionPage() {
+function ConnexionForm() {
   const { t } = useLanguage();
+  const searchParams = useSearchParams();
+  const next = searchParams.get("next");
   const [loginState, loginFormAction, loginPending] = useActionState<AuthActionState, FormData>(loginAction, null);
   const [mfaState, mfaFormAction, mfaPending] = useActionState<AuthActionState, FormData>(verifyMfaAction, null);
 
@@ -23,6 +26,7 @@ export default function ConnexionPage() {
 
         <form action={mfaFormAction} className="mt-8 space-y-5">
           <input type="hidden" name="mfa_challenge" value={challenge} />
+          {next ? <input type="hidden" name="next" value={next} /> : null}
           <div>
             <label className="text-sm font-semibold text-stf-navy dark:text-white">Code de vérification</label>
             <input
@@ -58,6 +62,7 @@ export default function ConnexionPage() {
       </p>
 
       <form action={loginFormAction} className="mt-8 space-y-5">
+        {next ? <input type="hidden" name="next" value={next} /> : null}
         <div>
           <label className="text-sm font-semibold text-stf-navy dark:text-white">{t("connexion.email")}</label>
           <input
@@ -105,5 +110,13 @@ export default function ConnexionPage() {
         </Link>
       </p>
     </div>
+  );
+}
+
+export default function ConnexionPage() {
+  return (
+    <Suspense>
+      <ConnexionForm />
+    </Suspense>
   );
 }

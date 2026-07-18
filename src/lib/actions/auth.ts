@@ -24,10 +24,16 @@ function homeForRoles(roles: string[]): string {
   return "/";
 }
 
-async function establishSession(token: string, roles: string[]): Promise<never> {
+/** Only follow `next` if it's a same-site path, to avoid an open redirect. */
+function safeNextPath(next: FormDataEntryValue | null): string | null {
+  if (typeof next !== "string" || !next.startsWith("/") || next.startsWith("//")) return null;
+  return next;
+}
+
+async function establishSession(token: string, roles: string[], next?: string | null): Promise<never> {
   const cookieStore = await cookies();
   cookieStore.set(AUTH_COOKIE, token, COOKIE_OPTIONS);
-  redirect(homeForRoles(roles));
+  redirect(next ?? homeForRoles(roles));
 }
 
 export async function loginAction(_prevState: AuthActionState, formData: FormData): Promise<AuthActionState> {
@@ -43,7 +49,7 @@ export async function loginAction(_prevState: AuthActionState, formData: FormDat
       return { mfaChallenge: result.mfa_challenge };
     }
 
-    await establishSession(result.token, result.user.roles);
+    await establishSession(result.token, result.user.roles, safeNextPath(formData.get("next")));
     return null;
   } catch (error) {
     if (error instanceof ApiError) {
@@ -64,7 +70,7 @@ export async function verifyMfaAction(_prevState: AuthActionState, formData: For
       anonymous: true,
     });
 
-    await establishSession(result.token, result.user.roles);
+    await establishSession(result.token, result.user.roles, safeNextPath(formData.get("next")));
     return null;
   } catch (error) {
     if (error instanceof ApiError) {

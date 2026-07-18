@@ -10,7 +10,7 @@ import { loginAction, verifyMfaAction, type AuthActionState } from "@/lib/action
 function ConnexionForm() {
   const { t } = useLanguage();
   const searchParams = useSearchParams();
-  const next = searchParams.get("next");
+  const redirectTo = searchParams.get("redirect");
   const [loginState, loginFormAction, loginPending] = useActionState<AuthActionState, FormData>(loginAction, null);
   const [mfaState, mfaFormAction, mfaPending] = useActionState<AuthActionState, FormData>(verifyMfaAction, null);
 
@@ -26,7 +26,7 @@ function ConnexionForm() {
 
         <form action={mfaFormAction} className="mt-8 space-y-5">
           <input type="hidden" name="mfa_challenge" value={challenge} />
-          {next ? <input type="hidden" name="next" value={next} /> : null}
+          {redirectTo ? <input type="hidden" name="redirect" value={redirectTo} /> : null}
           <div>
             <label className="text-sm font-semibold text-stf-navy dark:text-white">Code de vérification</label>
             <input
@@ -62,7 +62,7 @@ function ConnexionForm() {
       </p>
 
       <form action={loginFormAction} className="mt-8 space-y-5">
-        {next ? <input type="hidden" name="next" value={next} /> : null}
+        {redirectTo ? <input type="hidden" name="redirect" value={redirectTo} /> : null}
         <div>
           <label className="text-sm font-semibold text-stf-navy dark:text-white">{t("connexion.email")}</label>
           <input

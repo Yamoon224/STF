@@ -24,10 +24,10 @@ function homeForRoles(roles: string[]): string {
   return "/";
 }
 
-/** Only follow `next` if it's a same-site path, to avoid an open redirect. */
-function safeNextPath(next: FormDataEntryValue | null): string | null {
-  if (typeof next !== "string" || !next.startsWith("/") || next.startsWith("//")) return null;
-  return next;
+/** Only follow `redirect` if it's a same-site path, to avoid an open redirect. */
+function safeRedirectPath(redirect: FormDataEntryValue | null): string | null {
+  if (typeof redirect !== "string" || !redirect.startsWith("/") || redirect.startsWith("//")) return null;
+  return redirect;
 }
 
 async function establishSession(token: string, roles: string[], next?: string | null): Promise<never> {
@@ -49,7 +49,7 @@ export async function loginAction(_prevState: AuthActionState, formData: FormDat
       return { mfaChallenge: result.mfa_challenge };
     }
 
-    await establishSession(result.token, result.user.roles, safeNextPath(formData.get("next")));
+    await establishSession(result.token, result.user.roles, safeRedirectPath(formData.get("redirect")));
     return null;
   } catch (error) {
     if (error instanceof ApiError) {
@@ -70,7 +70,7 @@ export async function verifyMfaAction(_prevState: AuthActionState, formData: For
       anonymous: true,
     });
 
-    await establishSession(result.token, result.user.roles, safeNextPath(formData.get("next")));
+    await establishSession(result.token, result.user.roles, safeRedirectPath(formData.get("redirect")));
     return null;
   } catch (error) {
     if (error instanceof ApiError) {

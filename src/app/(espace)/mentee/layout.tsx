@@ -17,7 +17,7 @@ export default async function MenteeLayout({ children }: { children: React.React
   const user = await getSessionUser();
 
   if (!user) {
-    redirect("/connexion?next=/mentee");
+    redirect("/connexion?redirect=/mentee");
   }
 
   return (

@@ -15,7 +15,7 @@ export default async function MentoreLayout({ children }: { children: React.Reac
   const user = await getSessionUser();
 
   if (!user) {
-    redirect("/connexion?next=/mentore");
+    redirect("/connexion?redirect=/mentore");
   }
 
   return (

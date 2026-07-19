@@ -1,6 +1,7 @@
 import { TopBar } from "@/components/layout/TopBar";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
+import { ScrollProgress } from "@/components/layout/ScrollProgress";
 
 export default function PublicLayout({
   children,
@@ -12,6 +13,7 @@ export default function PublicLayout({
       <div className="sticky top-0 z-40">
         <TopBar />
         <SiteHeader />
+        <ScrollProgress />
       </div>
       <main className="flex-1">{children}</main>
       <SiteFooter />

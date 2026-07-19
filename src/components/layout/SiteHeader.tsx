@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { Logo } from "@/components/ui/Logo";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
@@ -23,10 +23,22 @@ const navLinks = [
 export function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const { t } = useLanguage();
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <header className="border-b border-slate-100 bg-white/95 backdrop-blur dark:border-border-default dark:bg-surface/95">
+    <header
+      className={`border-b bg-white/95 backdrop-blur transition-shadow duration-300 dark:bg-surface/95 ${
+        scrolled ? "border-transparent shadow-md shadow-black/5" : "border-slate-100 dark:border-border-default"
+      }`}
+    >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2">
         <Logo />
 

@@ -2,6 +2,7 @@ import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/ui/PageHero";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
+import { Reveal } from "@/components/ui/Reveal";
 import { apiFetch } from "@/lib/api";
 import type { Program } from "@/lib/types";
 
@@ -24,32 +25,33 @@ export default async function ProgrammesPage() {
 
       <section className="py-20">
         <Container className="grid gap-8 md:grid-cols-2">
-          {programs.map((program) => (
-            <div
-              key={program.slug}
-              className={`rounded-2xl border p-8 ${colorMap[(program.color ?? "blue") as keyof typeof colorMap]}`}
-            >
-              <Badge tone="neutral">{program.audience}</Badge>
-              <h2 className="mt-4 text-xl font-bold text-stf-navy dark:text-white">
-                {program.name}
-              </h2>
-              <p className="mt-3 text-sm text-slate-600 dark:text-slate-300">
-                {program.description}
-              </p>
-              <dl className="mt-6 grid grid-cols-2 gap-4 text-sm">
-                <div>
-                  <dt className="font-semibold text-slate-500 dark:text-slate-400">Objectif</dt>
-                  <dd className="text-stf-navy dark:text-white">Développer la confiance et les compétences STIM</dd>
-                </div>
-                <div>
-                  <dt className="font-semibold text-slate-500 dark:text-slate-400">Modalité</dt>
-                  <dd className="text-stf-navy dark:text-white">Présentiel et distanciel</dd>
-                </div>
-              </dl>
-              <Button href="/contact" variant="outline" className="mt-6">
-                Demander à participer
-              </Button>
-            </div>
+          {programs.map((program, i) => (
+            <Reveal key={program.slug} delay={i * 80}>
+              <div
+                className={`rounded-2xl border p-8 ${colorMap[(program.color ?? "blue") as keyof typeof colorMap]}`}
+              >
+                <Badge tone="neutral">{program.audience}</Badge>
+                <h2 className="mt-4 text-xl font-bold text-stf-navy dark:text-white">
+                  {program.name}
+                </h2>
+                <p className="mt-3 text-sm text-slate-600 dark:text-slate-300">
+                  {program.description}
+                </p>
+                <dl className="mt-6 grid grid-cols-2 gap-4 text-sm">
+                  <div>
+                    <dt className="font-semibold text-slate-500 dark:text-slate-400">Objectif</dt>
+                    <dd className="text-stf-navy dark:text-white">Développer la confiance et les compétences STIM</dd>
+                  </div>
+                  <div>
+                    <dt className="font-semibold text-slate-500 dark:text-slate-400">Modalité</dt>
+                    <dd className="text-stf-navy dark:text-white">Présentiel et distanciel</dd>
+                  </div>
+                </dl>
+                <Button href="/contact" variant="outline" className="mt-6">
+                  Demander à participer
+                </Button>
+              </div>
+            </Reveal>
           ))}
         </Container>
       </section>

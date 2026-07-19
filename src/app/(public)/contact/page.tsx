@@ -3,6 +3,7 @@
 import { useActionState, useState } from "react";
 import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/ui/PageHero";
+import { Reveal } from "@/components/ui/Reveal";
 import { sendContactMessageAction, type ContactActionState } from "@/lib/actions/contact";
 
 const audiences = [
@@ -27,7 +28,7 @@ export default function ContactPage() {
 
       <section className="py-20">
         <Container className="grid gap-10 lg:grid-cols-[1fr_1.4fr]">
-          <div>
+          <Reveal>
             <div className="flex flex-wrap gap-2 lg:flex-col">
               {audiences.map((a) => (
                 <button
@@ -49,11 +50,12 @@ export default function ContactPage() {
               <p>+225 00 00 00 00</p>
               <p>Abidjan, Côte d&apos;Ivoire</p>
             </div>
-          </div>
+          </Reveal>
 
+          <Reveal delay={120} className="rounded-2xl border border-slate-100 bg-white shadow-sm dark:border-border-default dark:bg-surface">
           <form
             action={formAction}
-            className="space-y-5 rounded-2xl border border-slate-100 bg-white p-6 shadow-sm dark:border-border-default dark:bg-surface sm:p-8"
+            className="space-y-5 p-6 sm:p-8"
           >
             <input type="hidden" name="audience" value={active} />
             <div className="grid gap-5 sm:grid-cols-2">
@@ -112,6 +114,7 @@ export default function ContactPage() {
               {pending ? "Envoi…" : "Envoyer le message"}
             </button>
           </form>
+          </Reveal>
         </Container>
       </section>
     </>

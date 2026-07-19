@@ -4,6 +4,7 @@ import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/ui/PageHero";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
+import { Reveal } from "@/components/ui/Reveal";
 import { apiFetch, ApiError } from "@/lib/api";
 import { formatDate, formatTime, liveSessionStatusLabel, liveSessionStatusTone } from "@/lib/format";
 import type { LiveSessionDetail } from "@/lib/types";
@@ -33,7 +34,7 @@ export default async function LiveSessionDetailPage({
 
       <section className="py-16">
         <Container className="max-w-2xl">
-          <div className="rounded-2xl border border-slate-100 bg-white p-8 shadow-sm dark:border-border-default dark:bg-surface">
+          <Reveal className="rounded-2xl border border-slate-100 bg-white p-8 shadow-sm dark:border-border-default dark:bg-surface">
             <Badge tone={liveSessionStatusTone(session.status)}>{liveSessionStatusLabel(session.status)}</Badge>
 
             <dl className="mt-6 grid gap-4 sm:grid-cols-2">
@@ -85,7 +86,7 @@ export default async function LiveSessionDetailPage({
                 </p>
               )}
             </div>
-          </div>
+          </Reveal>
         </Container>
       </section>
 

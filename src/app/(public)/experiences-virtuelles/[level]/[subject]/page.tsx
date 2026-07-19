@@ -5,6 +5,7 @@ import { PageHero } from "@/components/ui/PageHero";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
+import { Reveal } from "@/components/ui/Reveal";
 import { apiFetch } from "@/lib/api";
 import { formatDate, formatTime, liveSessionStatusLabel, liveSessionStatusTone } from "@/lib/format";
 import type { CourseWithProgress, Experiment, Level, LiveSession, Subject } from "@/lib/types";
@@ -53,22 +54,23 @@ export default async function ExperiencesVirtuellesCataloguePage({
             </p>
           ) : (
             <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {courses.map((course) => (
-                <Link
-                  key={course.id}
-                  href={`/experiences-virtuelles/${level.slug}/${subject.slug}/cours/${course.id}`}
-                  className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md dark:border-border-default dark:bg-surface"
-                >
-                  <Badge tone="blue">{level.name}</Badge>
-                  <h3 className="mt-3 text-lg font-bold text-stf-navy dark:text-white">{course.title}</h3>
-                  {course.description ? (
-                    <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">{course.description}</p>
-                  ) : null}
-                  <div className="mt-4 flex items-center gap-2 text-xs text-slate-400 dark:text-slate-500">
-                    <span>Leçon</span>·<span>Activité</span>·<span>Quiz</span>·<span>Badge</span>
-                  </div>
-                  <p className="mt-3 text-sm text-stf-blue">Voir le cours →</p>
-                </Link>
+              {courses.map((course, i) => (
+                <Reveal key={course.id} delay={i * 80}>
+                  <Link
+                    href={`/experiences-virtuelles/${level.slug}/${subject.slug}/cours/${course.id}`}
+                    className="block rounded-2xl border border-slate-100 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md dark:border-border-default dark:bg-surface"
+                  >
+                    <Badge tone="blue">{level.name}</Badge>
+                    <h3 className="mt-3 text-lg font-bold text-stf-navy dark:text-white">{course.title}</h3>
+                    {course.description ? (
+                      <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">{course.description}</p>
+                    ) : null}
+                    <div className="mt-4 flex items-center gap-2 text-xs text-slate-400 dark:text-slate-500">
+                      <span>Leçon</span>·<span>Activité</span>·<span>Quiz</span>·<span>Badge</span>
+                    </div>
+                    <p className="mt-3 text-sm text-stf-blue">Voir le cours →</p>
+                  </Link>
+                </Reveal>
               ))}
             </div>
           )}
@@ -84,19 +86,20 @@ export default async function ExperiencesVirtuellesCataloguePage({
             </p>
           ) : (
             <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {experiments.map((experiment) => (
-                <Link
-                  key={experiment.id}
-                  href={`/experiences-virtuelles/${level.slug}/${subject.slug}/experiences/${experiment.id}`}
-                  className="rounded-2xl border border-dashed border-slate-200 p-6 transition-shadow hover:shadow-md dark:border-border-default"
-                >
-                  <Badge tone="green">Expérience</Badge>
-                  <h3 className="mt-3 font-semibold text-stf-navy dark:text-white">{experiment.title}</h3>
-                  {experiment.description ? (
-                    <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">{experiment.description}</p>
-                  ) : null}
-                  <p className="mt-3 text-sm text-stf-blue">Voir l&apos;expérience →</p>
-                </Link>
+              {experiments.map((experiment, i) => (
+                <Reveal key={experiment.id} delay={i * 80}>
+                  <Link
+                    href={`/experiences-virtuelles/${level.slug}/${subject.slug}/experiences/${experiment.id}`}
+                    className="block rounded-2xl border border-dashed border-slate-200 p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-md dark:border-border-default"
+                  >
+                    <Badge tone="green">Expérience</Badge>
+                    <h3 className="mt-3 font-semibold text-stf-navy dark:text-white">{experiment.title}</h3>
+                    {experiment.description ? (
+                      <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">{experiment.description}</p>
+                    ) : null}
+                    <p className="mt-3 text-sm text-stf-blue">Voir l&apos;expérience →</p>
+                  </Link>
+                </Reveal>
               ))}
             </div>
           )}
@@ -112,20 +115,21 @@ export default async function ExperiencesVirtuellesCataloguePage({
             </p>
           ) : (
             <div className="mt-8 space-y-4">
-              {liveSessions.map((session) => (
-                <Link
-                  key={session.id}
-                  href={`/experiences-virtuelles/${level.slug}/${subject.slug}/sessions/${session.id}`}
-                  className="flex flex-col gap-2 rounded-2xl border border-slate-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md sm:flex-row sm:items-center sm:justify-between dark:border-border-default dark:bg-surface"
-                >
-                  <div>
-                    <h3 className="font-semibold text-stf-navy dark:text-white">{session.title}</h3>
-                    <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
-                      {formatDate(session.scheduled_at)} à {formatTime(session.scheduled_at)}
-                    </p>
-                  </div>
-                  <Badge tone={liveSessionStatusTone(session.status)}>{liveSessionStatusLabel(session.status)}</Badge>
-                </Link>
+              {liveSessions.map((session, i) => (
+                <Reveal key={session.id} delay={i * 80}>
+                  <Link
+                    href={`/experiences-virtuelles/${level.slug}/${subject.slug}/sessions/${session.id}`}
+                    className="flex flex-col gap-2 rounded-2xl border border-slate-100 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md sm:flex-row sm:items-center sm:justify-between dark:border-border-default dark:bg-surface"
+                  >
+                    <div>
+                      <h3 className="font-semibold text-stf-navy dark:text-white">{session.title}</h3>
+                      <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+                        {formatDate(session.scheduled_at)} à {formatTime(session.scheduled_at)}
+                      </p>
+                    </div>
+                    <Badge tone={liveSessionStatusTone(session.status)}>{liveSessionStatusLabel(session.status)}</Badge>
+                  </Link>
+                </Reveal>
               ))}
             </div>
           )}
@@ -134,13 +138,15 @@ export default async function ExperiencesVirtuellesCataloguePage({
 
       <section className="bg-stf-green-light py-16 dark:bg-stf-green/10">
         <Container className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <div>
+          <Reveal>
             <Badge tone="green">Parcours Fondations</Badge>
             <h2 className="mt-3 text-2xl font-bold text-stf-navy dark:text-white">
               Accessible à toutes les bénéficiaires, sans prérequis
             </h2>
-          </div>
-          <Button href="/inscription">Commencer le parcours</Button>
+          </Reveal>
+          <Reveal delay={100}>
+            <Button href="/inscription">Commencer le parcours</Button>
+          </Reveal>
         </Container>
       </section>
 

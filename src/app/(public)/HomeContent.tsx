@@ -6,6 +6,7 @@ import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { Reveal } from "@/components/ui/Reveal";
 import { Pillars } from "@/components/ui/Pillars";
 import { HeroIllustration } from "@/components/ui/HeroIllustration";
 import { PatternBackground } from "@/components/ui/PatternBackground";
@@ -44,29 +45,36 @@ export function HomeContent({
         <HeroIllustration className="pointer-events-none absolute -right-24 -top-16 h-[520px] w-[520px] text-stf-navy opacity-70 sm:-right-16 sm:-top-10 lg:-right-8" />
         <Container className="relative grid gap-10 py-16 sm:py-20 lg:grid-cols-2 lg:items-center lg:py-28">
           <div>
-            <Badge tone="orange">{t("home.heroBadge")}</Badge>
-            <h1 className="mt-5 text-4xl font-bold leading-tight text-stf-navy dark:text-white sm:text-5xl">
-              {t("home.heroTitle")}
-            </h1>
-            <p className="mt-5 max-w-xl text-lg text-slate-600 dark:text-slate-300">
-              {t("home.heroDescription")}
-            </p>
-            <div className="mt-8 flex flex-wrap gap-4">
-              <Button href="/mentorat">{t("home.ctaMentorat")}</Button>
-              <Button href="/programmes" variant="outline">
-                {t("home.ctaProgrammes")}
-              </Button>
-            </div>
+            <Reveal>
+              <Badge tone="orange">{t("home.heroBadge")}</Badge>
+            </Reveal>
+            <Reveal delay={80}>
+              <h1 className="mt-5 text-4xl font-bold leading-tight text-stf-navy dark:text-white sm:text-5xl">
+                {t("home.heroTitle")}
+              </h1>
+            </Reveal>
+            <Reveal delay={160}>
+              <p className="mt-5 max-w-xl text-lg text-slate-600 dark:text-slate-300">
+                {t("home.heroDescription")}
+              </p>
+            </Reveal>
+            <Reveal delay={240}>
+              <div className="mt-8 flex flex-wrap gap-4">
+                <Button href="/mentorat">{t("home.ctaMentorat")}</Button>
+                <Button href="/programmes" variant="outline">
+                  {t("home.ctaProgrammes")}
+                </Button>
+              </div>
+            </Reveal>
           </div>
           <div className="grid grid-cols-2 gap-4">
-            {impactStats.map((stat) => (
-              <div
-                key={stat.label}
-                className="rounded-2xl border border-stf-blue/10 bg-white p-6 shadow-sm dark:border-border-default dark:bg-surface"
-              >
-                <p className="text-3xl font-bold text-stf-blue">{stat.value}</p>
-                <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">{stat.label}</p>
-              </div>
+            {impactStats.map((stat, i) => (
+              <Reveal key={stat.label} delay={200 + i * 90}>
+                <div className="rounded-2xl border border-stf-blue/10 bg-white p-6 shadow-sm dark:border-border-default dark:bg-surface">
+                  <p className="text-3xl font-bold text-stf-blue">{stat.value}</p>
+                  <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">{stat.label}</p>
+                </div>
+              </Reveal>
             ))}
           </div>
         </Container>
@@ -76,13 +84,15 @@ export function HomeContent({
       <section className="relative overflow-hidden bg-gradient-to-br from-stf-navy via-stf-blue to-stf-navy py-16">
         <PatternBackground tone="onDark" />
         <Container className="relative">
-          <p className="text-center text-sm font-semibold uppercase tracking-wide text-stf-orange">
-            {t("home.engagementsEyebrow")}
-          </p>
-          <h2 className="mt-2 text-center text-2xl font-bold text-white sm:text-3xl">
-            {t("home.engagementsTitle")}
-          </h2>
-          <div className="mx-auto mt-8 max-w-4xl overflow-hidden rounded-2xl shadow-lg ring-1 ring-white/10">
+          <Reveal>
+            <p className="text-center text-sm font-semibold uppercase tracking-wide text-stf-orange">
+              {t("home.engagementsEyebrow")}
+            </p>
+            <h2 className="mt-2 text-center text-2xl font-bold text-white sm:text-3xl">
+              {t("home.engagementsTitle")}
+            </h2>
+          </Reveal>
+          <Reveal delay={100} className="mx-auto mt-8 max-w-4xl overflow-hidden rounded-2xl shadow-lg ring-1 ring-white/10">
             <Image
               src="/brand/banner.png"
               alt="Bannière STF : Sciences & Technologies au Féminin — Éducation de qualité, réduction des inégalités, un emploi décent pour tous"
@@ -91,10 +101,10 @@ export function HomeContent({
               sizes="(min-width: 1024px) 896px, 100vw"
               className="h-auto w-full"
             />
-          </div>
-          <div className="mt-10">
+          </Reveal>
+          <Reveal delay={180} className="mt-10">
             <Pillars />
-          </div>
+          </Reveal>
         </Container>
       </section>
 
@@ -116,21 +126,22 @@ export function HomeContent({
           </div>
 
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {programs.map((program) => (
-              <div
-                key={program.slug}
-                className={`rounded-2xl border p-6 ${colorMap[(program.color ?? "blue") as keyof typeof colorMap]}`}
-              >
-                <p className="text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">
-                  {program.audience}
-                </p>
-                <h3 className="mt-2 text-lg font-bold text-stf-navy dark:text-white">
-                  {program.name}
-                </h3>
-                <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">
-                  {program.description}
-                </p>
-              </div>
+            {programs.map((program, i) => (
+              <Reveal key={program.slug} delay={i * 80}>
+                <div
+                  className={`h-full rounded-2xl border p-6 transition-transform duration-300 hover:-translate-y-1 ${colorMap[(program.color ?? "blue") as keyof typeof colorMap]}`}
+                >
+                  <p className="text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">
+                    {program.audience}
+                  </p>
+                  <h3 className="mt-2 text-lg font-bold text-stf-navy dark:text-white">
+                    {program.name}
+                  </h3>
+                  <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">
+                    {program.description}
+                  </p>
+                </div>
+              </Reveal>
             ))}
           </div>
         </Container>
@@ -141,34 +152,39 @@ export function HomeContent({
         <PatternBackground tone="onDark" />
         <Container className="relative grid gap-10 lg:grid-cols-2 lg:items-center">
           <div>
-            <Badge tone="orange">{t("home.mentoratBadge")}</Badge>
-            <h2 className="mt-4 text-3xl font-bold sm:text-4xl">
-              {t("home.mentoratTitle")}
-            </h2>
-            <p className="mt-4 text-slate-300">
-              {t("home.mentoratDescription")}
-            </p>
-            <div className="mt-8 flex flex-wrap gap-4">
-              <Button href="/mentorat">{t("home.decouvrirDispositif")}</Button>
-              <Button href="/inscription" variant="outline" className="border-white text-white hover:bg-white/10">
-                {t("home.sinscrire")}
-              </Button>
-            </div>
+            <Reveal>
+              <Badge tone="orange">{t("home.mentoratBadge")}</Badge>
+            </Reveal>
+            <Reveal delay={80}>
+              <h2 className="mt-4 text-3xl font-bold sm:text-4xl">
+                {t("home.mentoratTitle")}
+              </h2>
+            </Reveal>
+            <Reveal delay={160}>
+              <p className="mt-4 text-slate-300">
+                {t("home.mentoratDescription")}
+              </p>
+            </Reveal>
+            <Reveal delay={240}>
+              <div className="mt-8 flex flex-wrap gap-4">
+                <Button href="/mentorat">{t("home.decouvrirDispositif")}</Button>
+                <Button href="/inscription" variant="outline" className="border-white text-white hover:bg-white/10">
+                  {t("home.sinscrire")}
+                </Button>
+              </div>
+            </Reveal>
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
-            {steps.map(
-              (step, i) => (
-                <div
-                  key={step}
-                  className="rounded-xl border border-white/10 bg-white/5 p-5"
-                >
+            {steps.map((step, i) => (
+              <Reveal key={step} delay={i * 90}>
+                <div className="rounded-xl border border-white/10 bg-white/5 p-5">
                   <span className="text-sm font-bold text-stf-orange">
                     0{i + 1}
                   </span>
                   <p className="mt-2 text-sm font-semibold">{step}</p>
                 </div>
-              )
-            )}
+              </Reveal>
+            ))}
           </div>
         </Container>
       </section>
@@ -176,7 +192,7 @@ export function HomeContent({
       {/* Mot de la présidente */}
       <section className="py-20">
         <Container className="grid gap-10 rounded-3xl bg-stf-cream p-8 dark:bg-surface-muted sm:p-12 lg:grid-cols-[280px_1fr] lg:items-center">
-          <div className="relative mx-auto h-56 w-56 overflow-hidden rounded-full ring-4 ring-white shadow-lg dark:ring-surface lg:mx-0">
+          <Reveal y={16} className="relative mx-auto h-56 w-56 overflow-hidden rounded-full ring-4 ring-white shadow-lg dark:ring-surface lg:mx-0">
             <Image
               src="/brand/presidente-fondatrice.png"
               alt="Christelle Ogo, Présidente et Fondatrice de STF"
@@ -184,8 +200,8 @@ export function HomeContent({
               sizes="224px"
               className="object-cover object-top"
             />
-          </div>
-          <div>
+          </Reveal>
+          <Reveal delay={120}>
             <p className="text-sm font-semibold uppercase tracking-wide text-stf-orange">
               {t("home.presidenteEyebrow")}
             </p>
@@ -200,7 +216,7 @@ export function HomeContent({
             >
               {t("home.presidenteLire")}
             </Link>
-          </div>
+          </Reveal>
         </Container>
       </section>
 
@@ -213,21 +229,20 @@ export function HomeContent({
             center
           />
           <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {testimonials.map((item) => (
-              <figure
-                key={item.id}
-                className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm dark:border-border-default dark:bg-surface"
-              >
-                <blockquote className="text-sm text-slate-600 dark:text-slate-300">
-                  &ldquo;{item.quote}&rdquo;
-                </blockquote>
-                <figcaption className="mt-4">
-                  <p className="text-sm font-semibold text-stf-navy dark:text-white">
-                    {item.name}
-                  </p>
-                  <p className="text-xs text-slate-500 dark:text-slate-400">{item.role}</p>
-                </figcaption>
-              </figure>
+            {testimonials.map((item, i) => (
+              <Reveal key={item.id} delay={i * 90}>
+                <figure className="h-full rounded-2xl border border-slate-100 bg-white p-6 shadow-sm dark:border-border-default dark:bg-surface">
+                  <blockquote className="text-sm text-slate-600 dark:text-slate-300">
+                    &ldquo;{item.quote}&rdquo;
+                  </blockquote>
+                  <figcaption className="mt-4">
+                    <p className="text-sm font-semibold text-stf-navy dark:text-white">
+                      {item.name}
+                    </p>
+                    <p className="text-xs text-slate-500 dark:text-slate-400">{item.role}</p>
+                  </figcaption>
+                </figure>
+              </Reveal>
             ))}
           </div>
         </Container>
@@ -246,18 +261,19 @@ export function HomeContent({
             </Link>
           </div>
           <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {blogPosts.map((post) => (
-              <Link
-                key={post.slug}
-                href="/blog"
-                className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md dark:border-border-default dark:bg-surface"
-              >
-                <Badge tone="neutral">{post.category}</Badge>
-                <h3 className="mt-3 text-base font-bold text-stf-navy dark:text-white">
-                  {post.title}
-                </h3>
-                <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">{post.excerpt}</p>
-              </Link>
+            {blogPosts.map((post, i) => (
+              <Reveal key={post.slug} delay={i * 90}>
+                <Link
+                  href="/blog"
+                  className="block h-full rounded-2xl border border-slate-100 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md dark:border-border-default dark:bg-surface"
+                >
+                  <Badge tone="neutral">{post.category}</Badge>
+                  <h3 className="mt-3 text-base font-bold text-stf-navy dark:text-white">
+                    {post.title}
+                  </h3>
+                  <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">{post.excerpt}</p>
+                </Link>
+              </Reveal>
             ))}
           </div>
         </Container>
@@ -266,6 +282,7 @@ export function HomeContent({
       {/* Partenaires */}
       <section className="py-16">
         <Container>
+          <Reveal>
           <p className="text-center text-sm font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">
             {t("home.partenairesTitle")}
           </p>
@@ -287,12 +304,14 @@ export function HomeContent({
               )
             )}
           </div>
+          </Reveal>
         </Container>
       </section>
 
       {/* CTA finale */}
       <section className="py-16">
-        <Container className="rounded-3xl bg-stf-orange px-8 py-14 text-center text-white">
+        <Container>
+        <Reveal className="rounded-3xl bg-stf-orange px-8 py-14 text-center text-white">
           <h2 className="text-3xl font-bold">{t("home.ctaFinaleTitle")}</h2>
           <p className="mx-auto mt-3 max-w-xl text-white/90">
             {t("home.ctaFinaleDescription")}
@@ -305,6 +324,7 @@ export function HomeContent({
               {t("home.ctaFinaleMentore")}
             </Button>
           </div>
+        </Reveal>
         </Container>
       </section>
     </>

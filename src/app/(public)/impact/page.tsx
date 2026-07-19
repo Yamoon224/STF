@@ -1,6 +1,7 @@
 import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/ui/PageHero";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { Reveal } from "@/components/ui/Reveal";
 import { apiFetch } from "@/lib/api";
 import type { ImpactStats, Testimonial } from "@/lib/types";
 
@@ -38,14 +39,15 @@ export default async function ImpactPage() {
 
       <section className="py-20">
         <Container className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {impactStats.map((stat) => (
-            <div
+          {impactStats.map((stat, i) => (
+            <Reveal
               key={stat.label}
+              delay={i * 80}
               className="rounded-2xl border border-slate-100 bg-white p-6 text-center shadow-sm dark:border-border-default dark:bg-surface"
             >
               <p className="text-3xl font-bold text-stf-blue">{stat.value}</p>
               <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">{stat.label}</p>
-            </div>
+            </Reveal>
           ))}
         </Container>
       </section>
@@ -54,11 +56,15 @@ export default async function ImpactPage() {
         <Container>
           <SectionHeading eyebrow="Indicateurs clés" title="Suivi détaillé du dispositif" />
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {indicators.map((i) => (
-              <div key={i.label} className="rounded-xl border border-slate-100 bg-white p-5 dark:border-border-default dark:bg-surface">
-                <p className="text-2xl font-bold text-stf-navy dark:text-white">{i.value}</p>
-                <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">{i.label}</p>
-              </div>
+            {indicators.map((indicator, idx) => (
+              <Reveal
+                key={indicator.label}
+                delay={(idx % 4) * 70}
+                className="rounded-xl border border-slate-100 bg-white p-5 dark:border-border-default dark:bg-surface"
+              >
+                <p className="text-2xl font-bold text-stf-navy dark:text-white">{indicator.value}</p>
+                <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">{indicator.label}</p>
+              </Reveal>
             ))}
           </div>
           <p className="mt-6 text-xs text-slate-400 dark:text-slate-500">
@@ -71,9 +77,10 @@ export default async function ImpactPage() {
         <Container>
           <SectionHeading eyebrow="Témoignages" title="L'impact vu par les bénéficiaires" center />
           <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {testimonials.map((item) => (
-              <figure
+            {testimonials.map((item, i) => (
+              <Reveal
                 key={item.id}
+                delay={i * 90}
                 className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm dark:border-border-default dark:bg-surface"
               >
                 <blockquote className="text-sm text-slate-600 dark:text-slate-300">&ldquo;{item.quote}&rdquo;</blockquote>
@@ -81,7 +88,7 @@ export default async function ImpactPage() {
                   <p className="text-sm font-semibold text-stf-navy dark:text-white">{item.name}</p>
                   <p className="text-xs text-slate-500 dark:text-slate-400">{item.role}</p>
                 </figcaption>
-              </figure>
+              </Reveal>
             ))}
           </div>
         </Container>

@@ -2,6 +2,7 @@ import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/ui/PageHero";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { PresidentMessage } from "@/components/ui/PresidentMessage";
+import { Reveal } from "@/components/ui/Reveal";
 
 const values = [
   { title: "Audace", description: "Oser porter les filles vers des filières où elles sont sous-représentées." },
@@ -29,9 +30,9 @@ export default function AProposPage() {
       <section className="py-20">
         <Container>
           <SectionHeading eyebrow="Mot de la présidente" title="Le message de notre fondatrice" center />
-          <div className="mt-10">
+          <Reveal delay={100} className="mt-10">
             <PresidentMessage />
-          </div>
+          </Reveal>
         </Container>
       </section>
 
@@ -39,22 +40,26 @@ export default function AProposPage() {
         <Container className="grid gap-12 lg:grid-cols-2">
           <div>
             <SectionHeading eyebrow="Notre histoire" title="Pourquoi STF existe" />
-            <p className="mt-4 text-slate-600 dark:text-slate-300">
-              Face au faible nombre de filles et de femmes dans les filières
-              scientifiques, technologiques, d'ingénierie et mathématiques,
-              STF a été créée pour offrir un accompagnement concret : des
-              mentores professionnelles, des expériences virtuelles adaptées
-              et des espaces sécurisés pour progresser en confiance.
-            </p>
+            <Reveal delay={100}>
+              <p className="mt-4 text-slate-600 dark:text-slate-300">
+                Face au faible nombre de filles et de femmes dans les filières
+                scientifiques, technologiques, d'ingénierie et mathématiques,
+                STF a été créée pour offrir un accompagnement concret : des
+                mentores professionnelles, des expériences virtuelles adaptées
+                et des espaces sécurisés pour progresser en confiance.
+              </p>
+            </Reveal>
           </div>
           <div>
             <SectionHeading eyebrow="Notre mission" title="Ce que nous visons" />
-            <p className="mt-4 text-slate-600 dark:text-slate-300">
-              Accompagner chaque bénéficiaire depuis la découverte des STIM
-              jusqu'à l'insertion professionnelle, en s'appuyant sur des
-              données fiables et un dispositif de protection strict, en
-              particulier pour les mineures.
-            </p>
+            <Reveal delay={100}>
+              <p className="mt-4 text-slate-600 dark:text-slate-300">
+                Accompagner chaque bénéficiaire depuis la découverte des STIM
+                jusqu'à l'insertion professionnelle, en s'appuyant sur des
+                données fiables et un dispositif de protection strict, en
+                particulier pour les mineures.
+              </p>
+            </Reveal>
           </div>
         </Container>
       </section>
@@ -63,14 +68,15 @@ export default function AProposPage() {
         <Container>
           <SectionHeading eyebrow="Nos valeurs" title="Audace, Union, Intégrité, Résultat" center />
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {values.map((v) => (
-              <div
+            {values.map((v, i) => (
+              <Reveal
                 key={v.title}
+                delay={i * 80}
                 className="rounded-2xl border border-slate-100 bg-white p-6 text-center shadow-sm dark:border-border-default dark:bg-surface"
               >
                 <h3 className="text-lg font-bold text-stf-blue">{v.title}</h3>
                 <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">{v.description}</p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </Container>
@@ -79,7 +85,7 @@ export default function AProposPage() {
       <section className="py-20">
         <Container>
           <SectionHeading eyebrow="Gouvernance" title="Qui décide et qui contribue" />
-          <div className="mt-10 overflow-hidden rounded-2xl border border-slate-100 dark:border-border-default">
+          <Reveal className="mt-10 overflow-hidden rounded-2xl border border-slate-100 dark:border-border-default">
             <table className="w-full text-left text-sm">
               <thead className="bg-stf-navy text-white">
                 <tr>
@@ -96,7 +102,7 @@ export default function AProposPage() {
                 ))}
               </tbody>
             </table>
-          </div>
+          </Reveal>
         </Container>
       </section>
     </>

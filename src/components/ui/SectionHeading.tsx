@@ -1,3 +1,5 @@
+import { Reveal } from "@/components/ui/Reveal";
+
 export function SectionHeading({
   eyebrow,
   title,
@@ -13,7 +15,7 @@ export function SectionHeading({
   invert?: boolean;
 }) {
   return (
-    <div className={`max-w-2xl ${center ? "mx-auto text-center" : ""}`}>
+    <Reveal className={`max-w-2xl ${center ? "mx-auto text-center" : ""}`}>
       {eyebrow ? (
         <p className="text-sm font-semibold uppercase tracking-wide text-stf-orange">
           {eyebrow}
@@ -31,6 +33,6 @@ export function SectionHeading({
           {description}
         </p>
       ) : null}
-    </div>
+    </Reveal>
   );
 }

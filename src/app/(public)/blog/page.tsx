@@ -3,17 +3,23 @@ import { PageHero } from "@/components/ui/PageHero";
 import { Badge } from "@/components/ui/Badge";
 import { Reveal } from "@/components/ui/Reveal";
 import { apiFetch } from "@/lib/api";
+import { getPageSections } from "@/lib/pageSections";
 import type { CmsPage } from "@/lib/types";
 
 export default async function BlogPage() {
-  const blogPosts = await apiFetch<CmsPage[]>("/cms/pages?type=article", { anonymous: true });
+  const [blogPosts, sections] = await Promise.all([
+    apiFetch<CmsPage[]>("/cms/pages?type=article", { anonymous: true }),
+    getPageSections("blog"),
+  ]);
+
+  const hero = sections.hero?.payload as { eyebrow?: string; title?: string; description?: string } | undefined;
 
   return (
     <>
       <PageHero
-        eyebrow="Blog & actualités"
-        title="Les nouvelles de STF"
-        description="Articles, annonces, retours d'expérience, médias et galerie photos et vidéos autour des programmes STF."
+        eyebrow={hero?.eyebrow ?? "Blog & actualités"}
+        title={hero?.title ?? "Les nouvelles de STF"}
+        description={hero?.description ?? ""}
       />
 
       <section className="py-20">

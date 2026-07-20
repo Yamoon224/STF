@@ -5,31 +5,26 @@ import { Button } from "@/components/ui/Button";
 import { PatternBackground } from "@/components/ui/PatternBackground";
 import { Reveal } from "@/components/ui/Reveal";
 import { apiFetch } from "@/lib/api";
+import { getPageSections } from "@/lib/pageSections";
 import type { Faq } from "@/lib/types";
 
-const menteePath = [
-  "Créer un compte : niveau, intérêts, objectifs et langue.",
-  "Recevoir une proposition de mentore selon le matching STF.",
-  "Échanger via la messagerie sécurisée et planifier les sessions.",
-  "Suivre ses objectifs, projets, badges et son bilan de cycle.",
-];
-
-const mentorePath = [
-  "Créer un profil professionnel : expertise, langues, disponibilités.",
-  "Attendre la validation du compte par l'équipe STF.",
-  "Recevoir les mentées affectées et consulter leur profil pédagogique.",
-  "Animer les sessions, rédiger des notes et proposer les prochaines étapes.",
-];
-
 export default async function MentoratPage() {
-  const faqMentorat = await apiFetch<Faq[]>("/faqs?category=mentorat", { anonymous: true });
+  const [faqMentorat, sections] = await Promise.all([
+    apiFetch<Faq[]>("/faqs?category=mentorat", { anonymous: true }),
+    getPageSections("mentorat"),
+  ]);
+
+  const hero = sections.hero?.payload as { eyebrow?: string; title?: string; description?: string } | undefined;
+  const menteePath = (sections.mentee_path?.payload.items as string[] | undefined) ?? [];
+  const mentorePath = (sections.mentor_path?.payload.items as string[] | undefined) ?? [];
+  const security = (sections.security?.payload.items as string[] | undefined) ?? [];
 
   return (
     <>
       <PageHero
-        eyebrow="Mentorat"
-        title="Un dispositif structuré, sécurisé et suivi"
-        description="Inscription, validation des mentores, matching par critères objectifs, sessions, messagerie sécurisée et bilan de cycle : chaque étape est pensée pour protéger les mentées et créer un impact réel."
+        eyebrow={hero?.eyebrow ?? "Mentorat"}
+        title={hero?.title ?? "Un dispositif structuré, sécurisé et suivi"}
+        description={hero?.description ?? ""}
       />
 
       <section className="py-20">
@@ -85,12 +80,7 @@ export default async function MentoratPage() {
         <Container className="relative">
           <SectionHeading eyebrow="Protection" title="La sécurité des mentées avant tout" invert />
           <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              "Profil privé par défaut, en particulier pour les mineures",
-              "Aucune coordonnée privée visible sans consentement",
-              "Bouton de signalement dans chaque conversation",
-              "Toute consultation des mentores est tracée et auditable",
-            ].map((item, i) => (
+            {security.map((item, i) => (
               <Reveal key={item} delay={i * 80} className="rounded-xl border border-white/10 bg-white/5 p-5 text-sm">
                 {item}
               </Reveal>

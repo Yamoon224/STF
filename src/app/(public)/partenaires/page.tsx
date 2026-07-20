@@ -4,17 +4,24 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { apiFetch } from "@/lib/api";
+import { getPageSections } from "@/lib/pageSections";
 import type { Partner } from "@/lib/types";
 
 export default async function PartenairesPage() {
-  const partners = await apiFetch<Partner[]>("/partners", { anonymous: true });
+  const [partners, sections] = await Promise.all([
+    apiFetch<Partner[]>("/partners", { anonymous: true }),
+    getPageSections("partenaires"),
+  ]);
+
+  const hero = sections.hero?.payload as { eyebrow?: string; title?: string; description?: string } | undefined;
+  const cta = sections.cta?.payload as { title?: string; body?: string } | undefined;
 
   return (
     <>
       <PageHero
-        eyebrow="Partenaires"
-        title="Ils rendent nos programmes possibles"
-        description="Institutions, fondations et entreprises partenaires soutiennent STF financièrement, techniquement ou en mettant à disposition des mentores."
+        eyebrow={hero?.eyebrow ?? "Partenaires"}
+        title={hero?.title ?? "Ils rendent nos programmes possibles"}
+        description={hero?.description ?? ""}
       />
 
       <section className="py-20">
@@ -52,11 +59,9 @@ export default async function PartenairesPage() {
         <Container className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
           <Reveal>
             <h2 className="text-2xl font-bold text-stf-navy dark:text-white">
-              Devenir partenaire de STF
+              {cta?.title ?? "Devenir partenaire de STF"}
             </h2>
-            <p className="mt-2 max-w-xl text-sm text-slate-600 dark:text-slate-300">
-              Financement de bourses, mise à disposition de mentores, accès à des rapports d'impact agrégés : plusieurs formes de partenariat sont possibles.
-            </p>
+            <p className="mt-2 max-w-xl text-sm text-slate-600 dark:text-slate-300">{cta?.body}</p>
           </Reveal>
           <Reveal delay={100}>
             <Button href="/contact">Nous contacter</Button>

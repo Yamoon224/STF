@@ -3,24 +3,18 @@ import { PageHero } from "@/components/ui/PageHero";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { apiFetch } from "@/lib/api";
+import { getPageSections } from "@/lib/pageSections";
 import type { ImpactStats, Testimonial } from "@/lib/types";
 
-const indicators = [
-  { label: "Mentées inscrites", value: "2 400" },
-  { label: "Mentées actives", value: "1 860" },
-  { label: "Mentores validées", value: "180" },
-  { label: "Binômes créés", value: "950" },
-  { label: "Sessions réalisées", value: "6 240" },
-  { label: "Taux de rétention", value: "84%" },
-  { label: "Modules complétés", value: "3 100" },
-  { label: "Badges délivrés", value: "1 420" },
-];
-
 export default async function ImpactPage() {
-  const [stats, testimonials] = await Promise.all([
+  const [stats, testimonials, sections] = await Promise.all([
     apiFetch<ImpactStats>("/stats/impact", { anonymous: true }),
     apiFetch<Testimonial[]>("/testimonials", { anonymous: true }),
+    getPageSections("impact"),
   ]);
+
+  const hero = sections.hero?.payload as { eyebrow?: string; title?: string; description?: string } | undefined;
+  const indicators = (sections.indicators?.payload.items as { label: string; value: string }[] | undefined) ?? [];
 
   const impactStats = [
     { label: "Bénéficiaires accompagnées", value: `${stats.beneficiaries}+` },
@@ -32,9 +26,9 @@ export default async function ImpactPage() {
   return (
     <>
       <PageHero
-        eyebrow="Impact"
-        title="Des résultats mesurés, des rapports fiables"
-        description="STF publie des indicateurs consolidés par programme, cohorte, niveau, pays et période — pour ses équipes, ses partenaires et ses bailleurs."
+        eyebrow={hero?.eyebrow ?? "Impact"}
+        title={hero?.title ?? "Des résultats mesurés, des rapports fiables"}
+        description={hero?.description ?? ""}
       />
 
       <section className="py-20">

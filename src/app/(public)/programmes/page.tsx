@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { Reveal } from "@/components/ui/Reveal";
 import { apiFetch } from "@/lib/api";
+import { getPageSections } from "@/lib/pageSections";
 import type { Program } from "@/lib/types";
 
 const colorMap = {
@@ -13,14 +14,19 @@ const colorMap = {
 } as const;
 
 export default async function ProgrammesPage() {
-  const programs = await apiFetch<Program[]>("/programs", { anonymous: true });
+  const [programs, sections] = await Promise.all([
+    apiFetch<Program[]>("/programs", { anonymous: true }),
+    getPageSections("programmes"),
+  ]);
+
+  const hero = sections.hero?.payload as { eyebrow?: string; title?: string; description?: string } | undefined;
 
   return (
     <>
       <PageHero
-        eyebrow="Programmes"
-        title="Des parcours pour chaque étape"
-        description="De la découverte en primaire à la préparation à l'insertion professionnelle, chaque programme STF a des objectifs, une cible et des modalités de participation claires."
+        eyebrow={hero?.eyebrow ?? "Programmes"}
+        title={hero?.title ?? "Des parcours pour chaque étape"}
+        description={hero?.description ?? ""}
       />
 
       <section className="py-20">

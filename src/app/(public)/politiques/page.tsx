@@ -1,41 +1,19 @@
 import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/ui/PageHero";
 import { Reveal } from "@/components/ui/Reveal";
+import { getPageSections } from "@/lib/pageSections";
 
-const policies = [
-  {
-    title: "Protection des filles (Safeguarding)",
-    text: "STF applique des mesures strictes de protection contre les abus, le harcèlement et les risques. Toute mentore est validée avant tout échange avec une mentée, et chaque conversation dispose d'un bouton de signalement.",
-  },
-  {
-    title: "Confidentialité",
-    text: "Les profils des mentées sont privés par défaut. Les mentores n'accèdent qu'aux informations pédagogiques des mentées qui leur sont officiellement affectées, jamais aux coordonnées privées ou aux données d'autres bénéficiaires.",
-  },
-  {
-    title: "Code de conduite",
-    text: "Toutes les utilisatrices — mentées, mentores, collaboratrices et partenaires — s'engagent à respecter un cadre de bienveillance, de respect et de non-discrimination.",
-  },
-  {
-    title: "Gestion des données",
-    text: "Seules les informations nécessaires au fonctionnement du service sont collectées. Une tranche d'âge est utilisée plutôt qu'une date de naissance complète lorsque cela est possible.",
-  },
-  {
-    title: "Consentement média",
-    text: "Aucune photo, vidéo ou témoignage n'est publiée sans autorisation explicite de la bénéficiaire ou de son tuteur légal.",
-  },
-  {
-    title: "Traçabilité",
-    text: "Les actions sensibles (connexion, consultation, validation, suspension, suppression, signalement) sont journalisées et auditables à tout moment.",
-  },
-];
+export default async function PolitiquesPage() {
+  const sections = await getPageSections("politiques");
+  const hero = sections.hero?.payload as { eyebrow?: string; title?: string; description?: string } | undefined;
+  const policies = (sections.policies?.payload.items as { title: string; text: string }[] | undefined) ?? [];
 
-export default function PolitiquesPage() {
   return (
     <>
       <PageHero
-        eyebrow="Politiques"
-        title="Protection, confidentialité et conformité"
-        description="La protection des filles et jeunes femmes est une exigence non négociable de la plateforme STF."
+        eyebrow={hero?.eyebrow ?? "Politiques"}
+        title={hero?.title ?? "Protection, confidentialité et conformité"}
+        description={hero?.description ?? ""}
       />
 
       <section className="py-20">

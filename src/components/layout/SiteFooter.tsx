@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { SocialIcons } from "@/components/ui/SocialIcons";
 import { useLanguage } from "@/lib/i18n/LanguageProvider";
+import type { SiteSettings } from "@/lib/types";
 
 const columns = [
   {
@@ -42,8 +43,9 @@ const columns = [
   },
 ];
 
-export function SiteFooter() {
+export function SiteFooter({ siteSettings }: { siteSettings: SiteSettings }) {
   const { t } = useLanguage();
+  const siteUrl = siteSettings.site_url ?? "https://sciencesaufeminin.org";
 
   return (
     <footer className="border-t border-slate-100 bg-stf-navy text-slate-200 dark:border-border-default">
@@ -54,14 +56,14 @@ export function SiteFooter() {
           </span>
           <p className="mt-4 text-sm text-slate-300">{t("footer.tagline")}</p>
           <a
-            href="https://sciencesaufeminin.org"
+            href={siteUrl}
             target="_blank"
             rel="noreferrer"
             className="mt-3 inline-block text-sm font-semibold text-stf-orange hover:text-white"
           >
-            sciencesaufeminin.org
+            {siteUrl.replace(/^https?:\/\//, "")}
           </a>
-          <SocialIcons className="mt-5" />
+          <SocialIcons siteSettings={siteSettings} className="mt-5" />
         </div>
 
         {columns.map((col) => (

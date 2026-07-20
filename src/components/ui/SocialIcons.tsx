@@ -1,10 +1,4 @@
-const links: Record<string, string> = {
-  linkedin: "https://www.linkedin.com/company/sciences-et-technologies-au-féminin/",
-  facebook: "https://www.facebook.com/FemmesenSTIM",
-  instagram: "#",
-  youtube: "#",
-  x: "#",
-};
+import type { SiteSettings } from "@/lib/types";
 
 const icons = {
   linkedin: (
@@ -24,23 +18,34 @@ const icons = {
   ),
 };
 
-export function SocialIcons({ className = "" }: { className?: string }) {
+const settingKeys: Record<keyof typeof icons, string> = {
+  linkedin: "social_linkedin",
+  facebook: "social_facebook",
+  instagram: "social_instagram",
+  youtube: "social_youtube",
+  x: "social_x",
+};
+
+export function SocialIcons({ siteSettings, className = "" }: { siteSettings: SiteSettings; className?: string }) {
   return (
     <div className={`flex items-center gap-3 ${className}`}>
-      {(Object.keys(icons) as (keyof typeof icons)[]).map((key) => (
-        <a
-          key={key}
-          href={links[key]}
-          target={links[key] !== "#" ? "_blank" : undefined}
-          rel={links[key] !== "#" ? "noreferrer" : undefined}
-          aria-label={key}
-          className="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-slate-200 transition-colors hover:bg-stf-orange hover:text-white"
-        >
-          <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current">
-            {icons[key]}
-          </svg>
-        </a>
-      ))}
+      {(Object.keys(icons) as (keyof typeof icons)[])
+        .map((key) => ({ key, href: siteSettings[settingKeys[key]] }))
+        .filter(({ href }) => href && href !== "#")
+        .map(({ key, href }) => (
+          <a
+            key={key}
+            href={href!}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={key}
+            className="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-slate-200 transition-colors hover:bg-stf-orange hover:text-white"
+          >
+            <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current">
+              {icons[key]}
+            </svg>
+          </a>
+        ))}
     </div>
   );
 }

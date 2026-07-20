@@ -3,28 +3,22 @@ import { PageHero } from "@/components/ui/PageHero";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { PresidentMessage } from "@/components/ui/PresidentMessage";
 import { Reveal } from "@/components/ui/Reveal";
+import { getPageSections } from "@/lib/pageSections";
 
-const values = [
-  { title: "Audace", description: "Oser porter les filles vers des filières où elles sont sous-représentées." },
-  { title: "Union", description: "Construire un réseau solidaire de mentores, partenaires et bénéficiaires." },
-  { title: "Intégrité", description: "Protéger les bénéficiaires et garantir la confiance dans chaque interaction." },
-  { title: "Résultat", description: "Mesurer l'impact réel et rendre compte aux partenaires et bailleurs." },
-];
+export default async function AProposPage() {
+  const sections = await getPageSections("a-propos");
+  const hero = sections.hero?.payload as { eyebrow?: string; title?: string; description?: string } | undefined;
+  const histoire = sections.histoire?.payload as { eyebrow?: string; title?: string; body?: string } | undefined;
+  const mission = sections.mission?.payload as { eyebrow?: string; title?: string; body?: string } | undefined;
+  const values = (sections.values?.payload.items as { title: string; description: string }[] | undefined) ?? [];
+  const governance = (sections.governance?.payload.items as { role: string; mission: string }[] | undefined) ?? [];
 
-const governance = [
-  { role: "Direction / PCA", mission: "Validation stratégique et arbitrage final de l'organisation." },
-  { role: "Administratrice STF", mission: "Pilotage opérationnel, sécurité et gestion des accès de la plateforme." },
-  { role: "Responsables programmes", mission: "Conception et suivi des parcours bénéficiaires et du mentorat." },
-  { role: "Responsable contenus", mission: "Animation éditoriale du site et cohérence de la communication." },
-];
-
-export default function AProposPage() {
   return (
     <>
       <PageHero
-        eyebrow="À propos"
-        title="Sciences & Technologies au Féminin"
-        description="STF est une organisation dédiée à la promotion des STIM auprès des filles et des jeunes femmes, à travers le mentorat, l'éducation et le plaidoyer."
+        eyebrow={hero?.eyebrow ?? "À propos"}
+        title={hero?.title ?? "Sciences & Technologies au Féminin"}
+        description={hero?.description ?? ""}
       />
 
       <section className="py-20">
@@ -39,26 +33,15 @@ export default function AProposPage() {
       <section className="py-20">
         <Container className="grid gap-12 lg:grid-cols-2">
           <div>
-            <SectionHeading eyebrow="Notre histoire" title="Pourquoi STF existe" />
+            <SectionHeading eyebrow={histoire?.eyebrow ?? "Notre histoire"} title={histoire?.title ?? "Pourquoi STF existe"} />
             <Reveal delay={100}>
-              <p className="mt-4 text-slate-600 dark:text-slate-300">
-                Face au faible nombre de filles et de femmes dans les filières
-                scientifiques, technologiques, d'ingénierie et mathématiques,
-                STF a été créée pour offrir un accompagnement concret : des
-                mentores professionnelles, des expériences virtuelles adaptées
-                et des espaces sécurisés pour progresser en confiance.
-              </p>
+              <p className="mt-4 text-slate-600 dark:text-slate-300">{histoire?.body}</p>
             </Reveal>
           </div>
           <div>
-            <SectionHeading eyebrow="Notre mission" title="Ce que nous visons" />
+            <SectionHeading eyebrow={mission?.eyebrow ?? "Notre mission"} title={mission?.title ?? "Ce que nous visons"} />
             <Reveal delay={100}>
-              <p className="mt-4 text-slate-600 dark:text-slate-300">
-                Accompagner chaque bénéficiaire depuis la découverte des STIM
-                jusqu'à l'insertion professionnelle, en s'appuyant sur des
-                données fiables et un dispositif de protection strict, en
-                particulier pour les mineures.
-              </p>
+              <p className="mt-4 text-slate-600 dark:text-slate-300">{mission?.body}</p>
             </Reveal>
           </div>
         </Container>

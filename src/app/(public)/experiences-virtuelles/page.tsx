@@ -6,17 +6,23 @@ import { Button } from "@/components/ui/Button";
 import { VrIllustration } from "@/components/ui/VrIllustration";
 import { Reveal } from "@/components/ui/Reveal";
 import { apiFetch } from "@/lib/api";
+import { getPageSections } from "@/lib/pageSections";
 import type { Level } from "@/lib/types";
 
 export default async function ExperiencesVirtuellesPage() {
-  const levels = await apiFetch<Level[]>("/levels", { anonymous: true });
+  const [levels, sections] = await Promise.all([
+    apiFetch<Level[]>("/levels", { anonymous: true }),
+    getPageSections("experiences-virtuelles"),
+  ]);
+
+  const hero = sections.hero?.payload as { eyebrow?: string; title?: string; description?: string } | undefined;
 
   return (
     <>
       <PageHero
-        eyebrow="Expériences virtuelles"
-        title="Découvrir les STIM à son rythme"
-        description="Des cours de renforcement, un labo virtuel d'expériences et des sessions en direct — choisis ton niveau pour commencer, comme un cours à domicile en ligne."
+        eyebrow={hero?.eyebrow ?? "Expériences virtuelles"}
+        title={hero?.title ?? "Découvrir les STIM à son rythme"}
+        description={hero?.description ?? ""}
       />
 
       <section className="overflow-hidden border-b border-slate-100 bg-white py-10 dark:border-border-default dark:bg-surface">

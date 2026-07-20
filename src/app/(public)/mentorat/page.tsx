@@ -47,7 +47,7 @@ export default async function MentoratPage() {
               ))}
             </ol>
             <Button href="/inscription" className="mt-6">
-              S'inscrire comme mentée
+              S&apos;inscrire comme mentée
             </Button>
           </div>
 

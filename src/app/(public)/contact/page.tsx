@@ -46,9 +46,27 @@ export default function ContactPage() {
               ))}
             </div>
             <div className="mt-8 space-y-3 text-sm text-slate-500 dark:text-slate-400">
-              <p>contact@stf-organisation.org</p>
-              <p>+225 00 00 00 00</p>
-              <p>Abidjan, Côte d&apos;Ivoire</p>
+              <a href="mailto:sciencesaufeminin@gmail.com" className="block hover:text-stf-orange">
+                sciencesaufeminin@gmail.com
+              </a>
+              <a href="mailto:contact@scitechfeminin.org" className="block hover:text-stf-orange">
+                contact@scitechfeminin.org
+              </a>
+              <a href="tel:+2252722306138" className="block hover:text-stf-orange">
+                (+225) 27 22 30 61 38
+              </a>
+              <p>Siège : Angré 7ème tranche, rue L130, près du complexe sportif</p>
+              <a
+                href="https://www.linkedin.com/company/sciences-et-technologies-au-féminin/"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 font-semibold text-stf-blue hover:text-stf-orange"
+              >
+                <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current">
+                  <path d="M6.94 8.5H3.56V20h3.38V8.5ZM5.25 3.5a1.96 1.96 0 1 0 0 3.92 1.96 1.96 0 0 0 0-3.92ZM20.44 20h-3.37v-5.9c0-1.4-.03-3.2-1.95-3.2-1.96 0-2.26 1.53-2.26 3.1V20h-3.37V8.5h3.24v1.57h.05c.45-.86 1.56-1.77 3.2-1.77 3.43 0 4.06 2.26 4.06 5.2V20Z" />
+                </svg>
+                LinkedIn
+              </a>
             </div>
           </Reveal>
 

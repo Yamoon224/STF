@@ -88,6 +88,8 @@ export const dictionaries = {
       createAccount: "Créer un compte",
     },
     inscription: {
+      panelTitle: "Rejoins le mouvement STF",
+      panelDescription: "Deviens mentée ou mentore et fais avancer les filles et jeunes femmes dans les STIM.",
       title: "Créer un compte",
       description: "Choisissez votre profil pour adapter le formulaire d'inscription.",
       roleMentee: "Je suis mentée",
@@ -206,6 +208,8 @@ export const dictionaries = {
       createAccount: "Create an account",
     },
     inscription: {
+      panelTitle: "Join the STF movement",
+      panelDescription: "Become a mentee or a mentor and help girls and young women move forward in STEM.",
       title: "Create an account",
       description: "Choose your profile to adapt the sign-up form.",
       roleMentee: "I'm a mentee",

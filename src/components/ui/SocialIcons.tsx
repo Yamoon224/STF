@@ -1,4 +1,5 @@
 const links: Record<string, string> = {
+  linkedin: "https://www.linkedin.com/company/sciences-et-technologies-au-féminin/",
   facebook: "https://www.facebook.com/FemmesenSTIM",
   instagram: "#",
   youtube: "#",
@@ -6,6 +7,9 @@ const links: Record<string, string> = {
 };
 
 const icons = {
+  linkedin: (
+    <path d="M6.94 8.5H3.56V20h3.38V8.5ZM5.25 3.5a1.96 1.96 0 1 0 0 3.92 1.96 1.96 0 0 0 0-3.92ZM20.44 20h-3.37v-5.9c0-1.4-.03-3.2-1.95-3.2-1.96 0-2.26 1.53-2.26 3.1V20h-3.37V8.5h3.24v1.57h.05c.45-.86 1.56-1.77 3.2-1.77 3.43 0 4.06 2.26 4.06 5.2V20Z" />
+  ),
   facebook: (
     <path d="M13.5 9H15V6.5h-1.8C11.2 6.5 10 7.6 10 9.6V11H8.5v2.5H10V21h2.7v-7.5H14.6L15 11h-2.3V9.8c0-.5.2-.8.8-.8Z" />
   ),

@@ -3,6 +3,9 @@
 import Link from "next/link";
 import { Suspense, useActionState, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import { Logo } from "@/components/ui/Logo";
+import { ThemeToggle } from "@/components/theme/ThemeToggle";
+import { LanguageToggle } from "@/components/ui/LanguageToggle";
 import { useLanguage } from "@/lib/i18n/LanguageProvider";
 import { PasswordInput } from "@/components/ui/PasswordInput";
 import { registerAction, type AuthActionState } from "@/lib/actions/auth";
@@ -17,7 +20,15 @@ function InscriptionForm() {
   const [state, formAction, pending] = useActionState<AuthActionState, FormData>(registerAction, null);
 
   return (
-    <div className="w-full max-w-lg rounded-2xl border border-slate-100 bg-white p-8 shadow-sm dark:border-border-default dark:bg-surface">
+    <div className="w-full max-w-lg">
+      <div className="mb-10 flex items-center justify-between">
+        <Logo />
+        <div className="flex items-center gap-2">
+          <LanguageToggle />
+          <ThemeToggle />
+        </div>
+      </div>
+
       <h1 className="text-2xl font-bold text-stf-navy dark:text-white">{t("inscription.title")}</h1>
       <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
         {t("inscription.description")}

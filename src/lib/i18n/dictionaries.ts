@@ -74,6 +74,9 @@ export const dictionaries = {
       ctaFinaleMentore: "Devenir mentore",
     },
     connexion: {
+      panelTitle: "Sciences & Technologies au Féminin",
+      panelDescription:
+        "Mentorat, cours de renforcement et labo virtuel pour révéler le potentiel STIM de chaque fille.",
       title: "Connexion",
       description: "Accédez à votre espace mentée, mentore ou collaboratrice STF.",
       email: "Email",
@@ -189,6 +192,9 @@ export const dictionaries = {
       ctaFinaleMentore: "Become a mentor",
     },
     connexion: {
+      panelTitle: "Sciences & Technology for Women",
+      panelDescription:
+        "Mentorship, reinforcement courses and a virtual lab to unlock every girl's STEM potential.",
       title: "Sign in",
       description: "Access your mentee, mentor or STF staff space.",
       email: "Email",

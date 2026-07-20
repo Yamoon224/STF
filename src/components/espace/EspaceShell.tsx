@@ -1,5 +1,6 @@
 "use client";
 
+import { Bell, Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -36,7 +37,7 @@ function NavList({
                 : "text-slate-500 hover:bg-slate-100 hover:text-stf-navy dark:text-slate-400 dark:hover:bg-white/5 dark:hover:text-white"
             }`}
           >
-            <span className="text-base">{item.icon}</span>
+            {item.icon}
             {item.label}
           </Link>
         );
@@ -136,8 +137,8 @@ export function EspaceShell({
               <span className="text-sm font-semibold text-stf-navy dark:text-white">
                 Espace {roleLabel}
               </span>
-              <button onClick={() => setOpen(false)} aria-label="Fermer" className="text-xl text-slate-500 dark:text-slate-300">
-                ✕
+              <button onClick={() => setOpen(false)} aria-label="Fermer" className="text-slate-500 dark:text-slate-300">
+                <X className="h-5 w-5" strokeWidth={1.8} />
               </button>
             </div>
             <NavList navItems={navItems} pathname={pathname} onNavigate={() => setOpen(false)} />
@@ -160,7 +161,7 @@ export function EspaceShell({
             aria-label="Ouvrir le menu"
             className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-slate-200 dark:border-border-default lg:hidden"
           >
-            ☰
+            <Menu className="h-5 w-5" strokeWidth={1.8} />
           </button>
           <p className="hidden truncate text-sm font-semibold text-stf-navy dark:text-white lg:block">
             Bienvenue, {userName.split(" ")[0]}
@@ -173,7 +174,7 @@ export function EspaceShell({
               title="Notifications à venir"
               className="flex h-10 w-10 shrink-0 cursor-not-allowed items-center justify-center rounded-full border border-slate-200 text-slate-300 dark:border-border-default dark:text-slate-600"
             >
-              🔔
+              <Bell className="h-5 w-5" strokeWidth={1.8} />
             </button>
             <button
               onClick={() => setOpen(true)}

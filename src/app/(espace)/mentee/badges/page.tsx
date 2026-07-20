@@ -1,3 +1,4 @@
+import { Award } from "lucide-react";
 import { getSessionUser } from "@/lib/session";
 import { formatDate } from "@/lib/format";
 
@@ -23,8 +24,8 @@ export default async function MenteeBadgesPage() {
               key={b.id}
               className="rounded-2xl border border-slate-100 bg-white p-6 text-center shadow-sm dark:border-border-default dark:bg-surface"
             >
-              <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-stf-orange-light text-2xl">
-                🏅
+              <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-stf-orange-light text-stf-orange">
+                <Award className="h-7 w-7" strokeWidth={1.8} />
               </span>
               <h2 className="mt-4 font-semibold text-stf-navy dark:text-white">{b.title}</h2>
               <p className="mt-1 text-xs text-slate-400 dark:text-slate-500">Obtenu le {formatDate(b.pivot.awarded_at)}</p>

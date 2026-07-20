@@ -1,5 +1,6 @@
 "use client";
 
+import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -78,7 +79,7 @@ export function SiteHeader() {
             className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 dark:border-border-default"
             aria-label={t("header.ouvrirMenu")}
           >
-            <span className="text-xl">{open ? "✕" : "☰"}</span>
+            {open ? <X className="h-5 w-5" strokeWidth={1.8} /> : <Menu className="h-5 w-5" strokeWidth={1.8} />}
           </button>
         </div>
       </div>

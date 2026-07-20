@@ -1,5 +1,6 @@
 "use client";
 
+import { Lock, Mail, ShieldCheck } from "lucide-react";
 import { Suspense, useActionState } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
@@ -58,10 +59,7 @@ function ConnexionForm() {
             <label className="text-sm font-semibold text-stf-navy dark:text-white">Code de vérification</label>
             <div className="relative mt-2">
               <FieldIcon>
-                <svg viewBox="0 0 24 24" className="h-5 w-5 fill-none stroke-current" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="3" y="4" width="18" height="16" rx="2" />
-                  <path d="M3 9h18M8 4v16" />
-                </svg>
+                <ShieldCheck className="h-5 w-5" strokeWidth={1.8} />
               </FieldIcon>
               <input
                 type="text"
@@ -103,10 +101,7 @@ function ConnexionForm() {
           <label className="text-sm font-semibold text-stf-navy dark:text-white">{t("connexion.email")}</label>
           <div className="relative mt-2">
             <FieldIcon>
-              <svg viewBox="0 0 24 24" className="h-5 w-5 fill-none stroke-current" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="3" y="5" width="18" height="14" rx="2" />
-                <path d="m4 7 8 6 8-6" />
-              </svg>
+              <Mail className="h-5 w-5" strokeWidth={1.8} />
             </FieldIcon>
             <input
               type="email"
@@ -121,10 +116,7 @@ function ConnexionForm() {
           <label className="text-sm font-semibold text-stf-navy dark:text-white">{t("connexion.password")}</label>
           <div className="relative mt-2">
             <FieldIcon>
-              <svg viewBox="0 0 24 24" className="h-5 w-5 fill-none stroke-current" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="4" y="11" width="16" height="9" rx="2" />
-                <path d="M8 11V7a4 4 0 0 1 8 0v4" />
-              </svg>
+              <Lock className="h-5 w-5" strokeWidth={1.8} />
             </FieldIcon>
             <PasswordInput
               name="password"

@@ -1,3 +1,4 @@
+import { Check } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
 import { apiFetch } from "@/lib/api";
 import { formatDate, formatTime, initials, sessionStatusLabel, sessionStatusTone } from "@/lib/format";
@@ -55,11 +56,11 @@ export default async function MenteeMentoratPage() {
             {objectives.map((o) => (
               <li key={o.title} className="flex items-center gap-3 text-sm">
                 <span
-                  className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-xs ${
+                  className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full ${
                     o.done ? "bg-stf-green text-white" : "border border-slate-300 text-transparent dark:border-slate-600"
                   }`}
                 >
-                  ✓
+                  {o.done ? <Check className="h-3 w-3" strokeWidth={3} /> : null}
                 </span>
                 <span className={o.done ? "text-slate-400 line-through dark:text-slate-500" : "text-stf-navy dark:text-white"}>
                   {o.title}

@@ -12,6 +12,77 @@ export type EspaceNavItem = {
   icon: ReactNode;
 };
 
+function NavList({
+  navItems,
+  pathname,
+  onNavigate,
+}: {
+  navItems: EspaceNavItem[];
+  pathname: string;
+  onNavigate?: () => void;
+}) {
+  return (
+    <nav className="flex flex-1 flex-col gap-1 px-3">
+      {navItems.map((item) => {
+        const active = pathname === item.href;
+        return (
+          <Link
+            key={item.href}
+            href={item.href}
+            onClick={onNavigate}
+            className={`flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-colors ${
+              active
+                ? "bg-stf-orange-light text-stf-orange"
+                : "text-slate-500 hover:bg-slate-100 hover:text-stf-navy dark:text-slate-400 dark:hover:bg-white/5 dark:hover:text-white"
+            }`}
+          >
+            <span className="text-base">{item.icon}</span>
+            {item.label}
+          </Link>
+        );
+      })}
+    </nav>
+  );
+}
+
+function ProfileCard({
+  initials,
+  userName,
+  userMeta,
+  logoutAction,
+  className = "m-3 mt-auto space-y-2",
+}: {
+  initials: string;
+  userName: string;
+  userMeta: string;
+  logoutAction?: () => Promise<void>;
+  className?: string;
+}) {
+  return (
+    <div className={className}>
+      <div className="flex items-center gap-3 rounded-xl bg-slate-50 p-3 dark:bg-white/5">
+        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-stf-blue-light text-sm font-bold text-stf-blue">
+          {initials}
+        </span>
+        <div className="min-w-0">
+          <p className="truncate text-sm font-semibold text-stf-navy dark:text-white">{userName}</p>
+          <p className="truncate text-xs text-slate-500 dark:text-slate-400">{userMeta}</p>
+        </div>
+      </div>
+      {logoutAction ? (
+        <form action={logoutAction}>
+          <button
+            type="submit"
+            className="w-full rounded-xl px-3 py-2 text-left text-sm font-medium text-slate-500 hover:bg-slate-100 hover:text-red-500 dark:text-slate-400 dark:hover:bg-white/5"
+          >
+            Se déconnecter
+          </button>
+        </form>
+      ) : null}
+    </div>
+  );
+}
+
 export function EspaceShell({
   navItems,
   roleLabel,
@@ -36,29 +107,6 @@ export function EspaceShell({
     .join("")
     .slice(0, 2);
 
-  const NavList = ({ onNavigate }: { onNavigate?: () => void }) => (
-    <nav className="flex flex-1 flex-col gap-1 px-3">
-      {navItems.map((item) => {
-        const active = pathname === item.href;
-        return (
-          <Link
-            key={item.href}
-            href={item.href}
-            onClick={onNavigate}
-            className={`flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-colors ${
-              active
-                ? "bg-stf-orange-light text-stf-orange"
-                : "text-slate-500 hover:bg-slate-100 hover:text-stf-navy dark:text-slate-400 dark:hover:bg-white/5 dark:hover:text-white"
-            }`}
-          >
-            <span className="text-base">{item.icon}</span>
-            {item.label}
-          </Link>
-        );
-      })}
-    </nav>
-  );
-
   return (
     <div className="flex min-h-screen bg-slate-50 dark:bg-background">
       {/* Desktop sidebar */}
@@ -71,28 +119,8 @@ export function EspaceShell({
             Espace {roleLabel}
           </span>
         </Link>
-        <NavList />
-        <div className="m-3 mt-auto space-y-2">
-          <div className="flex items-center gap-3 rounded-xl bg-slate-50 p-3 dark:bg-white/5">
-            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-stf-blue-light text-sm font-bold text-stf-blue">
-              {initials}
-            </span>
-            <div className="min-w-0">
-              <p className="truncate text-sm font-semibold text-stf-navy dark:text-white">{userName}</p>
-              <p className="truncate text-xs text-slate-500 dark:text-slate-400">{userMeta}</p>
-            </div>
-          </div>
-          {logoutAction ? (
-            <form action={logoutAction}>
-              <button
-                type="submit"
-                className="w-full rounded-xl px-3 py-2 text-left text-sm font-medium text-slate-500 hover:bg-slate-100 hover:text-red-500 dark:text-slate-400 dark:hover:bg-white/5"
-              >
-                Se déconnecter
-              </button>
-            </form>
-          ) : null}
-        </div>
+        <NavList navItems={navItems} pathname={pathname} />
+        <ProfileCard initials={initials} userName={userName} userMeta={userMeta} logoutAction={logoutAction} />
       </aside>
 
       {/* Mobile drawer */}
@@ -112,7 +140,14 @@ export function EspaceShell({
                 ✕
               </button>
             </div>
-            <NavList onNavigate={() => setOpen(false)} />
+            <NavList navItems={navItems} pathname={pathname} onNavigate={() => setOpen(false)} />
+            <ProfileCard
+              initials={initials}
+              userName={userName}
+              userMeta={userMeta}
+              logoutAction={logoutAction}
+              className="mx-3 mt-auto space-y-2"
+            />
           </aside>
         </div>
       ) : null}
@@ -140,9 +175,13 @@ export function EspaceShell({
             >
               🔔
             </button>
-            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-stf-blue-light text-sm font-bold text-stf-blue lg:hidden">
+            <button
+              onClick={() => setOpen(true)}
+              aria-label="Menu du profil"
+              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-stf-blue-light text-sm font-bold text-stf-blue transition-opacity hover:opacity-80 lg:hidden"
+            >
               {initials}
-            </span>
+            </button>
           </div>
         </header>
 

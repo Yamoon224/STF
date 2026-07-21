@@ -17,7 +17,7 @@ export default async function MentoreMenteesPage() {
   }
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-10">
       <div>
         <h1 className="text-2xl font-bold text-stf-navy dark:text-white">Mes mentées</h1>
         <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
@@ -25,7 +25,7 @@ export default async function MentoreMenteesPage() {
         </p>
       </div>
 
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
         {pairings.map((p) => {
           const next = upcomingByPairing.get(p.id);
           return (

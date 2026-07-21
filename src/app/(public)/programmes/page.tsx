@@ -29,8 +29,8 @@ export default async function ProgrammesPage() {
         description={hero?.description ?? ""}
       />
 
-      <section className="py-20">
-        <Container className="grid gap-8 md:grid-cols-2">
+      <section className="py-24">
+        <Container className="grid gap-10 md:grid-cols-2">
           {programs.map((program, i) => (
             <Reveal key={program.slug} delay={i * 80}>
               <div

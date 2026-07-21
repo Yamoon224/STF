@@ -24,10 +24,10 @@ export default async function PartenairesPage() {
         description={hero?.description ?? ""}
       />
 
-      <section className="py-20">
+      <section className="py-24">
         <Container>
           <SectionHeading eyebrow="Nos partenaires" title="Un réseau engagé" />
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {partners.map((partner, i) => {
               const card = (
                 <div className="flex h-full flex-col items-center justify-center gap-3 rounded-2xl border border-slate-100 bg-white p-8 text-center shadow-sm transition-transform duration-300 hover:-translate-y-1 dark:border-border-default dark:bg-surface">
@@ -55,7 +55,7 @@ export default async function PartenairesPage() {
         </Container>
       </section>
 
-      <section className="bg-stf-blue-light py-16 dark:bg-stf-blue/10">
+      <section className="bg-stf-blue-light py-20 dark:bg-stf-blue/10">
         <Container className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
           <Reveal>
             <h2 className="text-2xl font-bold text-stf-navy dark:text-white">

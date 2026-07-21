@@ -7,7 +7,7 @@ export default async function MenteeBadgesPage() {
   const badges = user?.badges ?? [];
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-10">
       <div>
         <h1 className="text-2xl font-bold text-stf-navy dark:text-white">Mes badges & attestations</h1>
         <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
@@ -18,7 +18,7 @@ export default async function MenteeBadgesPage() {
       {badges.length === 0 ? (
         <p className="text-sm text-slate-500 dark:text-slate-400">Aucun badge obtenu pour le moment.</p>
       ) : (
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {badges.map((b) => (
             <div
               key={b.id}

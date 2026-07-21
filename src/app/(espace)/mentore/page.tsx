@@ -25,7 +25,7 @@ export default async function MentoreDashboardPage() {
   const menteesWithoutSession = pairings.filter((p) => !nextSessionByPairing.has(p.id)).length;
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-10">
       <div>
         <h1 className="text-2xl font-bold text-stf-navy dark:text-white">Tableau de bord</h1>
         <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">

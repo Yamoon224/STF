@@ -30,14 +30,14 @@ export default async function ExperiencesVirtuellesLevelPage({
         description="STF est une organisation purement scientifique : choisis une matière pour découvrir les cours de renforcement, le labo virtuel et les prochaines sessions en direct."
       />
 
-      <section className="py-16">
+      <section className="py-20">
         <Container>
           <Reveal>
             <p className="text-sm font-semibold uppercase tracking-wide text-stf-orange">
               Étape 2 — Choisis ta matière
             </p>
           </Reveal>
-          <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {subjects.map((subject, i) => (
               <Reveal key={subject.id} delay={i * 80}>
                 <Link

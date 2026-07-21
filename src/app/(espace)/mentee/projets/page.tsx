@@ -12,7 +12,7 @@ export default async function MenteeProjetsPage() {
   const pairing = pairingsRes.data[0] as MentorshipPairing | undefined;
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-10">
       <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
         <div>
           <h1 className="text-2xl font-bold text-stf-navy dark:text-white">Mes projets</h1>
@@ -55,7 +55,7 @@ export default async function MenteeProjetsPage() {
         </details>
       </div>
 
-      <div className="grid gap-6 sm:grid-cols-2">
+      <div className="grid gap-8 sm:grid-cols-2">
         {projects.map((p) => (
           <div
             key={p.id}

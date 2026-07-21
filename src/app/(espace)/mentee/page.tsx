@@ -28,7 +28,7 @@ export default async function MenteeDashboardPage() {
   const sessionsRealisees = sessions.filter((s) => s.status === "realisee").length;
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-10">
       <div>
         <h1 className="text-2xl font-bold text-stf-navy dark:text-white">Tableau de bord</h1>
         <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
@@ -50,7 +50,7 @@ export default async function MenteeDashboardPage() {
         <StatCard label="Prochaine session" value={nextSession ? formatDate(nextSession.scheduled_at) : "—"} />
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-3">
+      <div className="grid gap-8 lg:grid-cols-3">
         <div className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm dark:border-border-default dark:bg-surface lg:col-span-2">
           <div className="flex items-center justify-between">
             <h2 className="font-semibold text-stf-navy dark:text-white">Progression des modules</h2>

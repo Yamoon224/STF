@@ -14,7 +14,7 @@ export function PageHero({
   return (
     <section className="relative overflow-hidden border-b border-slate-100 bg-stf-cream dark:border-border-default dark:bg-surface-muted">
       <PatternBackground />
-      <Container className="relative py-16">
+      <Container className="relative py-20">
         <Reveal>
           <p className="text-sm font-semibold uppercase tracking-wide text-stf-orange">{eyebrow}</p>
         </Reveal>

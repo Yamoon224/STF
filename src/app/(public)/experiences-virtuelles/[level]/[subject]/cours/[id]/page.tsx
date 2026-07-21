@@ -35,7 +35,7 @@ export default async function CourseDetailPage({
         description={course.description ?? "Un cours de renforcement STF, pensé comme un cours à domicile en ligne."}
       />
 
-      <section className="py-16">
+      <section className="py-20">
         <Container className="max-w-3xl">
           <Reveal>
             <Badge tone={progress === 100 ? "green" : "blue"}>
@@ -55,10 +55,10 @@ export default async function CourseDetailPage({
       </section>
 
       {course.experiments.length > 0 ? (
-        <section className="border-y border-slate-100 bg-white py-16 dark:border-border-default dark:bg-surface">
+        <section className="border-y border-slate-100 bg-white py-20 dark:border-border-default dark:bg-surface">
           <Container>
             <SectionHeading eyebrow="Labo virtuel" title="Expériences liées à ce cours" />
-            <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
               {course.experiments.map((experiment, i) => (
                 <Reveal key={experiment.id} delay={i * 80}>
                   <Link
@@ -79,7 +79,7 @@ export default async function CourseDetailPage({
         </section>
       ) : null}
 
-      <section className="py-16">
+      <section className="py-20">
         <Container>
           <SectionHeading eyebrow="En direct" title="Sessions live pour ce cours" />
           {course.live_sessions.length === 0 ? (

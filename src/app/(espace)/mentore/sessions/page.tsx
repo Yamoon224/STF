@@ -15,7 +15,7 @@ export default async function MentoreSessionsPage() {
   );
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-10">
       <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
         <div>
           <h1 className="text-2xl font-bold text-stf-navy dark:text-white">Sessions</h1>

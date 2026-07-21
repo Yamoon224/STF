@@ -31,8 +31,8 @@ export default async function ImpactPage() {
         description={hero?.description ?? ""}
       />
 
-      <section className="py-20">
-        <Container className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <section className="py-24">
+        <Container className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {impactStats.map((stat, i) => (
             <Reveal
               key={stat.label}
@@ -46,10 +46,10 @@ export default async function ImpactPage() {
         </Container>
       </section>
 
-      <section className="bg-slate-50 py-20 dark:bg-surface-muted">
+      <section className="bg-slate-50 py-24 dark:bg-surface-muted">
         <Container>
           <SectionHeading eyebrow="Indicateurs clés" title="Suivi détaillé du dispositif" />
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {indicators.map((indicator, idx) => (
               <Reveal
                 key={indicator.label}
@@ -67,10 +67,10 @@ export default async function ImpactPage() {
         </Container>
       </section>
 
-      <section className="py-20">
+      <section className="py-24">
         <Container>
           <SectionHeading eyebrow="Témoignages" title="L'impact vu par les bénéficiaires" center />
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
+          <div className="mt-12 grid gap-8 md:grid-cols-3">
             {testimonials.map((item, i) => (
               <Reveal
                 key={item.id}

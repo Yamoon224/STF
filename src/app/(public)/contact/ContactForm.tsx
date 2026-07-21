@@ -35,8 +35,8 @@ export function ContactForm({ siteSettings, hero }: { siteSettings: SiteSettings
         description={hero.description ?? ""}
       />
 
-      <section className="py-20">
-        <Container className="grid gap-10 lg:grid-cols-[1fr_1.4fr]">
+      <section className="py-24">
+        <Container className="grid gap-12 lg:grid-cols-[1fr_1.4fr]">
           <Reveal>
             <div className="flex flex-wrap gap-2 lg:flex-col">
               {audiences.map((a) => (

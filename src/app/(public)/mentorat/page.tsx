@@ -27,8 +27,8 @@ export default async function MentoratPage() {
         description={hero?.description ?? ""}
       />
 
-      <section className="py-20">
-        <Container className="grid gap-12 lg:grid-cols-2">
+      <section className="py-24">
+        <Container className="grid gap-14 lg:grid-cols-2">
           <div>
             <SectionHeading eyebrow="Parcours mentée" title="Ce que vit une mentée" />
             <ol className="mt-6 space-y-4">
@@ -75,11 +75,11 @@ export default async function MentoratPage() {
         </Container>
       </section>
 
-      <section className="relative overflow-hidden bg-stf-navy py-20 text-white">
+      <section className="relative overflow-hidden bg-stf-navy py-24 text-white">
         <PatternBackground tone="onDark" />
         <Container className="relative">
           <SectionHeading eyebrow="Protection" title="La sécurité des mentées avant tout" invert />
-          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {security.map((item, i) => (
               <Reveal key={item} delay={i * 80} className="rounded-xl border border-white/10 bg-white/5 p-5 text-sm">
                 {item}
@@ -89,10 +89,10 @@ export default async function MentoratPage() {
         </Container>
       </section>
 
-      <section className="py-20">
+      <section className="py-24">
         <Container className="max-w-3xl">
           <SectionHeading eyebrow="Questions fréquentes" title="Tout comprendre sur le mentorat" />
-          <div className="mt-8 divide-y divide-slate-100 rounded-2xl border border-slate-100 dark:divide-border-subtle dark:border-border-default">
+          <div className="mt-10 divide-y divide-slate-100 rounded-2xl border border-slate-100 dark:divide-border-subtle dark:border-border-default">
             {faqMentorat.map((item, i) => (
               <Reveal key={item.question} delay={Math.min(i, 6) * 60} className="p-6">
                 <h3 className="font-semibold text-stf-navy dark:text-white">{item.question}</h3>

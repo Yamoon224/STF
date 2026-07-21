@@ -33,14 +33,14 @@ export default async function ExperiencesVirtuellesPage() {
         </Container>
       </section>
 
-      <section className="py-16">
+      <section className="py-20">
         <Container>
           <Reveal>
             <p className="text-sm font-semibold uppercase tracking-wide text-stf-orange">
               Étape 1 — Choisis ton niveau
             </p>
           </Reveal>
-          <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {levels.map((level, i) => (
               <Reveal key={level.id} delay={i * 80}>
                 <Link
@@ -57,7 +57,7 @@ export default async function ExperiencesVirtuellesPage() {
         </Container>
       </section>
 
-      <section className="bg-stf-green-light py-16 dark:bg-stf-green/10">
+      <section className="bg-stf-green-light py-20 dark:bg-stf-green/10">
         <Container className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
           <Reveal>
             <Badge tone="green">Parcours Fondations</Badge>

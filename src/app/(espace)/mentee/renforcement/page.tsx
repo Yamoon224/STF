@@ -8,7 +8,7 @@ export default async function MenteeRenforcementPage() {
   const courses = await apiFetch<CourseWithProgress[]>("/courses");
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-10">
       <div>
         <h1 className="text-2xl font-bold text-stf-navy dark:text-white">Cours de renforcement</h1>
         <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
@@ -16,7 +16,7 @@ export default async function MenteeRenforcementPage() {
         </p>
       </div>
 
-      <div className="grid gap-6 sm:grid-cols-2">
+      <div className="grid gap-8 sm:grid-cols-2">
         {courses.map((c) => {
           const progress = c.my_progress ?? 0;
           const nextProgress = Math.min(100, progress + 25);

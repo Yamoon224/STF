@@ -59,7 +59,7 @@ export default async function ExperimentDetailPage({
         </section>
       ) : null}
 
-      <section className="py-16">
+      <section className="py-20">
         <Container className="max-w-3xl">
           <SectionHeading eyebrow="Marche à suivre" title="Étapes de l'expérience" />
           {steps.length === 0 ? (

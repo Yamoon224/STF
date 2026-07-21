@@ -45,7 +45,7 @@ export default async function ExperiencesVirtuellesCataloguePage({
         description="Un catalogue de cours progressifs, un labo virtuel d'expériences et des sessions en direct pour aller plus loin avec une mentore."
       />
 
-      <section className="py-16">
+      <section className="py-20">
         <Container>
           <SectionHeading eyebrow="Cours" title="Cours de renforcement" />
           {courses.length === 0 ? (
@@ -53,7 +53,7 @@ export default async function ExperiencesVirtuellesCataloguePage({
               Aucun cours publié pour ce niveau et cette matière pour le moment.
             </p>
           ) : (
-            <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
               {courses.map((course, i) => (
                 <Reveal key={course.id} delay={i * 80}>
                   <Link
@@ -77,7 +77,7 @@ export default async function ExperiencesVirtuellesCataloguePage({
         </Container>
       </section>
 
-      <section className="border-y border-slate-100 bg-white py-16 dark:border-border-default dark:bg-surface">
+      <section className="border-y border-slate-100 bg-white py-20 dark:border-border-default dark:bg-surface">
         <Container>
           <SectionHeading eyebrow="Labo virtuel" title="Expériences à découvrir" />
           {experiments.length === 0 ? (
@@ -85,7 +85,7 @@ export default async function ExperiencesVirtuellesCataloguePage({
               Aucune expérience publiée pour ce niveau et cette matière pour le moment.
             </p>
           ) : (
-            <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
               {experiments.map((experiment, i) => (
                 <Reveal key={experiment.id} delay={i * 80}>
                   <Link
@@ -106,7 +106,7 @@ export default async function ExperiencesVirtuellesCataloguePage({
         </Container>
       </section>
 
-      <section className="py-16">
+      <section className="py-20">
         <Container>
           <SectionHeading eyebrow="En direct" title="Prochaines sessions live" />
           {liveSessions.length === 0 ? (
@@ -136,7 +136,7 @@ export default async function ExperiencesVirtuellesCataloguePage({
         </Container>
       </section>
 
-      <section className="bg-stf-green-light py-16 dark:bg-stf-green/10">
+      <section className="bg-stf-green-light py-20 dark:bg-stf-green/10">
         <Container className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
           <Reveal>
             <Badge tone="green">Parcours Fondations</Badge>

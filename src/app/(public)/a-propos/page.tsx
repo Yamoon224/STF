@@ -21,17 +21,17 @@ export default async function AProposPage() {
         description={hero?.description ?? ""}
       />
 
-      <section className="py-20">
+      <section className="py-24">
         <Container>
           <SectionHeading eyebrow="Mot de la présidente" title="Le message de notre fondatrice" center />
-          <Reveal delay={100} className="mt-10">
+          <Reveal delay={100} className="mt-12">
             <PresidentMessage />
           </Reveal>
         </Container>
       </section>
 
-      <section className="py-20">
-        <Container className="grid gap-12 lg:grid-cols-2">
+      <section className="py-24">
+        <Container className="grid gap-14 lg:grid-cols-2">
           <div>
             <SectionHeading eyebrow={histoire?.eyebrow ?? "Notre histoire"} title={histoire?.title ?? "Pourquoi STF existe"} />
             <Reveal delay={100}>
@@ -47,10 +47,10 @@ export default async function AProposPage() {
         </Container>
       </section>
 
-      <section className="bg-slate-50 py-20 dark:bg-surface-muted">
+      <section className="bg-slate-50 py-24 dark:bg-surface-muted">
         <Container>
           <SectionHeading eyebrow="Nos valeurs" title="Audace, Union, Intégrité, Résultat" center />
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {values.map((v, i) => (
               <Reveal
                 key={v.title}
@@ -65,10 +65,10 @@ export default async function AProposPage() {
         </Container>
       </section>
 
-      <section className="py-20">
+      <section className="py-24">
         <Container>
           <SectionHeading eyebrow="Gouvernance" title="Qui décide et qui contribue" />
-          <Reveal className="mt-10 overflow-hidden rounded-2xl border border-slate-100 dark:border-border-default">
+          <Reveal className="mt-12 overflow-hidden rounded-2xl border border-slate-100 dark:border-border-default">
             <table className="w-full text-left text-sm">
               <thead className="bg-stf-navy text-white">
                 <tr>

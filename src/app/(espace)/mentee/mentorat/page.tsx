@@ -19,7 +19,7 @@ export default async function MenteeMentoratPage() {
     : [];
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-10">
       <div>
         <h1 className="text-2xl font-bold text-stf-navy dark:text-white">Mon mentorat</h1>
         <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
@@ -49,7 +49,7 @@ export default async function MenteeMentoratPage() {
         </div>
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-2">
+      <div className="grid gap-8 lg:grid-cols-2">
         <div className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm dark:border-border-default dark:bg-surface">
           <h2 className="font-semibold text-stf-navy dark:text-white">Objectifs du cycle</h2>
           <ul className="mt-4 space-y-3">

@@ -16,8 +16,8 @@ export default async function PolitiquesPage() {
         description={hero?.description ?? ""}
       />
 
-      <section className="py-20">
-        <Container className="grid gap-6 md:grid-cols-2">
+      <section className="py-24">
+        <Container className="grid gap-8 md:grid-cols-2">
           {policies.map((policy, i) => (
             <Reveal
               key={policy.title}

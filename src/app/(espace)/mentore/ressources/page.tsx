@@ -6,7 +6,7 @@ const mentorResources = [
 
 export default function MentoreRessourcesPage() {
   return (
-    <div className="space-y-8">
+    <div className="space-y-10">
       <div>
         <h1 className="text-2xl font-bold text-stf-navy dark:text-white">Ressources</h1>
         <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">

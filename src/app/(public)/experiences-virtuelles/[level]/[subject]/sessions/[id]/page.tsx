@@ -32,7 +32,7 @@ export default async function LiveSessionDetailPage({
         description={`Une session en direct avec une mentore STF, rattachée au cours « ${session.course.title} ».`}
       />
 
-      <section className="py-16">
+      <section className="py-20">
         <Container className="max-w-2xl">
           <Reveal className="rounded-2xl border border-slate-100 bg-white p-8 shadow-sm dark:border-border-default dark:bg-surface">
             <Badge tone={liveSessionStatusTone(session.status)}>{liveSessionStatusLabel(session.status)}</Badge>

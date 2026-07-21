@@ -144,6 +144,21 @@ export function HomeContent({
                 </div>
               </Reveal>
             ))}
+            <Reveal delay={programs.length * 80}>
+              <Link
+                href="/bourses"
+                className={`block h-full rounded-2xl border p-6 transition-transform duration-300 hover:-translate-y-1 ${colorMap.orange}`}
+              >
+                <p className="text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">
+                  Licence · Master · Doctorat
+                </p>
+                <h3 className="mt-2 text-lg font-bold text-stf-navy dark:text-white">Bourses d&apos;études</h3>
+                <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">
+                  Un accompagnement vers les bourses d&apos;études STIM, en Côte d&apos;Ivoire et à l&apos;étranger.
+                </p>
+                <span className="mt-3 inline-block text-sm font-semibold text-stf-orange">Découvrir →</span>
+              </Link>
+            </Reveal>
           </div>
         </Container>
       </section>

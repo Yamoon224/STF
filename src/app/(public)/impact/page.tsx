@@ -4,24 +4,17 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { apiFetch } from "@/lib/api";
 import { getPageSections } from "@/lib/pageSections";
-import type { ImpactStats, Testimonial } from "@/lib/types";
+import type { Testimonial } from "@/lib/types";
 
 export default async function ImpactPage() {
-  const [stats, testimonials, sections] = await Promise.all([
-    apiFetch<ImpactStats>("/stats/impact", { anonymous: true }),
+  const [testimonials, sections] = await Promise.all([
     apiFetch<Testimonial[]>("/testimonials", { anonymous: true }),
     getPageSections("impact"),
   ]);
 
   const hero = sections.hero?.payload as { eyebrow?: string; title?: string; description?: string } | undefined;
+  const impactStats = (sections.headline_stats?.payload.items as { label: string; value: string }[] | undefined) ?? [];
   const indicators = (sections.indicators?.payload.items as { label: string; value: string }[] | undefined) ?? [];
-
-  const impactStats = [
-    { label: "Bénéficiaires accompagnées", value: `${stats.beneficiaries}+` },
-    { label: "Mentores actives", value: String(stats.active_mentors) },
-    { label: "Binômes de mentorat", value: String(stats.pairings) },
-    { label: "Pays d'intervention", value: String(stats.countries) },
-  ];
 
   return (
     <>

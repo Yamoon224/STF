@@ -59,6 +59,30 @@ export default async function ProgrammesPage() {
               </div>
             </Reveal>
           ))}
+
+          <Reveal delay={programs.length * 80}>
+            <div className={`rounded-2xl border p-8 ${colorMap.orange}`}>
+              <Badge tone="neutral">Licence · Master · Doctorat</Badge>
+              <h2 className="mt-4 text-xl font-bold text-stf-navy dark:text-white">Bourses d&apos;études</h2>
+              <p className="mt-3 text-sm text-slate-600 dark:text-slate-300">
+                STF accompagne les filles et jeunes femmes dans leurs démarches de candidature aux bourses d&apos;études
+                STIM, en Côte d&apos;Ivoire et à l&apos;étranger.
+              </p>
+              <dl className="mt-6 grid grid-cols-2 gap-4 text-sm">
+                <div>
+                  <dt className="font-semibold text-slate-500 dark:text-slate-400">Objectif</dt>
+                  <dd className="text-stf-navy dark:text-white">Faciliter l&apos;accès aux bourses d&apos;études STIM</dd>
+                </div>
+                <div>
+                  <dt className="font-semibold text-slate-500 dark:text-slate-400">Modalité</dt>
+                  <dd className="text-stf-navy dark:text-white">Accompagnement individuel et portails officiels</dd>
+                </div>
+              </dl>
+              <Button href="/bourses" variant="outline" className="mt-6">
+                Découvrir les bourses
+              </Button>
+            </div>
+          </Reveal>
         </Container>
       </section>
     </>

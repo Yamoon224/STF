@@ -66,13 +66,6 @@ export type Faq = {
   category: string | null;
 };
 
-export type ImpactStats = {
-  beneficiaries: number;
-  active_mentors: number;
-  pairings: number;
-  countries: number;
-};
-
 export type UserRef = {
   id: number;
   name: string;

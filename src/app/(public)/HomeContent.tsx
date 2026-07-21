@@ -286,7 +286,7 @@ export function HomeContent({
           <p className="text-center text-sm font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">
             {t("home.partenairesTitle")}
           </p>
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-x-10 gap-y-5">
+          <div className="mt-10 flex items-center gap-x-10 overflow-x-auto px-1 pb-2">
             {partners.map((partner) =>
               partner.logo_url ? (
                 // eslint-disable-next-line @next/next/no-img-element
@@ -295,10 +295,10 @@ export function HomeContent({
                   src={partner.logo_url}
                   alt={partner.name}
                   title={partner.name}
-                  className="h-8 max-w-[120px] object-contain grayscale transition hover:grayscale-0"
+                  className="h-8 max-w-[120px] shrink-0 object-contain grayscale transition hover:grayscale-0"
                 />
               ) : (
-                <span key={partner.id} className="text-sm font-semibold text-slate-400 dark:text-slate-500">
+                <span key={partner.id} className="shrink-0 text-sm font-semibold text-slate-400 dark:text-slate-500">
                   {partner.name}
                 </span>
               )

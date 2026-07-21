@@ -27,10 +27,10 @@ export default async function PartenairesPage() {
       <section className="py-24">
         <Container>
           <SectionHeading eyebrow="Nos partenaires" title="Un réseau engagé" />
-          <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-12 flex gap-8 overflow-x-auto pb-4">
             {partners.map((partner, i) => {
               const card = (
-                <div className="flex h-full flex-col items-center justify-center gap-3 rounded-2xl border border-slate-100 bg-white p-8 text-center shadow-sm transition-transform duration-300 hover:-translate-y-1 dark:border-border-default dark:bg-surface">
+                <div className="flex h-full w-56 shrink-0 flex-col items-center justify-center gap-3 rounded-2xl border border-slate-100 bg-white p-8 text-center shadow-sm transition-transform duration-300 hover:-translate-y-1 dark:border-border-default dark:bg-surface">
                   {partner.logo_url ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img src={partner.logo_url} alt={partner.name} className="h-16 max-w-[160px] object-contain" />
@@ -40,7 +40,7 @@ export default async function PartenairesPage() {
               );
 
               return (
-                <Reveal key={partner.id} delay={i * 70}>
+                <Reveal key={partner.id} delay={i * 70} className="shrink-0">
                   {partner.url ? (
                     <a href={partner.url} target="_blank" rel="noreferrer" className="block">
                       {card}

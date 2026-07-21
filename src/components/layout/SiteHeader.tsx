@@ -109,7 +109,7 @@ export function SiteHeader() {
         scrolled ? "border-transparent shadow-md shadow-black/5" : "border-slate-100 dark:border-border-default"
       }`}
     >
-      <div className="mx-auto grid max-w-7xl grid-cols-[auto_1fr_auto] items-center gap-4 px-4 py-2 sm:px-6 lg:px-8">
+      <div className="mx-auto grid max-w-7xl grid-cols-3 items-center gap-4 px-4 py-2 sm:px-6 lg:px-8">
         <Logo />
 
         <nav className="hidden items-center justify-center gap-7 xl:flex">
@@ -137,10 +137,10 @@ export function SiteHeader() {
 
         <div className="flex items-center justify-end gap-2">
           <div className="hidden items-center gap-3 xl:flex">
-            <Button href="/connexion" variant="outlineNeutral" className="px-3 py-1.5 text-xs">
+            <Button href="/connexion" variant="outlineNeutral" className="px-2 py-1 text-xs">
               {t("header.connexion")}
             </Button>
-            <Button href="/inscription" className="px-3 py-1.5 text-xs">
+            <Button href="/inscription" className="px-2 py-1 text-xs">
               {t("header.rejoindre")}
             </Button>
           </div>

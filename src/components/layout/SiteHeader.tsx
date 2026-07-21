@@ -139,7 +139,7 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        <div className="flex items-center justify-end gap-2">
+        <div className="flex items-center justify-self-end gap-2">
           <div className="hidden items-center gap-3 xl:flex">
             <Button href="/connexion" variant="outlineNeutral" className="px-2 py-1 text-xs">
               {t("header.connexion")}

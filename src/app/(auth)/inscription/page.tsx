@@ -9,13 +9,18 @@ import { LanguageToggle } from "@/components/ui/LanguageToggle";
 import { useLanguage } from "@/lib/i18n/LanguageProvider";
 import { PasswordInput } from "@/components/ui/PasswordInput";
 import { registerAction, type AuthActionState } from "@/lib/actions/auth";
+import { stemDomainLabels, stemFields, type StemDomain } from "@/lib/stemFields";
 
 type Role = "mentee" | "mentor";
+
+const selectClass =
+  "mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-stf-blue dark:border-border-default dark:bg-white/5 dark:text-white";
 
 function InscriptionForm() {
   const searchParams = useSearchParams();
   const initialRole = searchParams.get("role") === "mentore" ? "mentor" : "mentee";
   const [role, setRole] = useState<Role>(initialRole);
+  const [domain, setDomain] = useState<StemDomain | "">("");
   const { t } = useLanguage();
   const [state, formAction, pending] = useActionState<AuthActionState, FormData>(registerAction, null);
 
@@ -111,53 +116,90 @@ function InscriptionForm() {
         </div>
 
         {role === "mentee" ? (
-          <div className="grid gap-5 sm:grid-cols-2">
-            <div>
-              <label className="text-sm font-semibold text-stf-navy dark:text-white">{t("inscription.level")}</label>
-              <select
-                name="level"
-                className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-stf-blue dark:border-border-default dark:bg-white/5 dark:text-white"
-              >
-                <option>{t("inscription.levelPrimaire")}</option>
-                <option>{t("inscription.levelCollege")}</option>
-                <option>{t("inscription.levelLycee")}</option>
-                <option>{t("inscription.levelUniversite")}</option>
-                <option>{t("inscription.levelDebutante")}</option>
-              </select>
+          <>
+            <div className="grid gap-5 sm:grid-cols-2">
+              <div>
+                <label className="text-sm font-semibold text-stf-navy dark:text-white">{t("inscription.level")}</label>
+                <select name="level" className={selectClass}>
+                  <option>{t("inscription.levelPrimaire")}</option>
+                  <option>{t("inscription.levelCollege")}</option>
+                  <option>{t("inscription.levelLycee")}</option>
+                  <option>{t("inscription.levelUniversite")}</option>
+                  <option>{t("inscription.levelDebutante")}</option>
+                </select>
+              </div>
+              <div>
+                <label className="text-sm font-semibold text-stf-navy dark:text-white">{t("inscription.interest")}</label>
+                <select
+                  name="domain"
+                  required
+                  value={domain}
+                  onChange={(e) => setDomain(e.target.value as StemDomain | "")}
+                  className={selectClass}
+                >
+                  <option value="">{t("inscription.domainPlaceholder")}</option>
+                  <option value="science">{t("inscription.interestSciences")}</option>
+                  <option value="technologie">{t("inscription.interestTechnologies")}</option>
+                  <option value="ingenierie">{t("inscription.interestIngenierie")}</option>
+                  <option value="mathematiques">{t("inscription.interestMathematiques")}</option>
+                </select>
+                <input type="hidden" name="domainLabel" value={domain ? stemDomainLabels[domain] : ""} />
+              </div>
             </div>
-            <div>
-              <label className="text-sm font-semibold text-stf-navy dark:text-white">{t("inscription.interest")}</label>
-              <select className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-stf-blue dark:border-border-default dark:bg-white/5 dark:text-white">
-                <option>{t("inscription.interestSciences")}</option>
-                <option>{t("inscription.interestTechnologies")}</option>
-                <option>{t("inscription.interestIngenierie")}</option>
-                <option>{t("inscription.interestMathematiques")}</option>
-              </select>
-            </div>
-          </div>
+
+            {domain ? (
+              <div>
+                <label className="text-sm font-semibold text-stf-navy dark:text-white">{t("inscription.metier")}</label>
+                <select key={`metier-${domain}`} name="metier" required className={selectClass}>
+                  <option value="">{t("inscription.metierPlaceholder")}</option>
+                  {stemFields[domain].map((field) => (
+                    <option key={field.metier} value={field.metier}>
+                      {field.metier}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            ) : null}
+          </>
         ) : (
-          <div className="grid gap-5 sm:grid-cols-2">
-            <div>
-              <label className="text-sm font-semibold text-stf-navy dark:text-white">{t("inscription.expertise")}</label>
-              <input
-                type="text"
-                name="expertise"
-                required
-                placeholder={t("inscription.expertisePlaceholder")}
-                className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-stf-blue dark:border-border-default dark:bg-white/5 dark:text-white dark:placeholder:text-slate-500"
-              />
+          <>
+            <div className="grid gap-5 sm:grid-cols-2">
+              <div>
+                <label className="text-sm font-semibold text-stf-navy dark:text-white">{t("inscription.interest")}</label>
+                <select
+                  name="domain"
+                  required
+                  value={domain}
+                  onChange={(e) => setDomain(e.target.value as StemDomain | "")}
+                  className={selectClass}
+                >
+                  <option value="">{t("inscription.domainPlaceholder")}</option>
+                  <option value="science">{t("inscription.interestSciences")}</option>
+                  <option value="technologie">{t("inscription.interestTechnologies")}</option>
+                  <option value="ingenierie">{t("inscription.interestIngenierie")}</option>
+                  <option value="mathematiques">{t("inscription.interestMathematiques")}</option>
+                </select>
+              </div>
+              <div>
+                <label className="text-sm font-semibold text-stf-navy dark:text-white">{t("inscription.capacity")}</label>
+                <input type="number" name="capacity" min={1} defaultValue={2} className={selectClass} />
+              </div>
             </div>
-            <div>
-              <label className="text-sm font-semibold text-stf-navy dark:text-white">{t("inscription.capacity")}</label>
-              <input
-                type="number"
-                name="capacity"
-                min={1}
-                defaultValue={2}
-                className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-stf-blue dark:border-border-default dark:bg-white/5 dark:text-white"
-              />
-            </div>
-          </div>
+
+            {domain ? (
+              <div>
+                <label className="text-sm font-semibold text-stf-navy dark:text-white">{t("inscription.expertise")}</label>
+                <select key={`profession-${domain}`} name="expertise" required className={selectClass}>
+                  <option value="">{t("inscription.professionPlaceholder")}</option>
+                  {stemFields[domain].map((field) => (
+                    <option key={field.profession} value={field.profession}>
+                      {field.profession}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            ) : null}
+          </>
         )}
 
         <label className="flex items-start gap-3 text-xs text-slate-500 dark:text-slate-400">

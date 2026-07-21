@@ -97,6 +97,12 @@ export async function registerAction(_prevState: AuthActionState, formData: Form
     payload.capacity = Number(formData.get("capacity") ?? 3);
   } else {
     payload.level = String(formData.get("level") ?? "");
+
+    const domainLabel = String(formData.get("domainLabel") ?? "");
+    const metier = String(formData.get("metier") ?? "");
+    if (domainLabel && metier) {
+      payload.interests = `${domainLabel} — ${metier}`;
+    }
   }
 
   try {

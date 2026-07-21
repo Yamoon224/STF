@@ -2,6 +2,7 @@ import { TopBar } from "@/components/layout/TopBar";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { ScrollProgress } from "@/components/layout/ScrollProgress";
+import { FloatingToggles } from "@/components/layout/FloatingToggles";
 import { apiFetch } from "@/lib/api";
 import type { SiteSettings } from "@/lib/types";
 
@@ -21,6 +22,7 @@ export default async function PublicLayout({
       </div>
       <main className="flex-1">{children}</main>
       <SiteFooter siteSettings={siteSettings} />
+      <FloatingToggles />
     </div>
   );
 }

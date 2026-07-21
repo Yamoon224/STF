@@ -6,8 +6,6 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { Logo } from "@/components/ui/Logo";
-import { ThemeToggle } from "@/components/theme/ThemeToggle";
-import { LanguageToggle } from "@/components/ui/LanguageToggle";
 import { useLanguage } from "@/lib/i18n/LanguageProvider";
 
 type TranslateFn = (key: string, vars?: Record<string, string | number>) => string;
@@ -138,20 +136,16 @@ export function SiteHeader() {
             ))}
           </nav>
           <div className="flex items-center gap-3">
-            <Button href="/connexion" variant="outlineNeutral" className="px-5 py-2.5 text-sm">
+            <Button href="/connexion" variant="outlineNeutral" className="px-4 py-2 text-xs">
               {t("header.connexion")}
             </Button>
-            <Button href="/inscription" className="px-5 py-2.5 text-sm">
+            <Button href="/inscription" className="px-4 py-2 text-xs">
               {t("header.rejoindre")}
             </Button>
-            <LanguageToggle />
-            <ThemeToggle />
           </div>
         </div>
 
         <div className="flex items-center gap-2 xl:hidden">
-          <LanguageToggle />
-          <ThemeToggle />
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}

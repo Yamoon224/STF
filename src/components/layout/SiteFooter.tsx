@@ -49,10 +49,10 @@ export function SiteFooter({ siteSettings }: { siteSettings: SiteSettings }) {
 
   return (
     <footer className="border-t border-slate-100 bg-stf-navy text-slate-200 dark:border-border-default">
-      <Container className="grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-5">
+      <Container className="grid gap-10 py-10 sm:grid-cols-2 lg:grid-cols-5">
         <div className="lg:col-span-1">
-          <span className="relative flex h-11 w-11 overflow-hidden rounded-full ring-1 ring-white/20">
-            <Image src="/brand/logo.jpg" alt="STF" fill sizes="44px" className="object-cover" />
+          <span className="relative flex h-11 w-11">
+            <Image src="/brand/logo.png" alt="STF" fill sizes="44px" className="object-contain" />
           </span>
           <p className="mt-4 text-sm text-slate-300">{t("footer.tagline")}</p>
           <a

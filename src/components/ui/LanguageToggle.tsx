@@ -45,7 +45,7 @@ export function LanguageToggle({
   const current = options.find((o) => o.value === locale) ?? options[0];
 
   return (
-    <div ref={containerRef} className={`relative shrink-0 ${className}`}>
+    <div ref={containerRef} className={`relative ${className}`}>
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}

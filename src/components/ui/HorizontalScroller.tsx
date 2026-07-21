@@ -79,7 +79,7 @@ export function HorizontalScroller({
           window.clearTimeout(resumeTimeoutRef.current);
           pausedRef.current = false;
         }}
-        className={`flex overflow-x-auto scroll-smooth ${className}`}
+        className={`no-scrollbar flex overflow-x-auto scroll-smooth ${className}`}
       >
         {children}
       </div>

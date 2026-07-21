@@ -91,6 +91,14 @@ html {
   background-color: rgba(245, 148, 31, 0.55);
 }
 
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 /* Signature entrance motion: every element that appears on the site rises
    and fades in on the same curve, staggered via --reveal-delay. */
 [data-reveal] {

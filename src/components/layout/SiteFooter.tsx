@@ -23,6 +23,7 @@ const columns = [
       { href: "/programmes", labelKey: "footer.tousLesProgrammes" },
       { href: "/mentorat", labelKey: "header.nav.mentorat" },
       { href: "/experiences-virtuelles", labelKey: "header.nav.experiencesVirtuelles" },
+      { href: "/bourses", labelKey: "header.nav.bourses" },
     ],
   },
   {

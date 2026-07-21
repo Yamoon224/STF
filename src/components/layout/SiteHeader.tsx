@@ -22,6 +22,7 @@ const programLinks = [
   { href: "/programmes", key: "programmes" },
   { href: "/mentorat", key: "mentorat" },
   { href: "/experiences-virtuelles", key: "experiencesVirtuelles" },
+  { href: "/bourses", key: "bourses" },
 ];
 
 function ProgramsDropdown({ pathname, t }: { pathname: string; t: TranslateFn }) {

@@ -33,6 +33,7 @@ export type CmsPage = {
   body: string | null;
   excerpt: string | null;
   category: string | null;
+  image_url: string | null;
   status: "brouillon" | "publie";
   published_at: string | null;
 };

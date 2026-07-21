@@ -3,6 +3,7 @@ export const dictionaries = {
     header: {
       nav: {
         aPropos: "À propos",
+        nosProgrammes: "Nos programmes",
         programmes: "Programmes",
         mentorat: "Mentorat",
         experiencesVirtuelles: "Expériences virtuelles",
@@ -123,6 +124,7 @@ export const dictionaries = {
     header: {
       nav: {
         aPropos: "About",
+        nosProgrammes: "Our programs",
         programmes: "Programs",
         mentorat: "Mentorship",
         experiencesVirtuelles: "Virtual experiences",

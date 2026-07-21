@@ -109,7 +109,7 @@ export function SiteHeader() {
         scrolled ? "border-transparent shadow-md shadow-black/5" : "border-slate-100 dark:border-border-default"
       }`}
     >
-      <div className="mx-auto grid max-w-7xl grid-cols-[auto_1fr_auto] items-center gap-4 px-4 py-4 sm:px-6 lg:px-8">
+      <div className="mx-auto grid max-w-7xl grid-cols-[auto_1fr_auto] items-center gap-4 px-4 py-2 sm:px-6 lg:px-8">
         <Logo />
 
         <nav className="hidden items-center justify-center gap-7 xl:flex">

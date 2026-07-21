@@ -22,6 +22,7 @@ export type Partner = {
   logo_path: string | null;
   logo_url: string | null;
   url: string | null;
+  type: "confiance" | "partenaire";
 };
 
 export type CmsPage = {

@@ -109,47 +109,46 @@ export function SiteHeader() {
         scrolled ? "border-transparent shadow-md shadow-black/5" : "border-slate-100 dark:border-border-default"
       }`}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-4 sm:px-6 lg:px-8">
+      <div className="mx-auto grid max-w-7xl grid-cols-[auto_1fr_auto] items-center gap-4 px-4 py-4 sm:px-6 lg:px-8">
         <Logo />
 
-        <div className="hidden items-center gap-8 xl:flex">
-          <nav className="flex items-center gap-7">
+        <nav className="hidden items-center justify-center gap-7 xl:flex">
+          <Link
+            href={primaryLinks[0].href}
+            className={`text-xs font-semibold uppercase tracking-wide whitespace-nowrap transition-colors hover:text-stf-orange ${
+              pathname === primaryLinks[0].href ? "text-stf-orange" : "text-slate-600 dark:text-slate-300"
+            }`}
+          >
+            {t(`header.nav.${primaryLinks[0].key}`)}
+          </Link>
+          <ProgramsDropdown pathname={pathname} t={t} />
+          {primaryLinks.slice(1).map((link) => (
             <Link
-              href={primaryLinks[0].href}
+              key={link.href}
+              href={link.href}
               className={`text-xs font-semibold uppercase tracking-wide whitespace-nowrap transition-colors hover:text-stf-orange ${
-                pathname === primaryLinks[0].href ? "text-stf-orange" : "text-slate-600 dark:text-slate-300"
+                pathname === link.href ? "text-stf-orange" : "text-slate-600 dark:text-slate-300"
               }`}
             >
-              {t(`header.nav.${primaryLinks[0].key}`)}
+              {t(`header.nav.${link.key}`)}
             </Link>
-            <ProgramsDropdown pathname={pathname} t={t} />
-            {primaryLinks.slice(1).map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`text-xs font-semibold uppercase tracking-wide whitespace-nowrap transition-colors hover:text-stf-orange ${
-                  pathname === link.href ? "text-stf-orange" : "text-slate-600 dark:text-slate-300"
-                }`}
-              >
-                {t(`header.nav.${link.key}`)}
-              </Link>
-            ))}
-          </nav>
-          <div className="flex items-center gap-3">
-            <Button href="/connexion" variant="outlineNeutral" className="px-4 py-2 text-xs">
+          ))}
+        </nav>
+
+        <div className="flex items-center justify-end gap-2">
+          <div className="hidden items-center gap-3 xl:flex">
+            <Button href="/connexion" variant="outlineNeutral" className="px-3 py-1.5 text-xs">
               {t("header.connexion")}
             </Button>
-            <Button href="/inscription" className="px-4 py-2 text-xs">
+            <Button href="/inscription" className="px-3 py-1.5 text-xs">
               {t("header.rejoindre")}
             </Button>
           </div>
-        </div>
 
-        <div className="flex items-center gap-2 xl:hidden">
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 dark:border-border-default"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 dark:border-border-default xl:hidden"
             aria-label={t("header.ouvrirMenu")}
           >
             {open ? <X className="h-5 w-5" strokeWidth={1.8} /> : <Menu className="h-5 w-5" strokeWidth={1.8} />}

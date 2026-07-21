@@ -58,8 +58,8 @@ function ProgramsDropdown({ pathname, t }: { pathname: string; t: TranslateFn })
         onClick={() => setOpen((o) => !o)}
         aria-haspopup="menu"
         aria-expanded={open}
-        className={`flex items-center gap-1 text-sm font-medium whitespace-nowrap transition-colors hover:text-stf-orange ${
-          active || open ? "text-stf-orange" : "text-stf-navy dark:text-white"
+        className={`flex items-center gap-1 text-xs font-semibold uppercase tracking-wide whitespace-nowrap transition-colors hover:text-stf-orange ${
+          active || open ? "text-stf-orange" : "text-slate-600 dark:text-slate-300"
         }`}
       >
         {t("header.nav.nosProgrammes")}
@@ -111,15 +111,15 @@ export function SiteHeader() {
         scrolled ? "border-transparent shadow-md shadow-black/5" : "border-slate-100 dark:border-border-default"
       }`}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-4 sm:px-6 lg:px-8">
         <Logo />
 
-        <div className="hidden items-center gap-6 xl:flex">
-          <nav className="flex items-center gap-6">
+        <div className="hidden items-center gap-8 xl:flex">
+          <nav className="flex items-center gap-7">
             <Link
               href={primaryLinks[0].href}
-              className={`text-sm font-medium whitespace-nowrap transition-colors hover:text-stf-orange ${
-                pathname === primaryLinks[0].href ? "text-stf-orange" : "text-stf-navy dark:text-white"
+              className={`text-xs font-semibold uppercase tracking-wide whitespace-nowrap transition-colors hover:text-stf-orange ${
+                pathname === primaryLinks[0].href ? "text-stf-orange" : "text-slate-600 dark:text-slate-300"
               }`}
             >
               {t(`header.nav.${primaryLinks[0].key}`)}
@@ -129,22 +129,19 @@ export function SiteHeader() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-sm font-medium whitespace-nowrap transition-colors hover:text-stf-orange ${
-                  pathname === link.href ? "text-stf-orange" : "text-stf-navy dark:text-white"
+                className={`text-xs font-semibold uppercase tracking-wide whitespace-nowrap transition-colors hover:text-stf-orange ${
+                  pathname === link.href ? "text-stf-orange" : "text-slate-600 dark:text-slate-300"
                 }`}
               >
                 {t(`header.nav.${link.key}`)}
               </Link>
             ))}
           </nav>
-          <div className="flex items-center gap-4">
-            <Link
-              href="/connexion"
-              className="text-xs font-semibold whitespace-nowrap text-stf-navy hover:text-stf-orange dark:text-white"
-            >
+          <div className="flex items-center gap-3">
+            <Button href="/connexion" variant="outlineNeutral" className="px-5 py-2.5 text-sm">
               {t("header.connexion")}
-            </Link>
-            <Button href="/inscription" className="px-3 py-1.5 text-xs">
+            </Button>
+            <Button href="/inscription" className="px-5 py-2.5 text-sm">
               {t("header.rejoindre")}
             </Button>
             <LanguageToggle />
@@ -217,14 +214,10 @@ export function SiteHeader() {
             </div>
           </nav>
           <div className="mt-4 flex flex-col gap-2">
-            <Link
-              href="/connexion"
-              onClick={() => setOpen(false)}
-              className="rounded-full border border-stf-blue px-4 py-2.5 text-center text-sm font-semibold text-stf-blue dark:hover:bg-stf-blue/15"
-            >
+            <Button href="/connexion" variant="outlineNeutral" onClick={() => setOpen(false)} className="w-full">
               {t("header.connexion")}
-            </Link>
-            <Button href="/inscription" className="w-full">
+            </Button>
+            <Button href="/inscription" onClick={() => setOpen(false)} className="w-full">
               {t("header.rejoindre")}
             </Button>
           </div>

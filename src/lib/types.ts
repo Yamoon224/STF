@@ -25,6 +25,12 @@ export type Partner = {
   type: "confiance" | "partenaire";
 };
 
+export type CmsPageImage = {
+  id: number;
+  image_url: string | null;
+  order: number;
+};
+
 export type CmsPage = {
   id: number;
   title: string;
@@ -34,6 +40,7 @@ export type CmsPage = {
   excerpt: string | null;
   category: string | null;
   image_url: string | null;
+  images?: CmsPageImage[];
   status: "brouillon" | "publie";
   published_at: string | null;
 };

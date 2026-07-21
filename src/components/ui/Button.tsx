@@ -30,7 +30,7 @@ export function Button({
     <Link
       href={href}
       onClick={onClick}
-      className={`inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-colors ${variants[variant]} ${className}`}
+      className={`inline-flex items-center justify-center gap-2 rounded-full px-2 py-1 text-sm font-semibold transition-colors ${variants[variant]} ${className}`}
     >
       {children}
     </Link>

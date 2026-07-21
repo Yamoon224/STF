@@ -56,9 +56,9 @@ function ProgramsDropdown({ pathname, t }: { pathname: string; t: TranslateFn })
         onClick={() => setOpen((o) => !o)}
         aria-haspopup="menu"
         aria-expanded={open}
-        className={`flex items-center gap-1 text-xs font-semibold uppercase tracking-wide whitespace-nowrap transition-colors hover:text-stf-orange ${
+        className={`flex items-center gap-1 text-xs font-semibold uppercase tracking-wide whitespace-nowrap underline-offset-4 transition-colors hover:text-stf-orange ${
           active || open ? "text-stf-orange" : "text-slate-600 dark:text-slate-300"
-        }`}
+        } ${active ? "underline" : ""}`}
       >
         {t("header.nav.nosProgrammes")}
         <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${open ? "rotate-180" : ""}`} strokeWidth={2} />
@@ -105,18 +105,22 @@ export function SiteHeader() {
 
   return (
     <header
-      className={`border-b bg-white/95 backdrop-blur transition-shadow duration-300 dark:bg-surface/95 ${
-        scrolled ? "border-transparent shadow-md shadow-black/5" : "border-slate-100 dark:border-border-default"
+      className={`relative border-b bg-white/95 backdrop-blur dark:bg-surface/95 ${
+        scrolled ? "border-transparent" : "border-slate-100 dark:border-border-default"
       }`}
     >
-      <div className="mx-auto grid max-w-7xl grid-cols-3 items-center gap-4 px-4 py-2 sm:px-6 lg:px-8">
+      {scrolled ? (
+        <div aria-hidden className="pointer-events-none absolute inset-x-0 top-full h-4 shadow-md shadow-black/5" />
+      ) : null}
+
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-2 py-2 sm:px-4 lg:px-4 xl:grid xl:grid-cols-3">
         <Logo />
 
         <nav className="hidden items-center justify-center gap-7 xl:flex">
           <Link
             href={primaryLinks[0].href}
-            className={`text-xs font-semibold uppercase tracking-wide whitespace-nowrap transition-colors hover:text-stf-orange ${
-              pathname === primaryLinks[0].href ? "text-stf-orange" : "text-slate-600 dark:text-slate-300"
+            className={`text-xs font-semibold uppercase tracking-wide whitespace-nowrap underline-offset-4 transition-colors hover:text-stf-orange ${
+              pathname === primaryLinks[0].href ? "text-stf-orange underline" : "text-slate-600 dark:text-slate-300"
             }`}
           >
             {t(`header.nav.${primaryLinks[0].key}`)}
@@ -126,8 +130,8 @@ export function SiteHeader() {
             <Link
               key={link.href}
               href={link.href}
-              className={`text-xs font-semibold uppercase tracking-wide whitespace-nowrap transition-colors hover:text-stf-orange ${
-                pathname === link.href ? "text-stf-orange" : "text-slate-600 dark:text-slate-300"
+              className={`text-xs font-semibold uppercase tracking-wide whitespace-nowrap underline-offset-4 transition-colors hover:text-stf-orange ${
+                pathname === link.href ? "text-stf-orange underline" : "text-slate-600 dark:text-slate-300"
               }`}
             >
               {t(`header.nav.${link.key}`)}
@@ -179,7 +183,7 @@ export function SiteHeader() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className={`rounded-lg px-3 py-2 text-sm font-medium ${
+                className={`rounded-b-lg px-2 py-1 text-sm font-medium ${
                   pathname === link.href
                     ? "bg-stf-orange-light text-stf-orange"
                     : "text-stf-navy hover:bg-slate-50 dark:text-white dark:hover:bg-white/5"
@@ -195,7 +199,7 @@ export function SiteHeader() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  className={`block rounded-lg px-3 py-2 text-sm font-medium ${
+                  className={`block px-3 py-2 text-sm font-medium ${
                     pathname === link.href
                       ? "bg-stf-orange-light text-stf-orange"
                       : "text-stf-navy hover:bg-slate-50 dark:text-white dark:hover:bg-white/5"

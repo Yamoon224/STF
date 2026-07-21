@@ -7,7 +7,7 @@ export function TopBar({ siteSettings }: { siteSettings: SiteSettings }) {
 
   return (
     <div className="bg-stf-orange px-4 py-2 text-xs font-medium text-white sm:px-6 lg:px-8">
-      <div className="mx-auto flex max-w-7xl items-center gap-5">
+      <div className="mx-auto flex max-w-7xl flex-col items-center gap-1 sm:flex-row sm:items-center sm:gap-5">
         {phone ? (
           <a href={`tel:${phone.replace(/[^\d+]/g, "")}`} className="flex items-center gap-1.5 transition-opacity hover:opacity-80">
             <Phone className="h-3.5 w-3.5" strokeWidth={1.8} />

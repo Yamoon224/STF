@@ -52,7 +52,7 @@ export function SiteFooter({ siteSettings }: { siteSettings: SiteSettings }) {
       <Container className="grid gap-10 py-10 sm:grid-cols-2 lg:grid-cols-5">
         <div className="lg:col-span-1">
           <span className="relative flex h-16 w-32">
-            <Image src="/brand/logo.png" alt="STF" fill sizes="64px" className="object-contain" />
+            <Image src="/brand/logo.png" alt="STF" fill sizes="80px" className="object-contain" />
           </span>
           <p className="mt-4 text-sm text-slate-300">{t("footer.tagline")}</p>
           <a

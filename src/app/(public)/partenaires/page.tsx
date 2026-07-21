@@ -2,6 +2,7 @@ import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/ui/PageHero";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
+import { HorizontalScroller } from "@/components/ui/HorizontalScroller";
 import { Reveal } from "@/components/ui/Reveal";
 import { apiFetch } from "@/lib/api";
 import { getPageSections } from "@/lib/pageSections";
@@ -27,7 +28,7 @@ export default async function PartenairesPage() {
       <section className="py-24">
         <Container>
           <SectionHeading eyebrow="Nos partenaires" title="Un réseau engagé" />
-          <div className="mt-12 flex gap-8 overflow-x-auto pb-4">
+          <HorizontalScroller className="mt-12 gap-8 pb-4">
             {partners.map((partner, i) => {
               const card = (
                 <div className="flex h-full w-56 shrink-0 flex-col items-center justify-center gap-3 rounded-2xl border border-slate-100 bg-white p-8 text-center shadow-sm transition-transform duration-300 hover:-translate-y-1 dark:border-border-default dark:bg-surface">
@@ -51,7 +52,7 @@ export default async function PartenairesPage() {
                 </Reveal>
               );
             })}
-          </div>
+          </HorizontalScroller>
         </Container>
       </section>
 

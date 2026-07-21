@@ -6,6 +6,7 @@ import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { HorizontalScroller } from "@/components/ui/HorizontalScroller";
 import { Reveal } from "@/components/ui/Reveal";
 import { Pillars } from "@/components/ui/Pillars";
 import { HeroIllustration } from "@/components/ui/HeroIllustration";
@@ -286,7 +287,7 @@ export function HomeContent({
           <p className="text-center text-sm font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">
             {t("home.partenairesTitle")}
           </p>
-          <div className="mt-10 flex items-center gap-x-10 overflow-x-auto px-1 pb-2">
+          <HorizontalScroller className="mt-10 items-center gap-x-10 px-1 pb-2">
             {partners.map((partner) =>
               partner.logo_url ? (
                 // eslint-disable-next-line @next/next/no-img-element
@@ -303,7 +304,7 @@ export function HomeContent({
                 </span>
               )
             )}
-          </div>
+          </HorizontalScroller>
           </Reveal>
         </Container>
       </section>

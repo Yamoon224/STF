@@ -9,7 +9,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { HorizontalScroller } from "@/components/ui/HorizontalScroller";
 import { Reveal } from "@/components/ui/Reveal";
 import { Pillars } from "@/components/ui/Pillars";
-import { HeroIllustration } from "@/components/ui/HeroIllustration";
+import { HeroBackground } from "@/components/ui/HeroBackground";
 import { PatternBackground } from "@/components/ui/PatternBackground";
 import { useLanguage } from "@/lib/i18n/LanguageProvider";
 import type { CmsPage, Partner, Program, Testimonial } from "@/lib/types";
@@ -41,28 +41,27 @@ export function HomeContent({
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-stf-cream dark:bg-surface-muted">
-        <PatternBackground />
-        <HeroIllustration className="pointer-events-none absolute -right-24 -top-16 h-[520px] w-[520px] text-stf-navy opacity-70 sm:-right-16 sm:-top-10 lg:-right-8" />
+      <section className="relative overflow-hidden">
+        <HeroBackground />
         <Container className="relative grid gap-10 py-20 sm:py-24 lg:grid-cols-2 lg:items-center lg:py-32">
           <div>
             <Reveal>
               <Badge tone="orange">{t("home.heroBadge")}</Badge>
             </Reveal>
             <Reveal delay={80}>
-              <h1 className="mt-5 text-4xl font-bold leading-tight text-stf-navy dark:text-white sm:text-5xl">
+              <h1 className="mt-5 text-4xl font-bold leading-tight text-white sm:text-5xl">
                 {t("home.heroTitle")}
               </h1>
             </Reveal>
             <Reveal delay={160}>
-              <p className="mt-5 max-w-xl text-lg text-slate-600 dark:text-slate-300">
+              <p className="mt-5 max-w-xl text-lg text-white/80">
                 {t("home.heroDescription")}
               </p>
             </Reveal>
             <Reveal delay={240}>
               <div className="mt-8 flex flex-wrap gap-4">
                 <Button href="/mentorat">{t("home.ctaMentorat")}</Button>
-                <Button href="/programmes" variant="outline">
+                <Button href="/programmes" variant="white">
                   {t("home.ctaProgrammes")}
                 </Button>
               </div>
@@ -71,9 +70,9 @@ export function HomeContent({
           <div className="grid grid-cols-2 gap-4">
             {impactStats.map((stat, i) => (
               <Reveal key={stat.label} delay={200 + i * 90}>
-                <div className="rounded-2xl border border-stf-blue/10 bg-white p-6 shadow-sm dark:border-border-default dark:bg-surface">
-                  <p className="text-3xl font-bold text-stf-blue">{stat.value}</p>
-                  <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">{stat.label}</p>
+                <div className="rounded-2xl border border-white/15 bg-white/10 p-6 shadow-sm backdrop-blur-md">
+                  <p className="text-3xl font-bold text-white">{stat.value}</p>
+                  <p className="mt-1 text-sm text-white/70">{stat.label}</p>
                 </div>
               </Reveal>
             ))}

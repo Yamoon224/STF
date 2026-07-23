@@ -1,23 +1,56 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { Badge } from "@/components/ui/Badge";
 import { Reveal } from "@/components/ui/Reveal";
+import { ShareButtons } from "@/components/ui/ShareButtons";
 import { ApiError, apiFetch } from "@/lib/api";
+import { getBaseUrl } from "@/lib/url";
 import type { CmsPage } from "@/lib/types";
 
-export default async function BlogArticlePage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
-
-  let post: CmsPage;
+async function fetchPost(slug: string): Promise<CmsPage> {
   try {
-    post = await apiFetch<CmsPage>(`/cms/pages/${slug}`, { anonymous: true });
+    const post = await apiFetch<CmsPage>(`/cms/pages/${slug}`, { anonymous: true });
+    if (post.type !== "article") notFound();
+    return post;
   } catch (error) {
     if (error instanceof ApiError && error.status === 404) notFound();
     throw error;
   }
+}
 
-  if (post.type !== "article") notFound();
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const post = await fetchPost(slug);
+  const baseUrl = await getBaseUrl();
+  const url = `${baseUrl}/blog/${post.slug}`;
+  const description = post.excerpt ?? undefined;
+
+  return {
+    title: post.title,
+    description,
+    openGraph: {
+      title: post.title,
+      description,
+      url,
+      type: "article",
+      images: post.image_url ? [{ url: post.image_url }] : undefined,
+    },
+    twitter: {
+      card: post.image_url ? "summary_large_image" : "summary",
+      title: post.title,
+      description,
+      images: post.image_url ? [post.image_url] : undefined,
+    },
+  };
+}
+
+export default async function BlogArticlePage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+
+  const [post, baseUrl] = await Promise.all([fetchPost(slug), getBaseUrl()]);
+  const shareUrl = `${baseUrl}/blog/${post.slug}`;
 
   const gallery = post.images ?? [];
 
@@ -55,6 +88,11 @@ export default async function BlogArticlePage({ params }: { params: Promise<{ sl
             ) : null}
           </div>
           <h1 className="mt-4 text-3xl font-bold text-stf-navy dark:text-white">{post.title}</h1>
+
+          <div className="mt-6">
+            <ShareButtons url={shareUrl} title={post.title} />
+          </div>
+
           {post.body ? (
             <p className="mt-6 whitespace-pre-line text-base leading-relaxed text-slate-600 dark:text-slate-300">
               {post.body}

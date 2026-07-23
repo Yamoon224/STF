@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { SocialIcons } from "@/components/ui/SocialIcons";
+import { NewsletterForm } from "@/components/layout/NewsletterForm";
 import { useLanguage } from "@/lib/i18n/LanguageProvider";
 import type { SiteSettings } from "@/lib/types";
 
@@ -65,6 +66,7 @@ export function SiteFooter({ siteSettings }: { siteSettings: SiteSettings }) {
             {siteUrl.replace(/^https?:\/\//, "")}
           </a>
           <SocialIcons siteSettings={siteSettings} className="mt-5" />
+          <NewsletterForm />
         </div>
 
         {columns.map((col) => (

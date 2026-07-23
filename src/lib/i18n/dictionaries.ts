@@ -32,6 +32,11 @@ export const dictionaries = {
       codeConduite: "Code de conduite",
       copyright: "© {{year}} Sciences & Technologies au Féminin (STF).",
       mobileNote: "Site conçu pour un usage mobile prioritaire et faible consommation de données.",
+      newsletterTitle: "Newsletter",
+      newsletterDescription: "Recevez nos actualités, événements et activités par email.",
+      newsletterPlaceholder: "vous@exemple.com",
+      newsletterSubmit: "S'abonner",
+      newsletterSuccess: "Merci ! Vous êtes bien abonnée à la newsletter STF.",
     },
     home: {
       heroBadge: "Audace · Union · Intégrité · Résultat",
@@ -151,6 +156,12 @@ export const dictionaries = {
       goToPage: "Aller à la page",
       error: "Une erreur est survenue, réessayez.",
     },
+    share: {
+      label: "Partager :",
+      native: "Partager",
+      copyLink: "Copier le lien",
+      linkCopied: "Lien copié !",
+    },
   },
   en: {
     header: {
@@ -185,6 +196,11 @@ export const dictionaries = {
       codeConduite: "Code of conduct",
       copyright: "© {{year}} Science & Technology for Women (STF).",
       mobileNote: "Site designed for mobile-first use and low data consumption.",
+      newsletterTitle: "Newsletter",
+      newsletterDescription: "Get our news, events and activities by email.",
+      newsletterPlaceholder: "you@example.com",
+      newsletterSubmit: "Subscribe",
+      newsletterSuccess: "Thanks! You're now subscribed to the STF newsletter.",
     },
     home: {
       heroBadge: "Boldness · Unity · Integrity · Results",
@@ -303,6 +319,12 @@ export const dictionaries = {
       noResults: "No matching page found.",
       goToPage: "Go to page",
       error: "Something went wrong, please try again.",
+    },
+    share: {
+      label: "Share:",
+      native: "Share",
+      copyLink: "Copy link",
+      linkCopied: "Link copied!",
     },
   },
 } as const;

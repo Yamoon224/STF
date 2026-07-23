@@ -148,6 +148,9 @@ export function SiteHeader() {
             <Button href="/inscription" className="px-2 py-1 text-xs">
               {t("header.rejoindre")}
             </Button>
+            <Button href="/contact" variant="outline" className="px-2 py-1 text-xs">
+              {t("header.don")}
+            </Button>
           </div>
 
           <button
@@ -217,6 +220,9 @@ export function SiteHeader() {
             </Button>
             <Button href="/inscription" onClick={() => setOpen(false)} className="w-full">
               {t("header.rejoindre")}
+            </Button>
+            <Button href="/contact" variant="outline" onClick={() => setOpen(false)} className="w-full">
+              {t("header.don")}
             </Button>
           </div>
         </div>

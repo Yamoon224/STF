@@ -15,6 +15,7 @@ export const dictionaries = {
       },
       connexion: "Connexion",
       rejoindre: "Rejoindre STF",
+      don: "Faire un don",
       ouvrirMenu: "Ouvrir le menu",
     },
     footer: {
@@ -167,6 +168,7 @@ export const dictionaries = {
       },
       connexion: "Sign in",
       rejoindre: "Join STF",
+      don: "Donate",
       ouvrirMenu: "Open menu",
     },
     footer: {

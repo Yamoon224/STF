@@ -92,17 +92,30 @@ export function HomeContent({
               {t("home.engagementsTitle")}
             </h2>
           </Reveal>
-          <Reveal delay={100} className="mx-auto mt-10 max-w-4xl overflow-hidden rounded-2xl shadow-lg ring-1 ring-white/10">
-            <Image
-              src="/brand/banner.png"
-              alt="Bannière STF : Sciences & Technologies au Féminin — Éducation de qualité, réduction des inégalités, un emploi décent pour tous"
-              width={960}
-              height={336}
-              sizes="(min-width: 1024px) 896px, 100vw"
-              className="h-auto w-full"
+          <Reveal delay={100} className="relative mx-auto mt-28 max-w-4xl sm:mt-32">
+            <div
+              aria-hidden
+              className="absolute left-1/2 top-1/2 aspect-square rounded-2xl bg-stf-orange"
+              style={{
+                height: "85%",
+                transform: "translate(-50%, -50%) rotate(30deg)",
+                boxShadow: "0 35px 70px -20px rgba(0,0,0,0.55)",
+              }}
             />
+            <div className="relative overflow-hidden rounded-2xl shadow-2xl ring-1 ring-white/10">
+              <video
+                className="h-auto w-full"
+                width={1280}
+                height={720}
+                controls
+                preload="metadata"
+                poster="/videos/introduction-poster.webp"
+              >
+                <source src="/videos/introduction.mp4" type="video/mp4" />
+              </video>
+            </div>
           </Reveal>
-          <Reveal delay={180} className="mt-12">
+          <Reveal delay={180} className="mt-20 sm:mt-24">
             <Pillars />
           </Reveal>
         </Container>

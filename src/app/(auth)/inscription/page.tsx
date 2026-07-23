@@ -70,6 +70,7 @@ function InscriptionForm() {
               type="text"
               name="firstName"
               required
+              placeholder={t("inscription.firstNamePlaceholder")}
               className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-stf-blue dark:border-border-default dark:bg-white/5 dark:text-white"
             />
           </div>
@@ -79,6 +80,7 @@ function InscriptionForm() {
               type="text"
               name="lastName"
               required
+              placeholder={t("inscription.lastNamePlaceholder")}
               className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-stf-blue dark:border-border-default dark:bg-white/5 dark:text-white"
             />
           </div>
@@ -90,26 +92,29 @@ function InscriptionForm() {
             type="email"
             name="email"
             required
+            placeholder={t("inscription.emailPlaceholder")}
             className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-stf-blue dark:border-border-default dark:bg-white/5 dark:text-white"
           />
         </div>
 
         <div className="grid gap-5 sm:grid-cols-2">
           <div>
-            <label className="text-sm font-semibold text-stf-navy dark:text-white">Mot de passe</label>
+            <label className="text-sm font-semibold text-stf-navy dark:text-white">{t("inscription.password")}</label>
             <PasswordInput
               name="password"
               required
               minLength={8}
+              placeholder={t("inscription.passwordPlaceholder")}
               className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-stf-blue dark:border-border-default dark:bg-white/5 dark:text-white"
             />
           </div>
           <div>
-            <label className="text-sm font-semibold text-stf-navy dark:text-white">Confirmer le mot de passe</label>
+            <label className="text-sm font-semibold text-stf-navy dark:text-white">{t("inscription.passwordConfirmation")}</label>
             <PasswordInput
               name="password_confirmation"
               required
               minLength={8}
+              placeholder={t("inscription.passwordConfirmationPlaceholder")}
               className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-stf-blue dark:border-border-default dark:bg-white/5 dark:text-white"
             />
           </div>
@@ -182,7 +187,14 @@ function InscriptionForm() {
               </div>
               <div>
                 <label className="text-sm font-semibold text-stf-navy dark:text-white">{t("inscription.capacity")}</label>
-                <input type="number" name="capacity" min={1} defaultValue={2} className={selectClass} />
+                <input
+                  type="number"
+                  name="capacity"
+                  min={1}
+                  defaultValue={2}
+                  placeholder={t("inscription.capacityPlaceholder")}
+                  className={selectClass}
+                />
               </div>
             </div>
 

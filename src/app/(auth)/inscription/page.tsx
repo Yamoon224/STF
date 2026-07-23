@@ -199,6 +199,17 @@ function InscriptionForm() {
                 </select>
               </div>
             ) : null}
+
+            <div>
+              <label className="text-sm font-semibold text-stf-navy dark:text-white">{t("inscription.bio")}</label>
+              <textarea
+                name="bio"
+                required
+                rows={4}
+                placeholder={t("inscription.bioPlaceholder")}
+                className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-stf-blue dark:border-border-default dark:bg-white/5 dark:text-white"
+              />
+            </div>
           </>
         )}
 

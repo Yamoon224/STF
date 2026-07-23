@@ -94,6 +94,7 @@ export async function registerAction(_prevState: AuthActionState, formData: Form
 
   if (role === "mentor") {
     payload.expertise = String(formData.get("expertise") ?? "");
+    payload.bio = String(formData.get("bio") ?? "");
     payload.capacity = Number(formData.get("capacity") ?? 3);
   } else {
     payload.level = String(formData.get("level") ?? "");

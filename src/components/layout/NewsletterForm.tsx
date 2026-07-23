@@ -13,7 +13,7 @@ export function NewsletterForm() {
   );
 
   return (
-    <div className="mt-6">
+    <div>
       <h3 className="text-sm font-semibold uppercase tracking-wide text-stf-orange">{t("footer.newsletterTitle")}</h3>
       <p className="mt-2 text-sm text-slate-300">{t("footer.newsletterDescription")}</p>
 

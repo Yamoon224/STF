@@ -2,6 +2,7 @@ import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/ui/PageHero";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { PresidentMessage } from "@/components/ui/PresidentMessage";
+import { TeamOrgChart } from "@/components/ui/TeamOrgChart";
 import { Reveal } from "@/components/ui/Reveal";
 import { getPageSections } from "@/lib/pageSections";
 
@@ -86,6 +87,15 @@ export default async function AProposPage() {
               </tbody>
             </table>
           </Reveal>
+        </Container>
+      </section>
+
+      <section className="bg-slate-50 py-24 dark:bg-surface-muted">
+        <Container>
+          <SectionHeading eyebrow="Organigramme" title="L'équipe qui fait avancer STF" center />
+          <div className="mt-16">
+            <TeamOrgChart />
+          </div>
         </Container>
       </section>
     </>

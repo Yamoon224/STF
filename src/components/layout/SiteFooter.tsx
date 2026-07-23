@@ -51,6 +51,16 @@ export function SiteFooter({ siteSettings }: { siteSettings: SiteSettings }) {
 
   return (
     <footer className="border-t border-slate-100 bg-stf-navy text-slate-200 dark:border-border-default">
+      <div className="border-b border-white/10 py-10">
+        <Container>
+          <div className="grid grid-cols-12">
+            <div className="col-span-12 text-center md:col-span-6 md:col-start-4">
+              <NewsletterForm />
+            </div>
+          </div>
+        </Container>
+      </div>
+
       <Container className="grid gap-10 py-10 sm:grid-cols-2 lg:grid-cols-5">
         <div className="lg:col-span-1">
           <span className="relative flex h-16 w-32">
@@ -66,7 +76,6 @@ export function SiteFooter({ siteSettings }: { siteSettings: SiteSettings }) {
             {siteUrl.replace(/^https?:\/\//, "")}
           </a>
           <SocialIcons siteSettings={siteSettings} className="mt-5" />
-          <NewsletterForm />
         </div>
 
         {columns.map((col) => (

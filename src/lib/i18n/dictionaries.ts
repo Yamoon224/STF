@@ -76,6 +76,7 @@ export const dictionaries = {
       ctaFinaleMentore: "Devenir mentore",
     },
     connexion: {
+      backHome: "Retour à l'accueil",
       panelTitle: "Sciences & Technologies au Féminin",
       panelDescription:
         "Mentorat, cours de renforcement et labo virtuel pour révéler le potentiel STIM de chaque fille.",
@@ -90,6 +91,7 @@ export const dictionaries = {
       createAccount: "Créer un compte",
     },
     inscription: {
+      backHome: "Retour à l'accueil",
       panelTitle: "Rejoins le mouvement STF",
       panelDescription: "Deviens mentée ou mentore et fais avancer les filles et jeunes femmes dans les STIM.",
       title: "Créer un compte",
@@ -226,6 +228,7 @@ export const dictionaries = {
       ctaFinaleMentore: "Become a mentor",
     },
     connexion: {
+      backHome: "Back to home",
       panelTitle: "Sciences & Technology for Women",
       panelDescription:
         "Mentorship, reinforcement courses and a virtual lab to unlock every girl's STEM potential.",
@@ -240,6 +243,7 @@ export const dictionaries = {
       createAccount: "Create an account",
     },
     inscription: {
+      backHome: "Back to home",
       panelTitle: "Join the STF movement",
       panelDescription: "Become a mentee or a mentor and help girls and young women move forward in STEM.",
       title: "Create an account",

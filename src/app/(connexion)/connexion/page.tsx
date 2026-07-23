@@ -1,6 +1,6 @@
 "use client";
 
-import { Lock, Mail, ShieldCheck } from "lucide-react";
+import { ArrowLeft, Lock, Mail, ShieldCheck } from "lucide-react";
 import { Suspense, useActionState } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
@@ -23,12 +23,22 @@ function FieldIcon({ children }: { children: React.ReactNode }) {
 }
 
 function TopRow() {
+  const { t } = useLanguage();
   return (
-    <div className="mb-10 flex items-center justify-between">
-      <Logo />
-      <div className="flex items-center gap-2">
-        <LanguageToggle />
-        <ThemeToggle />
+    <div className="mb-10">
+      <Link
+        href="/"
+        className="mb-4 inline-flex items-center gap-1.5 text-sm font-medium text-slate-500 transition-colors hover:text-stf-blue dark:text-slate-400 dark:hover:text-stf-blue"
+      >
+        <ArrowLeft className="h-4 w-4" strokeWidth={2} />
+        {t("connexion.backHome")}
+      </Link>
+      <div className="flex items-center justify-between">
+        <Logo />
+        <div className="flex items-center gap-2">
+          <LanguageToggle />
+          <ThemeToggle />
+        </div>
       </div>
     </div>
   );

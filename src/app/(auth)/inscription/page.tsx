@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 import { Suspense, useActionState, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { Logo } from "@/components/ui/Logo";
@@ -26,11 +27,20 @@ function InscriptionForm() {
 
   return (
     <div className="w-full max-w-lg">
-      <div className="mb-10 flex items-center justify-between">
-        <Logo />
-        <div className="flex items-center gap-2">
-          <LanguageToggle />
-          <ThemeToggle />
+      <div className="mb-10">
+        <Link
+          href="/"
+          className="mb-4 inline-flex items-center gap-1.5 text-sm font-medium text-slate-500 transition-colors hover:text-stf-blue dark:text-slate-400 dark:hover:text-stf-blue"
+        >
+          <ArrowLeft className="h-4 w-4" strokeWidth={2} />
+          {t("inscription.backHome")}
+        </Link>
+        <div className="flex items-center justify-between">
+          <Logo />
+          <div className="flex items-center gap-2">
+            <LanguageToggle />
+            <ThemeToggle />
+          </div>
         </div>
       </div>
 

@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/Badge";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { HorizontalScroller } from "@/components/ui/HorizontalScroller";
 import { Reveal } from "@/components/ui/Reveal";
+import { PartnerCard } from "@/components/ui/PartnerCard";
 import { Pillars } from "@/components/ui/Pillars";
 import { HeroBackground } from "@/components/ui/HeroBackground";
 import { PatternBackground } from "@/components/ui/PatternBackground";
@@ -314,23 +315,10 @@ export function HomeContent({
           <p className="text-center text-sm font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">
             {t("home.partenairesTitle")}
           </p>
-          <HorizontalScroller className="mt-10 items-center gap-x-10 px-1 pb-2">
-            {partners.map((partner) =>
-              partner.logo_url ? (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  key={partner.id}
-                  src={partner.logo_url}
-                  alt={partner.name}
-                  title={partner.name}
-                  className="h-8 max-w-[120px] shrink-0 object-contain grayscale transition hover:grayscale-0"
-                />
-              ) : (
-                <span key={partner.id} className="shrink-0 text-sm font-semibold text-slate-400 dark:text-slate-500">
-                  {partner.name}
-                </span>
-              )
-            )}
+          <HorizontalScroller className="mt-10 gap-8 px-1 pb-4">
+            {partners.map((partner, i) => (
+              <PartnerCard key={partner.id} partner={partner} delay={i * 70} />
+            ))}
           </HorizontalScroller>
           </Reveal>
         </Container>

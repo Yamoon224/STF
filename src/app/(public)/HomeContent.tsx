@@ -103,17 +103,23 @@ export function HomeContent({
                 boxShadow: "0 35px 70px -20px rgba(0,0,0,0.55)",
               }}
             />
+            <div
+              aria-hidden
+              className="absolute left-1/2 top-1/2 aspect-square rounded-2xl bg-stf-orange"
+              style={{
+                height: "85%",
+                transform: "translate(-50%, -50%) rotate(150deg)",
+                boxShadow: "0 35px 70px -20px rgba(0,0,0,0.55)",
+              }}
+            />
             <div className="relative overflow-hidden rounded-2xl shadow-2xl ring-1 ring-white/10">
-              <video
-                className="h-auto w-full"
-                width={1280}
-                height={720}
-                controls
-                preload="metadata"
-                poster="/videos/introduction-poster.webp"
-              >
-                <source src="/videos/introduction.mp4" type="video/mp4" />
-              </video>
+              <iframe
+                className="aspect-video w-full"
+                src="https://www.youtube.com/embed/YQbziMPHyBw?feature=oembed"
+                title="Introduction STF"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
             </div>
           </Reveal>
           <Reveal delay={180} className="mt-20 sm:mt-24">

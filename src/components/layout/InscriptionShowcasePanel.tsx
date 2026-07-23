@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { ShieldCheck } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/LanguageProvider";
 
 export function InscriptionShowcasePanel() {
@@ -21,7 +22,7 @@ export function InscriptionShowcasePanel() {
 
       <div className="relative flex h-full flex-col justify-end p-12 text-white">
         <span className="relative mb-6 flex h-14 w-14 items-center justify-center overflow-hidden rounded-2xl bg-white/10 ring-1 ring-white/15 backdrop-blur">
-          <Image src="/icons/icon-192.png" alt="STF" fill sizes="56px" className="object-contain p-2" />
+          <ShieldCheck className="h-7 w-7" strokeWidth={1.8} />
         </span>
         <h1 className="max-w-sm text-3xl font-bold leading-tight">{t("inscription.panelTitle")}</h1>
         <p className="mt-3 max-w-sm text-sm text-slate-200">{t("inscription.panelDescription")}</p>

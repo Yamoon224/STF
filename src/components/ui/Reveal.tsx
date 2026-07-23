@@ -5,7 +5,7 @@ import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from 
 type RevealProps = {
   children: ReactNode;
   className?: string;
-  /** Stagger delay in ms — use multiples of ~70ms across siblings for an orchestrated reveal. */
+  /** Stagger delay in ms - use multiples of ~70ms across siblings for an orchestrated reveal. */
   delay?: number;
   /** Distance (px) the element rises as it appears. */
   y?: number;

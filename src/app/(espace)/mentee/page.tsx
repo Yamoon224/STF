@@ -47,7 +47,7 @@ export default async function MenteeDashboardPage() {
         <StatCard label="Modules en cours" value={String(modulesEnCours)} />
         <StatCard label="Badges obtenus" value={String(user?.badges.length ?? 0)} />
         <StatCard label="Sessions réalisées" value={String(sessionsRealisees)} />
-        <StatCard label="Prochaine session" value={nextSession ? formatDate(nextSession.scheduled_at) : "—"} />
+        <StatCard label="Prochaine session" value={nextSession ? formatDate(nextSession.scheduled_at) : "-"} />
       </div>
 
       <div className="grid gap-8 lg:grid-cols-3">
@@ -91,7 +91,7 @@ export default async function MenteeDashboardPage() {
                     <p className="text-sm font-semibold text-stf-navy dark:text-white">{other?.name ?? c.subject}</p>
                     {unread ? <Badge tone="orange">Nouveau</Badge> : null}
                   </div>
-                  <p className="mt-1 truncate text-xs text-slate-500 dark:text-slate-400">{last?.body ?? "—"}</p>
+                  <p className="mt-1 truncate text-xs text-slate-500 dark:text-slate-400">{last?.body ?? "-"}</p>
                 </div>
               );
             })}
@@ -121,7 +121,7 @@ export default async function MenteeDashboardPage() {
                 <tr key={s.id}>
                   <td className="py-3 font-medium text-stf-navy dark:text-white">{formatDate(s.scheduled_at)}</td>
                   <td className="py-3 text-slate-500 dark:text-slate-400">{formatTime(s.scheduled_at)}</td>
-                  <td className="py-3 text-slate-500 dark:text-slate-400">{s.topic ?? "—"}</td>
+                  <td className="py-3 text-slate-500 dark:text-slate-400">{s.topic ?? "-"}</td>
                   <td className="py-3">
                     <Badge tone={sessionStatusTone(s.status)}>{sessionStatusLabel(s.status)}</Badge>
                   </td>

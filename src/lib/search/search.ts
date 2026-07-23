@@ -72,7 +72,7 @@ export function searchItems(items: SearchItem[], rawQuery: string): SearchRespon
   });
 
   // Search the full phrase plus each meaningful word separately, then keep each
-  // item's best (lowest) score — questions like "comment devenir mentore ?" won't
+  // item's best (lowest) score - questions like "comment devenir mentore ?" won't
   // fuzzy-match a short title as a whole string, but "mentore" alone will.
   const bestScoreById = new Map<string, SearchResult>();
   const searchStrings = [normalize(query), ...tokenize(query)];

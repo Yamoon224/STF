@@ -102,7 +102,7 @@ export async function registerAction(_prevState: AuthActionState, formData: Form
     const domainLabel = String(formData.get("domainLabel") ?? "");
     const metier = String(formData.get("metier") ?? "");
     if (domainLabel && metier) {
-      payload.interests = `${domainLabel} — ${metier}`;
+      payload.interests = `${domainLabel} - ${metier}`;
     }
   }
 

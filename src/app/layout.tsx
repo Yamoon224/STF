@@ -11,7 +11,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "STF — Sciences & Technologies au Féminin",
+  title: "STF - Sciences & Technologies au Féminin",
   description:
     "Sciences & Technologies au Féminin (STF) accompagne les filles et jeunes femmes dans les STIM à travers le mentorat, des expériences virtuelles et des programmes d'impact.",
   icons: {

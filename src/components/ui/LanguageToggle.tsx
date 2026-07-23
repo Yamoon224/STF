@@ -16,9 +16,9 @@ export function LanguageToggle({
   dropAlign = "right",
 }: {
   className?: string;
-  /** Which way the option panel opens — "up" for triggers anchored near the bottom of the viewport. */
+  /** Which way the option panel opens - "up" for triggers anchored near the bottom of the viewport. */
   dropDirection?: "down" | "up";
-  /** Which edge the panel aligns to — "left" for triggers anchored near the left edge of the viewport. */
+  /** Which edge the panel aligns to - "left" for triggers anchored near the left edge of the viewport. */
   dropAlign?: "left" | "right";
 }) {
   const { locale, setLocale } = useLanguage();

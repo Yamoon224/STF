@@ -3,7 +3,7 @@ import type { MetadataRoute } from "next";
 export default function manifest(): MetadataRoute.Manifest {
   return {
     id: "/",
-    name: "STF — Sciences & Technologies au Féminin",
+    name: "STF - Sciences & Technologies au Féminin",
     short_name: "STF",
     description:
       "Mentorat, cours de renforcement, labo virtuel et sessions en direct pour les filles et jeunes femmes dans les STIM.",

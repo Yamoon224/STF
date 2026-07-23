@@ -42,7 +42,7 @@ export default async function MentoreMenteesPage() {
               <h2 className="mt-4 font-semibold text-stf-navy dark:text-white">{p.mentee.name}</h2>
               <p className="text-sm text-slate-500 dark:text-slate-400">{p.program.name}</p>
               <p className="mt-2 text-xs text-slate-400 dark:text-slate-500">
-                Prochaine session : {next ? formatDate(next.scheduled_at) : "—"}
+                Prochaine session : {next ? formatDate(next.scheduled_at) : "-"}
               </p>
               <div className="mt-4 flex gap-2">
                 <a

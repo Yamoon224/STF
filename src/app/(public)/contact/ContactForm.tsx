@@ -122,7 +122,7 @@ export function ContactForm({ siteSettings, hero }: { siteSettings: SiteSettings
                 name="subject"
                 required
                 className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-stf-blue dark:border-border-default dark:bg-white/5 dark:text-white dark:placeholder:text-slate-500"
-                placeholder={`Votre demande — ${audiences.find((a) => a.key === active)?.label}`}
+                placeholder={`Votre demande - ${audiences.find((a) => a.key === active)?.label}`}
               />
             </div>
             <div>

@@ -19,7 +19,7 @@ export const dictionaries = {
       ouvrirMenu: "Ouvrir le menu",
     },
     footer: {
-      tagline: "Sciences & Technologies au Féminin — Audace, Union, Intégrité, Résultat.",
+      tagline: "Sciences & Technologies au Féminin - Audace, Union, Intégrité, Résultat.",
       organisation: "Organisation",
       programmes: "Programmes",
       acces: "Accès",
@@ -42,7 +42,7 @@ export const dictionaries = {
       heroBadge: "Audace · Union · Intégrité · Résultat",
       heroTitle: "Ouvrir les portes des STIM aux filles et jeunes femmes",
       heroDescription:
-        "STF accompagne les bénéficiaires à travers le mentorat, des expériences virtuelles et des programmes concrets — pensés pour un usage réel sur le terrain, mobile et accessible.",
+        "STF accompagne les bénéficiaires à travers le mentorat, des expériences virtuelles et des programmes concrets - pensés pour un usage réel sur le terrain, mobile et accessible.",
       ctaMentorat: "Rejoindre le mentorat",
       ctaProgrammes: "Découvrir les programmes",
       engagementsEyebrow: "Nos engagements",
@@ -77,7 +77,7 @@ export const dictionaries = {
       partenairesTitle: "Ils soutiennent STF",
       ctaFinaleTitle: "Devenez actrice du changement",
       ctaFinaleDescription:
-        "Que vous soyez une future mentée, une professionnelle prête à devenir mentore, ou un partenaire engagé — STF vous accueille.",
+        "Que vous soyez une future mentée, une professionnelle prête à devenir mentore, ou un partenaire engagé - STF vous accueille.",
       ctaFinaleMentee: "Rejoindre en tant que mentée",
       ctaFinaleMentore: "Devenir mentore",
     },
@@ -183,7 +183,7 @@ export const dictionaries = {
       ouvrirMenu: "Open menu",
     },
     footer: {
-      tagline: "Science & Technology for Women — Boldness, Unity, Integrity, Results.",
+      tagline: "Science & Technology for Women - Boldness, Unity, Integrity, Results.",
       organisation: "Organization",
       programmes: "Programs",
       acces: "Access",
@@ -206,7 +206,7 @@ export const dictionaries = {
       heroBadge: "Boldness · Unity · Integrity · Results",
       heroTitle: "Opening the doors of STEM to girls and young women",
       heroDescription:
-        "STF supports its beneficiaries through mentorship, virtual experiences and hands-on programs — built for real-world use, mobile-first and accessible.",
+        "STF supports its beneficiaries through mentorship, virtual experiences and hands-on programs - built for real-world use, mobile-first and accessible.",
       ctaMentorat: "Join the mentorship program",
       ctaProgrammes: "Discover the programs",
       engagementsEyebrow: "Our commitments",
@@ -241,7 +241,7 @@ export const dictionaries = {
       partenairesTitle: "They support STF",
       ctaFinaleTitle: "Become an agent of change",
       ctaFinaleDescription:
-        "Whether you're a future mentee, a professional ready to become a mentor, or a committed partner — STF welcomes you.",
+        "Whether you're a future mentee, a professional ready to become a mentor, or a committed partner - STF welcomes you.",
       ctaFinaleMentee: "Join as a mentee",
       ctaFinaleMentore: "Become a mentor",
     },

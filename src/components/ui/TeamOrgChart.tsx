@@ -44,7 +44,7 @@ export function TeamOrgChart() {
           size="lg"
           member={{
             name: "Christelle Ogo",
-            role: "PCA — Présidente du Conseil d'Administration",
+            role: "PCA - Présidente du Conseil d'Administration",
             photo: "/brand/presidente-fondatrice.png",
           }}
         />

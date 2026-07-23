@@ -16,13 +16,13 @@ describe("formatDate", () => {
   });
 
   it("returns an em dash for null", () => {
-    expect(formatDate(null)).toBe("—");
+    expect(formatDate(null)).toBe("-");
   });
 });
 
 describe("formatTime", () => {
   it("returns an em dash for null", () => {
-    expect(formatTime(null)).toBe("—");
+    expect(formatTime(null)).toBe("-");
   });
 
   it("formats a time in HH:mm", () => {

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 import { Container } from "@/components/ui/Container";
 import { SocialIcons } from "@/components/ui/SocialIcons";
 import { NewsletterForm } from "@/components/layout/NewsletterForm";
@@ -48,6 +49,8 @@ const columns = [
 export function SiteFooter({ siteSettings }: { siteSettings: SiteSettings }) {
   const { t } = useLanguage();
   const siteUrl = siteSettings.site_url ?? "https://sciencesaufeminin.org";
+  const [activeTab, setActiveTab] = useState(columns[0].titleKey);
+  const activeColumn = columns.find((col) => col.titleKey === activeTab) ?? columns[0];
 
   return (
     <footer className="border-t border-slate-100 bg-stf-navy text-slate-200 dark:border-border-default">
@@ -64,7 +67,7 @@ export function SiteFooter({ siteSettings }: { siteSettings: SiteSettings }) {
       <Container className="grid gap-10 py-10 sm:grid-cols-2 lg:grid-cols-5">
         <div className="lg:col-span-1">
           <span className="relative flex h-16 w-32">
-            <Image src="/brand/logo.png" alt="STF" fill sizes="80px" className="object-contain" />
+            <Image src="/brand/footer.png" alt="STF" fill sizes="80px" className="object-contain" />
           </span>
           <p className="mt-4 text-sm text-slate-300">{t("footer.tagline")}</p>
           <a
@@ -78,8 +81,38 @@ export function SiteFooter({ siteSettings }: { siteSettings: SiteSettings }) {
           <SocialIcons siteSettings={siteSettings} className="mt-5" />
         </div>
 
+        {/* Mobile only: tabbed categories instead of every column stacked one after another */}
+        <div className="sm:hidden">
+          <div className="flex flex-wrap gap-2">
+            {columns.map((col) => (
+              <button
+                key={col.titleKey}
+                type="button"
+                onClick={() => setActiveTab(col.titleKey)}
+                className={`rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-wide transition-colors ${
+                  activeTab === col.titleKey
+                    ? "bg-stf-orange text-white"
+                    : "bg-white/10 text-slate-300 hover:bg-white/15"
+                }`}
+              >
+                {t(`footer.${col.titleKey}`)}
+              </button>
+            ))}
+          </div>
+          <ul className="mt-4 space-y-2">
+            {activeColumn.links.map((link, i) => (
+              <li key={`${link.href}-${i}`}>
+                <Link href={link.href} className="text-sm text-slate-300 hover:text-white">
+                  {t(link.labelKey)}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* sm and up: every category shown side by side */}
         {columns.map((col) => (
-          <div key={col.titleKey}>
+          <div key={col.titleKey} className="hidden sm:block">
             <h3 className="text-sm font-semibold uppercase tracking-wide text-stf-orange">
               {t(`footer.${col.titleKey}`)}
             </h3>

@@ -29,14 +29,14 @@ export default async function MentoreDashboardPage() {
       <div>
         <h1 className="text-2xl font-bold text-stf-navy dark:text-white">Tableau de bord</h1>
         <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
-          {user?.mentor_profile?.expertise ?? "—"} · {pairings.length}/{user?.mentor_profile?.capacity ?? "—"} mentées
+          {user?.mentor_profile?.expertise ?? "-"} · {pairings.length}/{user?.mentor_profile?.capacity ?? "-"} mentées
           affectées
         </p>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <StatCard label="Mentées assignées" value={String(pairings.length)} />
-        <StatCard label="Capacité maximale" value={String(user?.mentor_profile?.capacity ?? "—")} />
+        <StatCard label="Capacité maximale" value={String(user?.mentor_profile?.capacity ?? "-")} />
         <StatCard label="Sessions à venir" value={String(sessions.length)} />
         <StatCard
           label="Alertes"
@@ -70,7 +70,7 @@ export default async function MentoreDashboardPage() {
                     <td className="py-3 font-medium text-stf-navy dark:text-white">{p.mentee.name}</td>
                     <td className="py-3 text-slate-500 dark:text-slate-400">{p.program.name}</td>
                     <td className="py-3 text-slate-500 dark:text-slate-400">
-                      {next ? formatDate(next.scheduled_at) : "—"}
+                      {next ? formatDate(next.scheduled_at) : "-"}
                     </td>
                     <td className="py-3">
                       {next ? <Badge tone="green">À jour</Badge> : <Badge tone="orange">À planifier</Badge>}

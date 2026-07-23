@@ -41,7 +41,7 @@ export default async function ExperiencesVirtuellesCataloguePage({
     <>
       <PageHero
         eyebrow={`${level.name} · ${subject.name}`}
-        title={`Cours de renforcement — ${subject.name}`}
+        title={`Cours de renforcement - ${subject.name}`}
         description="Un catalogue de cours progressifs, un labo virtuel d'expériences et des sessions en direct pour aller plus loin avec une mentore."
       />
 

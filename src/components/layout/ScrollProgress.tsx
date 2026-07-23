@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 
 /**
- * Thin bar under the sticky header that fills as the page is scrolled —
+ * Thin bar under the sticky header that fills as the page is scrolled -
  * continuous feedback (not a one-off reveal) tied directly to scroll position.
  */
 export function ScrollProgress() {

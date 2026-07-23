@@ -94,7 +94,7 @@ async function fetchIndex(): Promise<SearchItem[]> {
     items.push({
       id: `temoignage-${testimonial.id}`,
       type: "temoignage",
-      title: `${testimonial.name} — ${testimonial.role}`,
+      title: `${testimonial.name} - ${testimonial.role}`,
       description: testimonial.quote,
       url: `/impact#temoignage-${testimonial.id}`,
     });

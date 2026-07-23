@@ -34,7 +34,7 @@ export default async function ExperiencesVirtuellesLevelPage({
         <Container>
           <Reveal>
             <p className="text-sm font-semibold uppercase tracking-wide text-stf-orange">
-              Étape 2 — Choisis ta matière
+              Étape 2 - Choisis ta matière
             </p>
           </Reveal>
           <div className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">

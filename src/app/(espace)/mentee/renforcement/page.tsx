@@ -12,7 +12,7 @@ export default async function MenteeRenforcementPage() {
       <div>
         <h1 className="text-2xl font-bold text-stf-navy dark:text-white">Cours de renforcement</h1>
         <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
-          Tes cours de renforcement, par niveau et par matière — comme un cours à domicile en ligne.
+          Tes cours de renforcement, par niveau et par matière - comme un cours à domicile en ligne.
         </p>
       </div>
 

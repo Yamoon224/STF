@@ -23,7 +23,7 @@ export default async function MenteeMentoratPage() {
       <div>
         <h1 className="text-2xl font-bold text-stf-navy dark:text-white">Mon mentorat</h1>
         <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
-          Cycle en cours · {pairing?.program.name ?? "—"}
+          Cycle en cours · {pairing?.program.name ?? "-"}
         </p>
       </div>
 
@@ -31,7 +31,7 @@ export default async function MenteeMentoratPage() {
         <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
           <div className="flex items-center gap-4">
             <span className="flex h-14 w-14 items-center justify-center rounded-full bg-stf-blue-light text-lg font-bold text-stf-blue">
-              {pairing?.mentor ? initials(pairing.mentor.name) : "—"}
+              {pairing?.mentor ? initials(pairing.mentor.name) : "-"}
             </span>
             <div>
               <p className="font-semibold text-stf-navy dark:text-white">{pairing?.mentor?.name ?? "En attente de matching"}</p>
@@ -79,7 +79,7 @@ export default async function MenteeMentoratPage() {
                 className="flex items-center justify-between rounded-xl border border-slate-100 p-3 text-sm dark:border-border-subtle"
               >
                 <div>
-                  <p className="font-medium text-stf-navy dark:text-white">{s.topic ?? "—"}</p>
+                  <p className="font-medium text-stf-navy dark:text-white">{s.topic ?? "-"}</p>
                   <p className="text-xs text-slate-400 dark:text-slate-500">
                     {formatDate(s.scheduled_at)} · {formatTime(s.scheduled_at)}
                   </p>

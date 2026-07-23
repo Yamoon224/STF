@@ -105,7 +105,7 @@ export function ConversationMessenger({
       <div className="flex flex-col rounded-2xl border border-slate-100 bg-white shadow-sm dark:border-border-default dark:bg-surface">
         <div className="flex items-center justify-between border-b border-slate-100 p-4 dark:border-border-subtle">
           <div>
-            <p className="font-semibold text-stf-navy dark:text-white">{other?.name ?? "—"}</p>
+            <p className="font-semibold text-stf-navy dark:text-white">{other?.name ?? "-"}</p>
             <p className="text-xs text-slate-400 dark:text-slate-500">{counterpartLabel}</p>
           </div>
           <button

@@ -48,7 +48,7 @@ export function ShareButtons({ url, title }: { url: string; title: string }) {
     try {
       await navigator.share({ title, url });
     } catch {
-      // user cancelled the native share sheet — nothing to do
+      // user cancelled the native share sheet - nothing to do
     }
   }
 
@@ -58,7 +58,7 @@ export function ShareButtons({ url, title }: { url: string; title: string }) {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      // clipboard unavailable — silently ignore
+      // clipboard unavailable - silently ignore
     }
   }
 

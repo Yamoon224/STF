@@ -51,6 +51,7 @@ export default async function BoursesPage() {
               {scholarships.map((scholarship, i) => (
                 <Reveal
                   key={scholarship.id}
+                  id={`bourse-${scholarship.id}`}
                   delay={i * 80}
                   className="flex h-full flex-col overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-sm transition-transform duration-300 hover:-translate-y-1 dark:border-border-default dark:bg-surface"
                 >

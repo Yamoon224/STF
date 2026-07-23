@@ -32,7 +32,7 @@ export default async function ProgrammesPage() {
       <section className="py-24">
         <Container className="grid gap-10 md:grid-cols-2">
           {programs.map((program, i) => (
-            <Reveal key={program.slug} delay={i * 80}>
+            <Reveal key={program.slug} id={program.slug} delay={i * 80}>
               <div
                 className={`rounded-2xl border p-8 ${colorMap[(program.color ?? "blue") as keyof typeof colorMap]}`}
               >

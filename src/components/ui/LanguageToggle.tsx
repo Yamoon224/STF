@@ -13,10 +13,13 @@ const options: { value: Locale; label: string; name: string }[] = [
 export function LanguageToggle({
   className = "",
   dropDirection = "down",
+  dropAlign = "right",
 }: {
   className?: string;
   /** Which way the option panel opens — "up" for triggers anchored near the bottom of the viewport. */
   dropDirection?: "down" | "up";
+  /** Which edge the panel aligns to — "left" for triggers anchored near the left edge of the viewport. */
+  dropAlign?: "left" | "right";
 }) {
   const { locale, setLocale } = useLanguage();
   const [open, setOpen] = useState(false);
@@ -70,9 +73,9 @@ export function LanguageToggle({
         <div
           role="listbox"
           aria-label="Langue"
-          className={`absolute right-0 z-50 w-40 overflow-hidden rounded-2xl border border-slate-200 bg-white p-1.5 shadow-lg shadow-black/5 dark:border-border-default dark:bg-surface ${
-            dropDirection === "up" ? "bottom-full mb-2" : "top-full mt-2"
-          }`}
+          className={`absolute z-50 w-40 overflow-hidden rounded-2xl border border-slate-200 bg-white p-1.5 shadow-lg shadow-black/5 dark:border-border-default dark:bg-surface ${
+            dropAlign === "left" ? "left-0" : "right-0"
+          } ${dropDirection === "up" ? "bottom-full mb-2" : "top-full mt-2"}`}
         >
           {options.map((option) => {
             const selected = option.value === locale;

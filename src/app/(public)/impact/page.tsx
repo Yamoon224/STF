@@ -67,6 +67,7 @@ export default async function ImpactPage() {
             {testimonials.map((item, i) => (
               <Reveal
                 key={item.id}
+                id={`temoignage-${item.id}`}
                 delay={i * 90}
                 className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm dark:border-border-default dark:bg-surface"
               >

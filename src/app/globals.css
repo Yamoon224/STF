@@ -58,6 +58,11 @@ html {
   scrollbar-color: rgba(29, 78, 137, 0.35) transparent;
 }
 
+/* Keeps deep-linked anchors (e.g. from search results) from landing under the sticky header. */
+[id] {
+  scroll-margin-top: 6rem;
+}
+
 .dark {
   scrollbar-color: rgba(245, 148, 31, 0.35) transparent;
 }

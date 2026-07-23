@@ -9,6 +9,8 @@ type RevealProps = {
   delay?: number;
   /** Distance (px) the element rises as it appears. */
   y?: number;
+  /** Anchor id, e.g. so search results can deep-link to this element with #id. */
+  id?: string;
 };
 
 /**
@@ -16,7 +18,7 @@ type RevealProps = {
  * Fires immediately for content already on screen at mount (hero sections),
  * and is a no-op (always visible, no motion) under prefers-reduced-motion.
  */
-export function Reveal({ children, className = "", delay = 0, y = 24 }: RevealProps) {
+export function Reveal({ children, className = "", delay = 0, y = 24, id }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(
     () => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches
@@ -44,7 +46,7 @@ export function Reveal({ children, className = "", delay = 0, y = 24 }: RevealPr
   const style = { "--reveal-delay": `${delay}ms`, "--reveal-y": `${y}px` } as CSSProperties;
 
   return (
-    <div ref={ref} data-reveal className={`reveal ${visible ? "reveal-visible" : ""} ${className}`} style={style}>
+    <div id={id} ref={ref} data-reveal className={`reveal ${visible ? "reveal-visible" : ""} ${className}`} style={style}>
       {children}
     </div>
   );

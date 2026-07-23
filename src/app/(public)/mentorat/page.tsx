@@ -94,7 +94,7 @@ export default async function MentoratPage() {
           <SectionHeading eyebrow="Questions fréquentes" title="Tout comprendre sur le mentorat" />
           <div className="mt-10 divide-y divide-slate-100 rounded-2xl border border-slate-100 dark:divide-border-subtle dark:border-border-default">
             {faqMentorat.map((item, i) => (
-              <Reveal key={item.question} delay={Math.min(i, 6) * 60} className="p-6">
+              <Reveal key={item.question} id={`faq-${item.id}`} delay={Math.min(i, 6) * 60} className="p-6">
                 <h3 className="font-semibold text-stf-navy dark:text-white">{item.question}</h3>
                 <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">{item.answer}</p>
               </Reveal>

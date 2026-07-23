@@ -123,6 +123,21 @@ export const dictionaries = {
       alreadyRegistered: "Déjà inscrite ?",
       login: "Se connecter",
     },
+    chat: {
+      launcherLabel: "Ouvrir l'assistant",
+      title: "Assistant STF",
+      subtitle: "Posez une question, je vous oriente sur le site.",
+      placeholder: "Ex : comment devenir mentore ?",
+      send: "Envoyer",
+      close: "Fermer",
+      greeting:
+        "Bonjour ! Posez-moi une question (programmes, mentorat, bourses, actualités...) et je vous dirai où trouver la réponse.",
+      redirectIntro: "Vous devriez trouver ça ici :",
+      suggestionsIntro: "Voici où vous pourriez trouver ça :",
+      noResults: "Aucun élément trouvé.",
+      goToPage: "Aller à la page",
+      error: "Une erreur est survenue, réessayez.",
+    },
   },
   en: {
     header: {
@@ -247,6 +262,21 @@ export const dictionaries = {
       mentoreNotice: "Your account will be reviewed and validated by the STF team before any exchange with a mentee.",
       alreadyRegistered: "Already registered?",
       login: "Sign in",
+    },
+    chat: {
+      launcherLabel: "Open assistant",
+      title: "STF Assistant",
+      subtitle: "Ask a question, I'll point you to the right page.",
+      placeholder: "E.g. how do I become a mentor?",
+      send: "Send",
+      close: "Close",
+      greeting:
+        "Hi! Ask me a question (programs, mentorship, scholarships, news...) and I'll tell you where to find it.",
+      redirectIntro: "You should find that here:",
+      suggestionsIntro: "Here's where you might find that:",
+      noResults: "No matching page found.",
+      goToPage: "Go to page",
+      error: "Something went wrong, please try again.",
     },
   },
 } as const;

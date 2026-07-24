@@ -36,6 +36,19 @@ export function NewsletterForm() {
           >
             <Send className="h-4 w-4" />
           </button>
+          <a
+            href="/downloads/stf-app-release.apk"
+            download
+            aria-label={t("footer.downloadApp")}
+            title={t("footer.downloadApp")}
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-stf-orange"
+          >
+            <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden="true">
+              <path fill="#00D2FF" d="M4 3 19 12 4 12Z" />
+              <path fill="#00F076" d="M4 12 19 12 4 21Z" />
+              <path fill="#FFC900" d="M17 10 21 12 17 14Z" />
+            </svg>
+          </a>
         </form>
       )}
 

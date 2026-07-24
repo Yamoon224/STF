@@ -37,6 +37,7 @@ export const dictionaries = {
       newsletterPlaceholder: "vous@exemple.com",
       newsletterSubmit: "S'abonner",
       newsletterSuccess: "Merci ! Vous êtes bien abonnée à la newsletter STF.",
+      downloadApp: "Télécharger l'application (APK)",
     },
     home: {
       heroBadge: "Audace · Union · Intégrité · Résultat",
@@ -203,6 +204,7 @@ export const dictionaries = {
       newsletterPlaceholder: "you@example.com",
       newsletterSubmit: "Subscribe",
       newsletterSuccess: "Thanks! You're now subscribed to the STF newsletter.",
+      downloadApp: "Download the app (APK)",
     },
     home: {
       heroBadge: "Boldness · Unity · Integrity · Results",
